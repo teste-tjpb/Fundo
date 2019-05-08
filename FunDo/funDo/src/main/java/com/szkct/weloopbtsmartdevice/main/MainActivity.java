@@ -99,8 +99,8 @@ import static com.szkct.weloopbtsmartdevice.main.MainService.AUTO_CONNECT;
 import static com.szkct.weloopbtsmartdevice.util.SystemUtils.getVersionName;
 
 /**
- * @author chendalin 说明：ActionBarActivit对于最新的sdk
- *         20x版本以上已经被官方抛弃，不建议使用，先推荐使用AppCompatActivity
+ * @author chendalin Descrição: ActionBarActivit for the latest sdk
+ *         A versão 20x foi oficialmente abandonada. Não é recomendado. Recomenda-se usar AppCompatActivity primeiro.
  */
 public class MainActivity extends FragmentActivity implements OnClickListener {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -152,8 +152,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
             "android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
     public Context mContext;
     private FragmentManager fragmentManager;
-    private AnalysisFragment analysisFragment;       // 大数据					--- 分析
-    private HomeFragment homeFragment;    // 					主Fragment ---- 运动，睡眠
+    private AnalysisFragment analysisFragment;       // Big Data					--- Análise
+    private HomeFragment homeFragment;    // 					主Fragment ---- Exercício, sono
     //private DiscoverFragment discoverFragment;
     private HelperFragment helperFragment;     // 手表助手  // 手表助手(更多)   ---- 更多
     private SettingFragment settingFragment;   // 我的   // 我的Fragment			--- 我的

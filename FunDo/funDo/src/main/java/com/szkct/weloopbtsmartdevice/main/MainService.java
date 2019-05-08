@@ -201,28 +201,28 @@ public final class MainService extends Service {
     public static final String EXTRA_COMMAND_REQUEST = "KCT_PEDOMETER kct_pedometer 0 0 5 GET,0";
 
     public static final String ACTION_BLUETOOTH_SEND_EXCD_CMD = "com.mtk.ACTION_BLUETOOTH_SEND_EXCD_CMD";
- 	public static final String ACTION_GESTURE_ON = "com.kct.ACTION_GESTURE_ON";      //设备端发送了抬手亮屏开的命令
-    public static final String ACTION_GESTURE_OFF = "com.kct.ACTION_GESTURE_OFF";      //设备端发送了抬手亮屏开的命令
+ 	public static final String ACTION_GESTURE_ON = "com.kct.ACTION_GESTURE_ON";      //The device sends a command to raise the hand to open the screen.
+    public static final String ACTION_GESTURE_OFF = "com.kct.ACTION_GESTURE_OFF";      //The device sends a command to raise the hand to open the screen.
 
     public static final String ACTION_FINDPHONE = "com.kct.ACTION_FINDPHONE";
 
     public static final String ACTION_MACCHANGE = "com.kct.ACTION_MACCHANGE";
 
-    public static final String ACTION_SYNFINSH_SUCCESS = "com.kct.ACTION_SYNFINSH_SUCCESS";      //实时步数的广播
+    public static final String ACTION_SYNFINSH_SUCCESS = "com.kct.ACTION_SYNFINSH_SUCCESS";      //Real-time step broadcast
 
-//    public static final String ACTION_SSHEARTFINSH = "com.kct.ACTION_SSHEARTFINSH";      // 实时心率（ble）
+//    public static final String ACTION_SSHEARTFINSH = "com.kct.ACTION_SSHEARTFINSH";      // Real-time heart rate
 
-    public static final String ACTION_NO_UNITS = "com.kct.ACTION_NO_UNITS";      // 不支持单位设置
+    public static final String ACTION_NO_UNITS = "com.kct.ACTION_NO_UNITS";      // Unit settings are not supported
 
-    public static final String ACTION_SYNC_BLECONNECT = "com.kct.ACTION_SYNC_BLECONNECT";      // BLE连接自动同步
-    public static final String ACTION_SYNFINSH = "com.kct.ACTION_SYNFINSH";      // 数据同步
+    public static final String ACTION_SYNC_BLECONNECT = "com.kct.ACTION_SYNC_BLECONNECT";      // Automatic synchronization of connections
+    public static final String ACTION_SYNFINSH = "com.kct.ACTION_SYNFINSH";      // data synchronization
     public static final String ACTION_SYNFINSH_SPORTS = "com.kct.ACTION_SPORTSSYNFINSH";
-    public static final String ACTION_SYNNOTDATA = "com.kct.ACTION_SYNNOTDATA";   //数据同步成功，但暂无数据
-    public static final String ACTION_SYNARTHEART = "com.kct.ACTION_SYNARTHEART";   //实时同步心率
-    public static final String ACTION_SYNARTBO = "com.kct.ACTION_SYNARTBO";//实时同步血氧
-    public static final String ACTION_SYNARTBP = "com.kct.ACTION_SYNARTBP";  //实时同步血压
-    public static final String ACTION_FINDWATCHON = "com.kct.ACTION_FINDWATCHON";   //打开查找手机
-    public static final String ACTION_FINDWATCHOFF = "com.kct.ACTION_FINDWATCHOFF";   //关闭查找手机
+    public static final String ACTION_SYNNOTDATA = "com.kct.ACTION_SYNNOTDATA";   //Data synchronization is successful, but no data yet
+    public static final String ACTION_SYNARTHEART = "com.kct.ACTION_SYNARTHEART";   //Real-time heart rate synchronization
+    public static final String ACTION_SYNARTBO = "com.kct.ACTION_SYNARTBO";//Real-time synchronization of blood oxygen
+    public static final String ACTION_SYNARTBP = "com.kct.ACTION_SYNARTBP";  //Synchronize blood pressure in real time
+    public static final String ACTION_FINDWATCHON = "com.kct.ACTION_FINDWATCHON";   //Open find phone
+    public static final String ACTION_FINDWATCHOFF = "com.kct.ACTION_FINDWATCHOFF";   //Close to find phone
 
 
     public static final String ACTION_BLECONNECTED = "com.kct.ACTION_BLECONNECTED";
@@ -251,42 +251,42 @@ public final class MainService extends Service {
 
     public static final String ACTION_SPORTMODE_HINT = "com.mtk.ACTION_SPORTMODE_HINT";
 
-    public static final String ACTION_CHANGE_WATCH = "com.mtk.ACTION_CHANGE_WATCH";  // 连接的设备类型更换了
+    public static final String ACTION_CHANGE_WATCH = "com.mtk.ACTION_CHANGE_WATCH";  // The connected device type has been changed.
 
-    public static final String ACTION_SPORTMODE_AUTOPAUSE = "com.mtk.ACTION_SPORTMODE_AUTOPAUSE";  // 自动暂停开关的变化
-    public static final String ACTION_SPORTMODE_AUTOSTOP = "com.mtk.ACTION_SPORTMODE_AUTOSTOP";  // 自动停止开关的变化
+    public static final String ACTION_SPORTMODE_AUTOPAUSE = "com.mtk.ACTION_SPORTMODE_AUTOPAUSE";  // Automatic pause switch change
+    public static final String ACTION_SPORTMODE_AUTOSTOP = "com.mtk.ACTION_SPORTMODE_AUTOSTOP";  // Automatic stop switch change
 
-    public static final String ACTION_BKOTASUCCESS_RECON = "com.kct.ACTION_BKOTASUCCESS_RECON";  // BK平台升级成功后发广播自动重连
+    public static final String ACTION_BKOTASUCCESS_RECON = "com.kct.ACTION_BKOTASUCCESS_RECON";  // After the platform upgrade is successful, the broadcast will be automatically reconnected.
 
     public static final String ACTION_GETPUSHPIC_SUCCESS = "com.kct.ACTION_GETPUSHPIC_SUCCESS";
 
     public static final String ACTION_PUSHPIC_FINISH = "com.kct.ACTION_PUSHPIC_FINISH";
 
-    public static final String ACTION_REMOTE_CAMERA = "com.kct.ble.remote.camera";    // todo --- 远程拍照 BLE  拍照广播
-    public static final String ACTION_REMOTE_CAMERA_EXIT = "com.kct.ble.remote.camera.exit";    // todo --- 远程拍照 BLE  退出拍照广播
+    public static final String ACTION_REMOTE_CAMERA = "com.kct.ble.remote.camera";    // todo --- Remote photography
+    public static final String ACTION_REMOTE_CAMERA_EXIT = "com.kct.ble.remote.camera.exit";    // todo --- Remote photography BLE Exit photo broadcast
 
     public static final String WEATHER_DATA = "WEATHER_DATA";
 
-    public static final String GET_CITY_CODE = "https://api.heweather.com/v5/search?city=";// 和风天气获取 城市/地区编码
+    public static final String GET_CITY_CODE = "https://api.heweather.com/v5/search?city=";// Zephyr weather get city/area code
     public static final String API_STORE_KEY = "&key=f72da8a8d73d4fdea4603b70944436d5";
-// todo  接口全路径：http:// wx.funos.cn:8080 +接口地址，参数部分使用json格式
-//todo  --- 天气接口  fundo/weather/requestWeather.do? location=116.376673,39.91737&lang=en&appName=0&systemType=1&appVersion=1&uuid=dasf
+// todo  Interface full path：http:// wx.funos.cn:8080 +Interface address, parameter part using json format
+//todo  --- Weather interface  fundo/weather/requestWeather.do? location=116.376673,39.91737&lang=en&appName=0&systemType=1&appVersion=1&uuid=dasf
 //    public static final String GET_WEATHER_URL = "http://wx.funos.cn:8080/fundo/weather/request.do?";
-    public static final String GET_WEATHER_URL = "http://wx.funos.cn:8080/fundo/weather/requestWeather.do?";// TODO 20180720 新接口，获取天气
+    public static final String GET_WEATHER_URL = "http://wx.funos.cn:8080/fundo/weather/requestWeather.do?";// TODO 20180720 New interface, get weather
 
-    public static final String GET_SHIPEI_URL = "http://wx.funos.cn:8080/fundo/adaptiveFromApp/request.do?";// TODO 20180720 新接口，获取适配数据       fundo/adaptiveFromAPP/request.do?
+    public static final String GET_SHIPEI_URL = "http://wx.funos.cn:8080/fundo/adaptiveFromApp/request.do?";// TODO 20180720 New interface to get adaptation data     fundo/adaptiveFromAPP/request.do?
 
-    public static final String URL_GET_UV_PRESSURE_TEP_TWO_DAY_NEW = "http://app.fundo.xyz:8001/weardoor/index.php?s=Api/Apistore/weather/cityid/";        //获取 两天 的温度、气压、紫外线数据  注意：有缓存，一直拿到的网址不对路导致获取不到数据，只能新建tag
+    public static final String URL_GET_UV_PRESSURE_TEP_TWO_DAY_NEW = "http://app.fundo.xyz:8001/weardoor/index.php?s=Api/Apistore/weather/cityid/";        //Get two days of temperature, air pressure, UV data Note: There is a cache, the URL that has been obtained is not correct, and the data cannot be obtained. Only new tags can be created.
 
     public static final int PAGE_INDEX_HOME = 1;
     public static final int PAGE_INDEX_ANALYSIS = 2;
     public static final int PAGE_INDEX_HEALTH = 3;
     public static final int PAGE_INDEX_SPORTMODE = 4;
 
-    public static final int PAGE_INDEX_SPORT_DETAILED_DATA = 5;  // 运动模式详细数据页面
-    public static final int PAGE_INDEX_SPORT_SPEED_DETAILS = 6;   // 运动模式配速详情页面
-    public static final int PAGE_INDEX_SPORT_MOTION_CHART = 7;    // 运动模式运动图表页面
-    public static final int PAGE_INDEX_ECG = 8;    // 运动模式运动图表页面
+    public static final int PAGE_INDEX_SPORT_DETAILED_DATA = 5;  // Sports mode detailed data page
+    public static final int PAGE_INDEX_SPORT_SPEED_DETAILS = 6;   // Sports mode pace detail page
+    public static final int PAGE_INDEX_SPORT_MOTION_CHART = 7;    // Sports mode sports chart page
+    public static final int PAGE_INDEX_ECG = 8;    // ECG page
     private List<Bloodpressure> BloodpressureLIST = new ArrayList<>();
 //    public static final String PAGE_INDEX_SPORTMODE= "2";
 
@@ -366,28 +366,28 @@ public final class MainService extends Service {
     private static final int SENDMESSAGEURL = 16;
     private String message;
     /////////////////////////////////////////////////////////////////////////////////////////////
-    private static int sequenctId = 0;    //发送的序列号
+    private static int sequenctId = 0;    //Serial number sent
 
-    private Queue<BleCmdBean> nSendQueue = new LinkedList<BleCmdBean>();  //发送队列
-    private TimerTask timerTask;   //定时器
+    private Queue<BleCmdBean> nSendQueue = new LinkedList<BleCmdBean>();  //Send queue
+    private TimerTask timerTask;   //Timer
 
     private static int type = 0;
 
-    private static boolean burstification = false;  //是否在接收数据
+    private static boolean burstification = false;  // Whether receiving data
 
-    private byte[] byteArr;    //总包数组
+    private byte[] byteArr;    //Total package array
 
-    private static int cmdLength = 0;    //组包长度
+    private static int cmdLength = 0;    //Packet length
 
-    private static int cmdSumLength = 0;    //组包长度
+    private static int cmdSumLength = 0;    //Packet length
 
     public static final int RECEIVEMSG = 6;
 
     private L1Bean l1Bean = null;
-    private static boolean burDataBegin = false;  //是否开始运动组包
+    private static boolean burDataBegin = false;  //Whether to start the sports package
 
-    private static boolean burDataEnd = false;  //是否结束运动组包
-    private List<byte[]> commandList = new ArrayList<>();   //组包集合
+    private static boolean burDataEnd = false;  //Whether to end the sports package
+    private List<byte[]> commandList = new ArrayList<>();   //Group package collection
 
     private List<HearData> hlist = new ArrayList<HearData>();        // 心率数据
     private List<SleepData> slist = new ArrayList<SleepData>();            // 睡眠数据据
