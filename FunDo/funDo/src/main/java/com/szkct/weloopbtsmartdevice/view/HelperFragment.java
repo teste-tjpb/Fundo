@@ -84,7 +84,6 @@ import com.szkct.weloopbtsmartdevice.activity.HeartAutoCheckActivity;
 import com.szkct.weloopbtsmartdevice.activity.HeartEnterCheckActivity;
 import com.szkct.weloopbtsmartdevice.activity.LinkBleActivity;
 import com.szkct.weloopbtsmartdevice.activity.NewElectronicInvoiceActivity;
-import com.szkct.weloopbtsmartdevice.activity.NewLoginPhoneActivity;
 import com.szkct.weloopbtsmartdevice.activity.NoFazeModeActivity;
 import com.szkct.weloopbtsmartdevice.activity.ReceivingCodeActivity;
 import com.szkct.weloopbtsmartdevice.activity.SedentaryReminderActivity;
@@ -1266,13 +1265,13 @@ public class HelperFragment extends Fragment {
                 bytes[0] = (byte) 1;
                 bytes[1] = (byte) 1;
                 bytes[2] = (byte) 1;
-                L2Send.sendNotify(BleContants.DEVICE_COMMADN, BleContants.GESTURE, bytes);
+                L2Send.sendNotify(BleContants.DEVICE_COMMAND, BleContants.GESTURE, bytes);
             }else{ // 开关关闭
                 byte[] bytes = new byte[3];
                 bytes[0] = (byte) 0;
                 bytes[1] = (byte) 0;
                 bytes[2] = (byte) 0;
-                L2Send.sendNotify(BleContants.DEVICE_COMMADN, BleContants.GESTURE, bytes);
+                L2Send.sendNotify(BleContants.DEVICE_COMMAND, BleContants.GESTURE, bytes);
             }
         }
 
@@ -1372,22 +1371,22 @@ public class HelperFragment extends Fragment {
                 String stepNum = intent.getStringExtra("step");
                 if(null != loadingDialog && !StringUtils.isEmpty(stepNum)){
                     if(stepNum.equals("1")){
-                        Log.e("liuxiaodata", "收到1广播");
+                        Log.e("liuxiaodata", "Received 1 broadcasts");
                         loadingDialog.setText(getString(R.string.userdata_synchronize1));
                     }else  if(stepNum.equals("2")){
-                        Log.e("liuxiaodata", "收到2广播");
+                        Log.e("liuxiaodata", "Received 2 broadcasts");
                         loadingDialog.setText(getString(R.string.userdata_synchronize2));
                     }else if(stepNum.equals("3")){
-                        Log.e("liuxiaodata", "收到3广播");
+                        Log.e("liuxiaodata", "Received 3 broadcasts");
                         loadingDialog.setText(getString(R.string.userdata_synchronize3));
                     }else if(stepNum.equals("4")){
-                        Log.e("liuxiaodata", "收到4广播");
+                        Log.e("liuxiaodata", "Received 4 broadcasts");
                         loadingDialog.setText(getString(R.string.userdata_synchronize4));
                     }else if(stepNum.equals("5")){
-                        Log.e("liuxiaodata", "收到5广播");
+                        Log.e("liuxiaodata", "Received 5 broadcasts");
                         loadingDialog.setText(getString(R.string.userdata_synchronize5));
                     }else if(stepNum.equals("6")){
-                        Log.e("liuxiaodata", "收到6广播");
+                        Log.e("liuxiaodata", "Received 6 broadcasts");
 //                        loadingDialog.setText(getString(R.string.userdata_synchronize3));
 
                         loadingDialog.setText(getString(R.string.userdata_synchronize_success));
@@ -1921,7 +1920,7 @@ public class HelperFragment extends Fragment {
             }
         }else if("constants".equals(event.getMessage())){
             if(constantList.size() > index && constantList.size() > 0){
-                byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.SYN_ADDREST_LIST,constantList.get(index).toString().getBytes());  // 手表WiFi  04 4B  TODO --- 同步联系人
+                byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.SYN_ADDREST_LIST,constantList.get(index).toString().getBytes());  // 手表WiFi  04 4B  TODO --- 同步联系人
                 MainService.getInstance().writeToDevice(l2, false);
                 index++;
                 int precent = (int)(index / (double)constantList.size() * 100);
@@ -2830,7 +2829,7 @@ public class HelperFragment extends Fragment {
         key[5] = (byte) (DateUtil.getMinute());
         key[6] = (byte) ((System.currentTimeMillis() / 1000) % 60);
         byte[] l2 = new L2Bean().L2Pack(BleContants.SYN_COMMAND, BleContants.SYN_DATA_REQUEST, key);
-        Log.e(TAG, "第1天--" + UtilsLX.bytesToHexString(l2));
+        Log.e(TAG, "Day 1--" + UtilsLX.bytesToHexString(l2));
 //                String resModebyteslx = UtilsLX.bytesToHexString(bytes);
         MainService.getInstance().writeToDevice(l2, true);
 
@@ -3771,7 +3770,7 @@ public class HelperFragment extends Fragment {
                         }
                         Log.e(TAG,"constantList = " + constantList.size());
                         if (constantList.size() > 0) {
-                            byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.SYN_ADDREST_LIST, constantList.get(index).toString().getBytes());  // 手表WiFi  04 4B  TODO --- 同步联系人
+                            byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.SYN_ADDREST_LIST, constantList.get(index).toString().getBytes());  // 手表WiFi  04 4B  TODO --- 同步联系人
                             MainService.getInstance().writeToDevice(l2, false);
                             index++;
                             EventBus.getDefault().post(new MessageEvent("constants_first"));

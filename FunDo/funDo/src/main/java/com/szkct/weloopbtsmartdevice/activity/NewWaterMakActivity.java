@@ -97,14 +97,14 @@ public class NewWaterMakActivity extends Activity implements PlatformActionListe
 
     private CustomerViewPager vp;
     private View homeView, analysis;
-    private ImageView moreshow,morenotshow;//更多点击按钮和 灰色更多点击按钮
-    private ImageView wenxinshare,wenxinpyquanshare,qqshare,instegramshare,messageshare,lingyingshare,facebookshare;//微信，微信朋友圈，qq,instegram,message,领英，facebook
-    private ImageView xinlangshare,qqzoneshare,twittershare,downshare,shareto_whatsapp;//微博，QQ空间，twitter，下载
+    private ImageView moreshow,morenotshow;//More click buttons and more gray click buttons
+    private ImageView wenxinshare,wenxinpyquanshare,qqshare,instegramshare,messageshare,lingyingshare,facebookshare;//WeChat, WeChat friends circle, qq, instegram, message, LinkedIn, facebook
+    private ImageView xinlangshare,qqzoneshare,twittershare,downshare,shareto_whatsapp;//Weibo, QQ space, twitter, download
     private List<View> views;
     private ViewPagerAdapter vpAdapter;
     private RelativeLayout shareall_tone;//分享控件
 
-    View rl_newphoto;//新增加的水印  10>
+    View rl_newphoto;//Newly added watermark 10>
     TextView tv_key1,tv_key2,tv_key3,tv_key4,tv_key5,tv_value1,tv_value2,tv_value3,tv_value4,tv_value5;
     TextView share_name,share_data;
     ImageView share_my_headphoto;
@@ -125,16 +125,16 @@ public class NewWaterMakActivity extends Activity implements PlatformActionListe
         sportDistance = getIntent().getStringExtra("distance") + "km";   //  getString(R.string.kilometre)
 
         if(mFilePath==null) {
-            // 获取SD卡路径
+            // Get the SD card path
             mFilePath = Environment.getExternalStorageDirectory().getPath();
-            // 文件名
+            // file name
             mFilePath = mFilePath + "/" + "photo.png";
         }
         try {
             fileInputStream = new FileInputStream(mFilePath);
-            // 把流解析成bitmap
+            // Parse the stream into a bitmap
             bitmap = BitmapFactory.decodeStream(fileInputStream);
-            /** 某些手机用decodeStream解析出的图片会自动旋转 如:LG G3 所以在这旋转一下 */
+            /** Some phones will automatically rotate the image parsed by decodeStream. For example: LG G3, so rotate it here. */
             int degree = getBitmapDegree(mFilePath);
             if(degree != 0){
                 bitmap = rotateBitmapByDegree(bitmap,getBitmapDegree(mFilePath));
@@ -160,7 +160,7 @@ public class NewWaterMakActivity extends Activity implements PlatformActionListe
                 myThread = new MyThread();
                 myThread.start();
 //                Toast.makeText(BTNotificationApplication.getInstance(), getString(R.string.save_pic_success) +appDir.getAbsolutePath(), Toast.LENGTH_SHORT).show();
-//                    Toast.makeText(getApplication(), "图片保存成功", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplication(), "Picture saved successfully", Toast.LENGTH_SHORT).show();
 //                }else{
 //
 //                }
@@ -188,13 +188,13 @@ public class NewWaterMakActivity extends Activity implements PlatformActionListe
     }
 
     /**
-     * 读取图片的旋转的角度
+     * Read the angle of rotation of the image
      */
     private int getBitmapDegree(String path) {
         int degree = 0;
         try {
             ExifInterface exifInterface = new ExifInterface(path);
-            /** 获取图片的旋转信息 */
+            /** Get the rotation information of the image */
             int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION,ExifInterface.ORIENTATION_NORMAL);
             switch (orientation) {
                 case ExifInterface.ORIENTATION_ROTATE_90:

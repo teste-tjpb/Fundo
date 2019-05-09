@@ -323,7 +323,7 @@ public class AlarmClockActivity extends AppCompatActivity {
                 bytes[i * 5] = Byte.parseByte(clockList.get(i).getTime().split(":")[0]);  // 17
                 bytes[i * 5 + 1] =Byte.parseByte(clockList.get(i).getTime().split(":")[1]); // 20
                 bytes[i * 5 + 2] = Utils.getFbyte(clockList.get(i).getCycle());
-                Log.i(TAG,"闹钟重复: " + Utils.getFbyte(clockList.get(i).getCycle()));
+                Log.i(TAG,"Alarm repeat: " + Utils.getFbyte(clockList.get(i).getCycle()));
                 bytes[i * 5 + 3] =(byte) 1;     // 标签位  设置时传1
                 bytes[i * 5 + 4] =Byte.parseByte(clockList.get(i).getType());
 //            }

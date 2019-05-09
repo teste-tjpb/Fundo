@@ -1087,13 +1087,13 @@ public class SportHistoryActivityForMtkYouyong extends AppCompatActivity impleme
         if (Gdata.getMid() != Gdata.NOT_LOGIN) {
             String photoName = SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.FACE);
             String path = FileUtils.SDPATH + photoName;
-            Log.e("MyDataActivity ", " 显示的图片路径：" + path);
+            Log.e("MyDataActivity ", " Displayed image path：" + path);
             File file = new File(path);
             if (file.exists()) {
                 Bitmap bitmap = BitmapFactory.decodeFile(path);
                 if(bitmap != null)
                     detail_icon.setImageBitmap(ImageCacheUtil.toRoundBitmap(bitmap));
-                Log.e("MyDataActivity ", " 显示本地图片");
+                Log.e("MyDataActivity ", " Show local image");
             }
             detail_name.setText(Gdata.getPersonData().getUsername());
         }else{

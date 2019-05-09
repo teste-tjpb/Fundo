@@ -211,17 +211,17 @@ public class OnekeyShare {
 		}
 	}
 
-	/** 腾讯微博分享多张图片 */
+	/** Tencent Weibo shares multiple pictures */
 	public void setImageArray(String[] imageArray) {
 		params.put("imageArray", imageArray);
 	}
 
-	/** 设置在执行分享到QQ或QZone的同时，分享相同的内容腾讯微博 */
+	/** Set to share the same content to QQ or QZone while sharing the same content Tencent Weibo*/
 	public void setShareToTencentWeiboWhenPerformingQQOrQZoneSharing() {
 		params.put("isShareTencentWeibo", true);
 	}
 
-	/** 设置分享界面的样式，目前只有一种，不需要设置 */
+	/** Set the style of the sharing interface, there is only one kind, there is no need to set */
 	public void setTheme(OnekeyShareTheme theme) {
 		params.put("theme", theme.getValue());
 	}
@@ -235,7 +235,7 @@ public class OnekeyShare {
 			MobSDK.init(context.getApplicationContext());
 		}
 
-		// 打开分享菜单的统计
+		// Open the statistics of the sharing menu
 		ShareSDK.logDemoEvent(1, null);
 
 		int iTheme = 0;

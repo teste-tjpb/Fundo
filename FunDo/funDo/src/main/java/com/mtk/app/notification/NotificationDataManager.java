@@ -38,8 +38,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-
-public class NotificationDataManager {  // 通知处理类
+// Notification processing class
+public class NotificationDataManager {
     private static final String TAG = "AppManager/Noti/Manager";
     // For get tile and content of notification
     private static final int NOTIFICATION_TITLE_TYPE = 9;
@@ -47,7 +47,7 @@ public class NotificationDataManager {  // 通知处理类
     private Handler mHandler;
     private SendNotficationDataThread mSendThread = null;
     private Context mContext;
-  public   static boolean isSendmsg=false;//是否发消息
+    public  static boolean isSendmsg = false;//Whether to send a message
 
     private int messAgeTypeOne = 0;
     private int messAgeTypeTwo = 0;
@@ -78,7 +78,7 @@ public static String Pakagename;
         Pakagename = pakagename;
     }
 
-    private long mLastDiaoyongTime = 0L;    //    短时间重发
+    private long mLastDiaoyongTime = 0L;    //    Short retransmission
 
     private static long time1 = 0;
     private static long time2 = 0;
@@ -120,9 +120,9 @@ public static String Pakagename;
         NotificationData notificationData = new NotificationData();
         String[] textArray = null;
         if (android.os.Build.VERSION.SDK_INT >= 24 || packageName.contains("whatsapp")  || packageName.contains("linkedin") || packageName.contains("xiaomi.xmsf")) {      //todo ---  add 20180314   xiaomi.xmsf --- 为小米系统推送
-            textArray = getNotidicationTextForN(notification,packageName); //该方法会直接从extra中获取title和content
+            textArray = getNotidicationTextForN(notification,packageName); //This method will get the title and content directly from extra
         } else {
-            textArray = getNotificationText(notification);    //7.0以下兼容
+            textArray = getNotificationText(notification);    //Compatible below 7.0
         }
         String[] pageTextArray = getNotificationPageText(notification); //android 4.4w.2 support
         MainService mainService = MainService.getInstance();
@@ -166,7 +166,7 @@ public static String Pakagename;
             }
 
         }else{
-            if(packageName.contains("linkedin.android") || packageName.contains("xiaomi.xmsf")){    // todo ----   packageName.contains("xiaomi.xmsf") 主要是对于小米手机
+            if(packageName.contains("linkedin.android") || packageName.contains("xiaomi.xmsf")){    // todo ----   packageName.contains("xiaomi.xmsf") Mainly for Xiaomi mobile phone
                 if(textArray != null){
                     notificationData.setTickerText(textArray[0] + ": " + textArray[1]);
                 }
@@ -423,25 +423,25 @@ public static String Pakagename;
                                     if(!StringUtils.isEmpty(notificationData.getTickerText())) {
                                         tickerText = notificationData.getTickerText().toString();
 
-                                        if(messType == 2){   //TODO NeNotificationService 发送
-                                            time2 = System.currentTimeMillis();   // 1517555810015   todo --- 进此方法的时间
-                                            Log.e(TAG, "time2的值为----" + time2);
-                                            Log.e(TAG, "Math.abs(time2 - time1) 的值为--" + Math.abs(time2 - time1));
-                                            Log.e(TAG, "当前消息为--" + tickerText + "旧的消息为--" + messTemp);
+                                        if(messType == 2){   //TODO NeNotificationService send
+                                            time2 = System.currentTimeMillis();   // 1517555810015   todo --- Time to enter this method
+                                            Log.e(TAG, "The value of time2 is----" + time2);
+                                            Log.e(TAG, "Math.abs(time2 - time1) Value--" + Math.abs(time2 - time1));
+                                            Log.e(TAG, "The current message is--" + tickerText + "The old message is--" + messTemp);
                                             if(Math.abs(time2 - time1) <1000  && messTemp.equals(tickerText) ){  // && messTemp.equals(tickerText)
-                                                Log.e(TAG, "短时间内有重复消息，已过滤掉了--- Math.abs(time2 - time1) 的值为--" + Math.abs(time2 - time1));
+                                                Log.e(TAG, "There are duplicate messages in a short time and they have been filtered out.--- Math.abs(time2 - time1) Value--" + Math.abs(time2 - time1));
 //                                            mHandler.removeCallbacksAndMessages(null);
                                                 return ;
                                             }else {
                                                 messTemp = tickerText;
                                             }
-                                        }else if(messType == 1){   //TODO NotificationReceiver19 发送
-                                            time1 = System.currentTimeMillis();   // 1517555810015   todo --- 进此方法的时间
-                                            Log.e(TAG, "time1的值为----" + time1);
-                                            Log.e(TAG, "Math.abs(time2 - time1) 的值为--" + Math.abs(time2 - time1));
-                                            Log.e(TAG, "当前消息为--" + tickerText + "旧的消息为--" + messTemp);
+                                        }else if(messType == 1){   //TODO NotificationReceiver19 send
+                                            time1 = System.currentTimeMillis();   // 1517555810015   todo --- Time to enter this method
+                                            Log.e(TAG, "The value of time1 is----" + time1);
+                                            Log.e(TAG, "Math.abs(time2 - time1) Value--" + Math.abs(time2 - time1));
+                                            Log.e(TAG, "The current message is--" + tickerText + "The old message is--" + messTemp);
                                             if(Math.abs(time2 - time1) <1000  && messTemp.equals(tickerText) ){ //  && messTemp.equals(tickerText)
-                                                Log.e(TAG, "短时间内有重复消息，已过滤掉了--- Math.abs(time2 - time1) 的值为--" + Math.abs(time2 - time1));
+                                                Log.e(TAG, "There are duplicate messages in a short time and they have been filtered out.--- Math.abs(time2 - time1) Value--" + Math.abs(time2 - time1));
 //                                            mHandler.removeCallbacksAndMessages(null);
                                                 return ;
                                             }else {
@@ -486,7 +486,7 @@ public static String Pakagename;
                                         }
                                     } /*else if (SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")) { //72
                                         String syncDatas = notificationData.getPackageName() + " " + notificationData.getAppID() + " " + notificationData.getWhen() + " " + notificationData.getTickerText().trim();   // notificationData.getTickerText()
-                                        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.KEY_NOTIFICATION_PUSH, syncDatas.getBytes());  // 手机消息推送
+                                        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.KEY_NOTIFICATION_PUSH, syncDatas.getBytes());  // 手机消息推送
                                         MainService.getInstance().writeToDevice(l2, true);
                                         if (null != notificationData) {
                                             notificationData = null;
@@ -520,17 +520,17 @@ public static String Pakagename;
 //        }
 
         // com.tencent.mobileqq     com.kugou.android（酷狗不要）    com.qihoo360.mobilesafe（360）   com.tencent.android.qqdownloader（应用包）
-        String appPackageNameChar = notificationData.getPackageName();//消息来源包名 新消息推送
-        //获取应用报名失败
+        String appPackageNameChar = notificationData.getPackageName(); // Source package name new message push
+        //Failed to get app registration
         if (null != appPackageNameChar) {
-            Log.e(TAG, "新消息,app包名" + appPackageNameChar);
+            Log.e(TAG, "New message, app package name" + appPackageNameChar);
 
-            // 过滤的应用的消息
+            // Filtered app message
             if(appPackageNameChar.equals("com.kugou.android") || appPackageNameChar.equals("com.qihoo360.mobilesafe") || appPackageNameChar.equals("com.tencent.android.qqdownloader")
                     ||appPackageNameChar.contains(".mms")||appPackageNameChar.contains("com.kct.fundo")){  //酷狗,360,应用宝    ||appPackageNameChar.contains(".incallui")  TODO --- 注释 20180806
                 return;
             }
-           /* //过滤部分可获取来电通知的来电提醒
+           /* //Filter section to get call alert for call notifications
             if(appPackageNameChar.equals(Contants.APP_PACKAGE_NAME_TEL))return;*/
 
             String tickerText = null;
@@ -541,22 +541,22 @@ public static String Pakagename;
                 tickerText = notificationData.getTickerText().toString();
 
                 if(!"548".equals(code)){
-                    if (tickerText.length() > Constants.TICKER_TEXT_MAX_LENGH) {//消息内容过长，只截取一部分内容
+                    if (tickerText.length() > Constants.TICKER_TEXT_MAX_LENGH) { // The message content is too long, only part of the content is intercepted
                         tickerText = tickerText.substring(0, Constants.TICKER_TEXT_MAX_LENGH) + Constants.TEXT_POSTFIX;
                     }
-                }else { // todo --- 序列号为 548 的设备 最大长度
-                    if (tickerText.length() > Constants.TICKER_TEXT_MAX_LENGH_OTHERDEVICE) {//消息内容过长，只截取一部分内容
+                }else { // todo --- Device with serial number 548 Maximum length
+                    if (tickerText.length() > Constants.TICKER_TEXT_MAX_LENGH_OTHERDEVICE) {// The message content is too long, only part of the content is intercepted
                         tickerText = tickerText.substring(0, Constants.TICKER_TEXT_MAX_LENGH_OTHERDEVICE) + Constants.TEXT_POSTFIX;
                     }
                 }
-//                if (tickerText.length() > Constants.TICKER_TEXT_MAX_LENGH) {//消息内容过长，只截取一部分内容
+//                if (tickerText.length() > Constants.TICKER_TEXT_MAX_LENGH) { //消息内容过长，只截取一部分内容
 //                    tickerText = tickerText.substring(0, Constants.TICKER_TEXT_MAX_LENGH) + Constants.TEXT_POSTFIX;
 //                }
                 byte[] l2Ticker = null;
                 if(SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("2")) {
                     tickerText = FullMutualToHalf.fullToHalf(tickerText);
                     String codeType = "Unicode";
-                    if(Build.VERSION.SDK_INT >= 27) {  //Android8.1新特性
+                    if(Build.VERSION.SDK_INT >= 27) {  // Android8.1 new features
                         codeType = "UnicodeLittleUnmarked";
                     }
                     try {
@@ -573,7 +573,7 @@ public static String Pakagename;
                     }
                 }
 
-                Log.e(TAG, "处理后的tickerText =" + tickerText);
+                Log.e(TAG, "Treated tickerText =" + tickerText);
                 byte[] l2Value = null;
                 if(SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")){
                     String packName = notificationData.getPackageName();

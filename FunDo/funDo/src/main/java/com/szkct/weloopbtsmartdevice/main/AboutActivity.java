@@ -37,20 +37,8 @@ import com.szkct.weloopbtsmartdevice.util.DailogUtils;
 import com.szkct.weloopbtsmartdevice.util.SharedPreUtil;
 import com.szkct.weloopbtsmartdevice.util.Utils;
 import com.szkct.weloopbtsmartdevice.view.CustomProgress;
-import android.app.Dialog;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.UUID;
 
-/**
- * 
- * @author chendalin
- * 说明：ActionBarActivit对于最新的sdk 20x版本以上已经被官方抛弃，不建议使用，先推荐使用AppCompatActivity
- */
+
 public class AboutActivity extends AppCompatActivity  {
 
     private static final String TAG = "AboutActivity";
@@ -67,94 +55,9 @@ public class AboutActivity extends AppCompatActivity  {
     public static boolean isLatestVersion = true;
     private Context context;
 
-    public Dialog dialog;
 
     private long syncStartTime = 0;
 
-    public Handler myHandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-            case 1:   // todo ---  有新版本
-                try {
 
-                    if(Utils.isActivityRunning(AboutActivity.this,AboutActivity.class.getName())){
-                        if (null != dialog) {
-                            if(dialog.isShowing()){
-                                dialog.setCancelable(true);
-                                dialog.dismiss();
-                            }
-                        }
-                    }
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                if(Utils.isActivityRunning(AboutActivity.this,AboutActivity.class.getName())){
-                    DailogUtils.doNewVersionUpdate(AboutActivity.this);
-                }
-                break;
-            case 2:  // todo ---  没有有新版本
-                if(Utils.isActivityRunning(AboutActivity.this,AboutActivity.class.getName())){
-                    try {
-                        if (null != dialog) {
-                            if(dialog.isShowing()){
-                                dialog.setCancelable(true);
-                                dialog.dismiss();
-                            }}
-                    } catch (Exception e) {e.printStackTrace();}
-                    if(!(AboutActivity.this).isFinishing()) {
-                        DailogUtils.notNewVersionUpdate(AboutActivity.this);
-                    }
-                }
-                break;
-
-            case 6:
-                if (null != dialog) {
-                    if(dialog.isShowing()){
-                        dialog.setCancelable(true);
-                        dialog.dismiss();
-                    }
-                }
-                Toast.makeText(AboutActivity.this, getString(R.string.checking_new_version_fail), Toast.LENGTH_SHORT).show();
-                break;
-
-            }
-        }
-        
-    };
-
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            if (syncStartTime > 30) {
-                if (System.currentTimeMillis() - syncStartTime > 30 * 1000) {
-                    Message msg = myHandler.obtainMessage(6);
-                    myHandler.sendMessage(msg);
-                    return ;
-                }
-                Toast.makeText(AboutActivity.this, getString(R.string.checking_new_version_fail), Toast.LENGTH_SHORT).show();
-		    Toast.makeText(AboutActivity.this, getString(R.string.checking_new_version_fail), Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(AboutActivity.this, getString(R.string.checking_new_version_fail), Toast.LENGTH_SHORT).show();
-                return ;
-            }
-        }
-    };
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if(null != dialog){
-            dialog.dismiss();
-            dialog.setCancelable(true);
-            dialog = null;
-        }
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-    }
 }

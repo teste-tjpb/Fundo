@@ -453,7 +453,7 @@ public class L2Send {
      * 发送拍照命令
      */
     public static void sendTakephoto() {
-        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.CRAMER_OPEN, new byte[]{1});
+        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.CRAMER_OPEN, new byte[]{1});
         MainService.getInstance().writeToDevice(l2, true);
     }
 
@@ -461,7 +461,7 @@ public class L2Send {
      * 发送退出拍照命令
      */
     public static void sendExitTakephoto() {
-        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.CRAMER_OPEN, new byte[]{0});
+        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.CRAMER_OPEN, new byte[]{0});
         MainService.getInstance().writeToDevice(l2, true);
     }
 
@@ -469,7 +469,7 @@ public class L2Send {
      * 发送退出拍照命令(新协议)
      */
     public static void sendNewExitTakephoto() {
-        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.CRAMER_CLOSE, new byte[]{1});
+        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.CRAMER_CLOSE, new byte[]{1});
         MainService.getInstance().writeToDevice(l2, true);
     }
 
@@ -517,7 +517,7 @@ public class L2Send {
         byte[] key = new byte[1];
         key[0] = (byte) 6;
         byte[] l2 = new L2Bean().L2Pack(BleContants.SYN_COMMAND, BleContants.SYN_DATA_REQUEST, key);
-        Log.e(TAG, "第1天--" + UtilsLX.bytesToHexString(l2));
+        Log.e(TAG, "Day 1--" + UtilsLX.bytesToHexString(l2));
 //                String resModebyteslx = UtilsLX.bytesToHexString(bytes);
         MainService.getInstance().writeToDevice(l2, true);
     }
@@ -624,12 +624,12 @@ public class L2Send {
     }
 
     public static void getWatchPushData(){
-        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.DIAL_RETURN, null);
+        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.DIAL_RETURN, null);
         MainService.getInstance().writeToDevice(l2, true);
     }
 
     public static void sendWatchPushData(byte[] value){
-        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.DIAL_REQUEST, value);
+        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.DIAL_REQUEST, value);
         MainService.getInstance().writeToDevice(l2, true);
     }
 
@@ -639,7 +639,7 @@ public class L2Send {
     }
 
     public static void sendFindPhone(){
-        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.CLOSE_FIND_PHONE, null);
+        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.CLOSE_FIND_PHONE, null);
         MainService.getInstance().writeToDevice(l2, true);
     }
 }

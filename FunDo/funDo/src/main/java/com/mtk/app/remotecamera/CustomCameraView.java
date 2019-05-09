@@ -159,7 +159,7 @@ public class CustomCameraView extends FrameLayout implements SurfaceHolder.Callb
 
         viewWidth = MeasureSpec.getSize(widthSpec);
         viewHeight = MeasureSpec.getSize(heightSpec);
-        Log.e(TAG, "屏幕大小" + viewWidth + "-------------" + viewHeight);
+        Log.e(TAG, "Screen size " + viewWidth + "-------------" + viewHeight);
 
         super.onMeasure(MeasureSpec.makeMeasureSpec(viewWidth, MeasureSpec.EXACTLY),
                 MeasureSpec.makeMeasureSpec(viewHeight, MeasureSpec.EXACTLY));
@@ -261,7 +261,7 @@ public class CustomCameraView extends FrameLayout implements SurfaceHolder.Callb
                 frameLayout.setAspectRatio((double) previewSize.width / previewSize.height);
                 p.setPreviewSize(previewSize.width, previewSize.height);// 设置预浏尺寸，注意要在摄像头支持的范围内选择
                 p.setPictureSize(pictureSize.width, pictureSize.height);// 设置照片分辨率，注意要在摄像头支持的范围内选择
-                Log.e(TAG, "updateCameraParameters: 设置的分辨率"+previewSize.width+" "+previewSize.height);
+                Log.e(TAG, "updateCameraParameters: Set resolution "+previewSize.width+" "+previewSize.height);
             }
 
             if (context.getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE) {
@@ -289,7 +289,7 @@ public class CustomCameraView extends FrameLayout implements SurfaceHolder.Callb
             previewSizeValueString = parameters.get("preview-size-value");
         }
 
-        if (previewSizeValueString == null) { // 有些手机例如m9获取不到支持的预览大小 就直接返回屏幕大小
+        if (previewSizeValueString == null) { // Some phones, such as m9, do not get a supported preview size and return directly to the screen size.
             return camera.new Size(getScreenWH().widthPixels, getScreenWH().heightPixels);
         }
         float bestX = 0;

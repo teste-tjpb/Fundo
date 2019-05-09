@@ -25,7 +25,7 @@ public class VersionDetail extends AppCompatActivity {
         versionCode = (TextView)findViewById(R.id.versionCodeText);
         versionShortName = (TextView)findViewById(R.id.versionShortNameText);
 
-        versionName.setText("VersionDetail:"+"V1.4.2.2");
+        versionName.setText("VersionDetail:"+"V1.4.9");
         versionCode.setText("VersionCode:"+getVersionCode());
         versionShortName.setText("VersionName:"+getVersionName());
     }

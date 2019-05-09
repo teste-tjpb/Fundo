@@ -538,7 +538,7 @@ public class SportHistoryActivity extends FragmentActivity implements View.OnCli
         oks.setComment(getString(R.string.welcome_funrun));
         // site是分享此内容的网站名称，仅在QQ空间使用
         oks.setSite("");
-        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        // siteUrl is the address of the website sharing this content, only used in the QQ space
         oks.setSiteUrl("");
         if (android.os.Build.VERSION.SDK_INT < 21) {
             oks.setCustomerLogo(drawableToBitmap(this.getResources().getDrawable(R.drawable.ssdk_oks_classic_qq)), "QQ", mobileqqclick);
@@ -557,7 +557,7 @@ public class SportHistoryActivity extends FragmentActivity implements View.OnCli
             oks.setCustomerLogo(drawableToBitmap(this.getDrawable(R.drawable.ssdk_oks_classic_linkedin)), getString(R.string.linkedin), Linkedinclick);
             oks.setCustomerLogo(drawableToBitmap(this.getDrawable(R.drawable.ssdk_oks_classic_strava)), "strava", stravaclick);
         }
-        // 启动分享GUI
+        // Start sharing GUI
         oks.show(this);
     }
 
@@ -576,9 +576,9 @@ public class SportHistoryActivity extends FragmentActivity implements View.OnCli
 //                .build();
 //        gpsList = (List<GpsPointDetailData>) query.list();
 //        gpsPoint = gpsList.get(id);
-        // 获取SD卡路径
+        // Get the SD card path
         mFilePath = Environment.getExternalStorageDirectory().getPath();
-        // 文件名
+        // file name
         mFilePath = mFilePath + "/" + "photo.png";
         gpsPoint = (GpsPointDetailData) getIntent().getSerializableExtra("Vo");
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -754,13 +754,13 @@ public class SportHistoryActivity extends FragmentActivity implements View.OnCli
             setTheme(R.style.KCTStyleBlack);
         }
         setContentView(R.layout.activity_sport_history);
-        fragmentManager=getSupportFragmentManager();   // 该Activity下面配置了4个Fragment
-        sport_trajectoryFragment= TrajectoryMapFragment.newInstance();  // 运动轨迹
-        detailed_dataFragment=DetailedFragment.newInstance();           //  详细数据
-        speed_matching_detailsFragment=SpeedFragment.newInstance();   // 配速详情
-        motion_chartFragment=MotionChartFragment.newInstance();         // 运动图表
+        fragmentManager=getSupportFragmentManager();   // The activity is configured with 4 Fragment
+        sport_trajectoryFragment= TrajectoryMapFragment.newInstance();  // Motion track
+        detailed_dataFragment=DetailedFragment.newInstance();           //  detailed data
+        speed_matching_detailsFragment=SpeedFragment.newInstance();   // Speed details
+        motion_chartFragment=MotionChartFragment.newInstance();         // Sports chart
 
-        if(gpsPoint.getSportType().equals("3")) { // 室内跑
+        if(gpsPoint.getSportType().equals("3")) { // Indoor running
             fragmentManager.beginTransaction().add(R.id.container, detailed_dataFragment, "detailed_dataFragment").commitAllowingStateLoss();
         }else {
             fragmentManager.beginTransaction().add(R.id.container, sport_trajectoryFragment, "sport_trajectoryFragment").commitAllowingStateLoss();
@@ -864,7 +864,7 @@ public class SportHistoryActivity extends FragmentActivity implements View.OnCli
     };
 
     /**
-     * 分享至Facebook
+     * Share to Facebook
      */
     public void shareToFacebook() {
         if (mapPackageName != null) {
@@ -881,7 +881,7 @@ public class SportHistoryActivity extends FragmentActivity implements View.OnCli
 
 
     /**
-     * 分享至Instagram
+     * Share to Instagram
      */
     public void shareToInstagram() {
 
@@ -898,7 +898,7 @@ public class SportHistoryActivity extends FragmentActivity implements View.OnCli
     }
 
     /**
-     * 分享至Twitter
+     * Share to Twitter
      */
     public void shareTotwitter() {
 
@@ -915,7 +915,7 @@ public class SportHistoryActivity extends FragmentActivity implements View.OnCli
     }
 
     /**
-     * 分享至whatsapp
+     * Share to whatsapp
      */
     public void shareTowhatsapp() {
 
@@ -932,7 +932,7 @@ public class SportHistoryActivity extends FragmentActivity implements View.OnCli
     }
 
     /**
-     * 分享至Linkedin
+     * Share to Linkedin
      */
     public void shareToLinkedin() {
 
@@ -949,7 +949,7 @@ public class SportHistoryActivity extends FragmentActivity implements View.OnCli
     }
 
     /**
-     * 分享至strava
+     * Share to strava
      */
     public void shareToStrava() {
         if (mapPackageName != null) {
@@ -971,7 +971,7 @@ public class SportHistoryActivity extends FragmentActivity implements View.OnCli
     }
 
     /**
-     * 分享至mobileqq
+     * Share to mobileqq
      */
     public void shareTomobileqq() {
         if (mapPackageName != null) {
@@ -1155,8 +1155,8 @@ public class SportHistoryActivity extends FragmentActivity implements View.OnCli
                 Intent intent = new Intent();
                 intent.setClass(SportHistoryActivity.this, NewWaterMakActivity.class);   // WaterMakActivity   99999999999999999999999999
 
-                Double mile = Double.valueOf(gpsPoint.getMile());//  总路程
-                String distance = Utils.decimalTo2(mile / 1000, 2) + "";// 里程/千米
+                Double mile = Double.valueOf(gpsPoint.getMile());//  Total distance
+                String distance = Utils.decimalTo2(mile / 1000, 2) + "";// Mileage / km
 
                 intent.putExtra("distance",distance);
                 SportHistoryActivity.this.startActivity(intent);
@@ -1232,7 +1232,7 @@ public class SportHistoryActivity extends FragmentActivity implements View.OnCli
         // TODO Auto-generated method stub
         switch (item.getItemId()) {
             case android.R.id.home:
-//                Log.e("EverydayDataActivity", "点击了fanhui按钮");
+//                Log.e("EverydayDataActivity", "Clicked the fanhui button");
                 finish();
                 break;
 

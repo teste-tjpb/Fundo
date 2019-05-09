@@ -21,7 +21,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -87,9 +86,9 @@ public class DisconbleActivity extends AppCompatActivity implements OnClickListe
                 if (device != null) {
                     if (device.getAddress().equals(SharedPreUtil.readPre(this, SharedPreUtil.USER, SharedPreUtil.MAC))) {
                         if (SharedPreUtil.readPre(DisconbleActivity.this, SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")) {
-                            byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.APP_BLUETOOTH_DISCONNECT, null);  //  验证 OK
+                            byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.APP_BLUETOOTH_DISCONNECT, null);  //  验证 OK
                             MainService.getInstance().writeToDevice(l2, true);
-                            byte[] l2UnBond = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.KEY_RELIEVE_BLUETOOTH, null);
+                            byte[] l2UnBond = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.KEY_RELIEVE_BLUETOOTH, null);
                             MainService.getInstance().writeToDevice(l2UnBond, true);
                         }
                         try {
@@ -118,7 +117,7 @@ public class DisconbleActivity extends AppCompatActivity implements OnClickListe
         switch (v.getId()) {
             case R.id.discon_ble_txt:  // 与当前设备断开连接
                 if (SharedPreUtil.readPre(DisconbleActivity.this, SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")) {
-                    byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.APP_BLUETOOTH_DISCONNECT, null);  //  验证 OK
+                    byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.APP_BLUETOOTH_DISCONNECT, null);  //  验证 OK
                     MainService.getInstance().writeToDevice(l2, true);
                 }
                 if(SharedPreUtil.readPre(DisconbleActivity.this, SharedPreUtil.USER, SharedPreUtil.WATCH).equals("2")) {     //BLE手动断开

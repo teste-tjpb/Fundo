@@ -379,14 +379,14 @@ public class StringUtils {
 					continue;
 				}
 
-				// -----多字节
+				// -----Multibyte
 				else {
-					// 头一个字节
+					// First byte
 					if ((nCur & 0x40) != 0) {
 						nBuf = 0;
 						nBufPos = 1;
 
-						// 单个字符需要2个utf-8字节
+						// A single character requires 2 utf-8 bytes
 						if ((nCur & 0x20) == 0) {
 							nNeed = 2;
 							nBuf = 0;
@@ -395,7 +395,7 @@ public class StringUtils {
 							nCur <<= 6;
 							nBuf += nCur;
 						}
-						// 单个字符需要3个utf-8字节
+						// A single character requires 3 utf-8 bytes
 						else if ((nCur & 0x10) == 0) {
 							nNeed = 3;
 							nBuf = 0;
@@ -404,7 +404,7 @@ public class StringUtils {
 							nCur <<= 12;
 							nBuf += nCur;
 						}
-						// 单个字符需要4个utf-8字节
+						// A single character requires 4 utf-8 bytes
 						else if ((nCur & 0x08) == 0) {
 							nNeed = 4;
 							nBuf = 0;
@@ -413,7 +413,7 @@ public class StringUtils {
 							nCur <<= 18;
 							nBuf += nCur;
 						}
-						// 单个字符需要5个utf-8字节
+						// A single character requires 5 utf-8 bytes
 						else if ((nCur & 0x04) == 0) {
 							nNeed = 5;
 							nBuf = 0;
@@ -422,7 +422,7 @@ public class StringUtils {
 							nCur <<= 24;
 							nBuf += nCur;
 						}
-						// 单个字符需要6个utf-8字节
+						// A single character requires 6 utf-8 bytes
 						else if ((nCur & 0x02) == 0) {
 							nNeed = 6;
 							nBuf = 0;
@@ -746,13 +746,13 @@ public class StringUtils {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
 		if (str_num.length() == 13) {
 			String date = sdf.format(new Date(toLong(str_num)));
-//	        LogUtil.d(Constant.TAG + "将13位时间戳:" + str_num + "转化为字符串:", date);
-			System.out.println("将13位时间戳: str_num 转化为字符串:-------" + date);
+//	        LogUtil.d(Constant.TAG + "将13位时间戳:" + str_num + "Convert to string:", date);
+			System.out.println("13-bit timestamp: str_num Convert to string:-------" + date);
 			return date;
 		} else {
 			String date = sdf.format(new Date(toInt2(str_num) * 1000L));
 //	        LogUtil.d(Constant.TAG + "将10位时间戳:" + str_num + "转化为字符串:", date);
-			System.out.println("将10位时间戳: str_num 转化为字符串:-------" + date);
+			System.out.println("10 bit time stamp: str_num Convert to string:-------" + date);
 			return date;
 		}
 	}
@@ -762,7 +762,7 @@ public class StringUtils {
 		if (str_num.length() == 13) {  // 13位时间戳
 			String date = sdf.format(new Date(toLong(str_num)));
 //	        LogUtil.d(Constant.TAG + "将13位时间戳:" + str_num + "转化为字符串:", date);
-			System.out.println("将13位时间戳: str_num 转化为字符串:-------" + date);
+			System.out.println("13-bit timestamp: str_num Convert to string:-------" + date);
 			return date;
 		} else {    // 10位时间戳
 			String mtimes = "";

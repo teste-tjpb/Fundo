@@ -18,12 +18,12 @@ import no.nordicsemi.android.dfu.DfuProgressListener;
 import static android.R.attr.versionCode;
 
 /**
- * 版权：深圳金康特智能科技有限公司
- * 作者：ZGH
- * 版本：
- * 创建日期：2017/10/10
- * 描述: ${VERSION}
- * 修订历史：
+ * Copyright: Shenzhen Jinkant Intelligent Technology Co., Ltd.
+ * Author: ZGH
+ * Version: ${VERSION}
+ * Creation date: 2017/10/10
+ * Description:
+ * revise history:
  */
 
 public class KCTBluetoothManager {

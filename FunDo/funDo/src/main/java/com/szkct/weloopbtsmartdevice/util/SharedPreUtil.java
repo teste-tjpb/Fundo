@@ -292,22 +292,22 @@ public final static String WATCHSYNCTIME = "WATCHSYNCTIME";     //存同步时�
     public final static String DRINK_FREQUENCY = "DRINK_FREQUENCY"; //喝水频率
 
 
-	public final static String GESTURE_HAND = "GESTURE_HAND"; // 左右手
-    public final static String RAISE_BRIGHT = "RAISE_BRIGHT"; //抬手亮屏
-    public final static String FANWAN_BRIGHT = "FANWAN_BRIGHT"; //翻腕亮屏
+	public final static String GESTURE_HAND = "GESTURE_HAND"; // Left and right hand
+    public final static String RAISE_BRIGHT = "RAISE_BRIGHT"; //Raise your hand to brighten
+    public final static String FANWAN_BRIGHT = "FANWAN_BRIGHT"; //Turn the wrist screen
 
-    public final static String ALARM_MODE = "ALARM_MODE"; //提醒模式
+    public final static String ALARM_MODE = "ALARM_MODE"; //Reminder mode
 
-    public final static String ALARM_SPREAD = "ALARM_SPREAD"; //闹钟分布
-    public final static String ALARM_FREQUENCY = "ALARM_FREQUENCY"; //闹钟凭率 9位 ，第1-7位是周期 第8位是开关，第九位是模式
-    public final static String ALARM_HOUR = "ALARM_HOUR"; //闹钟时
-    public final static String ALARM_MIN = "ALARM_MIN"; //闹钟分
-    public final static String ALARM_CHANGE = "ALARM_CHANGE"; //改变
+    public final static String ALARM_SPREAD = "ALARM_SPREAD"; //Alarm clock distribution
+    public final static String ALARM_FREQUENCY = "ALARM_FREQUENCY"; //The alarm clock rate is 9 digits, the 1st-7th is the cycle. The 8th is the switch, and the ninth is the mode.
+    public final static String ALARM_HOUR = "ALARM_HOUR"; //Alarm clock hour
+    public final static String ALARM_MIN = "ALARM_MIN"; //Alarm clock minutes
+    public final static String ALARM_CHANGE = "ALARM_CHANGE"; //Alarme change
 
-	public final static String BLE_CLICK_STOP = "BLE_CLICK_STOP"; //BLE手动断开
-	public final static String UNBOND = "UNBOND"; //解绑
+	public final static String BLE_CLICK_STOP = "BLE_CLICK_STOP"; //BLE manual disconnect
+	public final static String UNBOND = "UNBOND"; //Untied
 
-	public final static String LAST_BO = "LAST_BO"; //改
+	public final static String LAST_BO = "LAST_BO"; //change
 	public final static String LAST_BP_MIN = "LAST_BP_MIN"; //改
 	public final static String LAST_BP_MAX = "LAST_BP_MAX";
 
@@ -332,7 +332,7 @@ public final static String WATCHSYNCTIME = "WATCHSYNCTIME";     //存同步时�
 
     public static String readPre(Context context, String name, String key) {
         if (null == context) {
-            Log.e("", "共享参数context为空");
+            Log.e("", "Shared parameter context is empty");
             return "";
         }
         /*if(key.equals(MID)){
@@ -343,7 +343,7 @@ public final static String WATCHSYNCTIME = "WATCHSYNCTIME";     //存同步时�
 	}
 	public static String readPre(Context context,String name,String key,String type){
 		if(null == context){
-			Log.e("s","共享参数context为空");
+			Log.e("s","Shared parameter context is empty");
 			return type;
 		}
 	
@@ -448,7 +448,8 @@ public final static String WATCHSYNCTIME = "WATCHSYNCTIME";     //存同步时�
 
 
     /**
-     * 得到保存数据的方法，我们根据默认值得到保存的数据的具体类型，然后调用相对于的方法获取值
+     * To get the method of saving the data, we get the specific type of the saved data according to
+	 * the default value, and then call the method relative to the method to get the value.
      *
      * @param context
      * @param key

@@ -1658,33 +1658,33 @@ OnClickListener mobileqqclick=new OnClickListener() {
 
 			String action = intent.getAction();
 			Log.e("onReceive", action);
-			if (MainService.ACTION_SYNFINSH.equals(action)) {  //大数据页面 注册 手表数据同步 成功的 广播
+			if (MainService.ACTION_SYNFINSH.equals(action)) {  //Big data page registration watch data synchronization successful broadcast
 				String stepNum = intent.getStringExtra("step");
 
-				if(null == loadingDialog ){   //todo ---  蓝牙连上的时候，同步数据（TMK平台）    && SharedPreUtil.readPre(getActivity(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("3")
+				if(null == loadingDialog ){   //todo ---  Synchronize data when Bluetooth is connected (TMK platform)    && SharedPreUtil.readPre(getActivity(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("3")
 					if(stepNum.equals("6")){
-						Log.e("liuxiaodata", "收到6广播");
+						Log.e("liuxiaodata", "Received 6 broadcasts");
 						initData();
 						initsleepData();
 					}//////////////////////////////
 				}else if(null != loadingDialog && !StringUtils.isEmpty(stepNum)){
 					if(stepNum.equals("1")){
-						Log.e("liuxiaodata", "收到1广播");
+						Log.e("liuxiaodata", "Received 1 broadcast");
 						loadingDialog.setText(getString(R.string.userdata_synchronize1));
 					}else  if(stepNum.equals("2")){
-						Log.e("liuxiaodata", "收到2广播");
+						Log.e("liuxiaodata", "Received 2 broadcasts");
 						loadingDialog.setText(getString(R.string.userdata_synchronize2));
 					}else if(stepNum.equals("3")){
-						Log.e("liuxiaodata", "收到3广播");
+						Log.e("liuxiaodata", "Received 3 broadcasts");
 						loadingDialog.setText(getString(R.string.userdata_synchronize3));
 					}else if(stepNum.equals("4")){
-						Log.e("liuxiaodata", "收到4广播");
+						Log.e("liuxiaodata", "Received 4 broadcasts");
 						loadingDialog.setText(getString(R.string.userdata_synchronize4));
 					}else if(stepNum.equals("5")){
-						Log.e("liuxiaodata", "收到5广播");
+						Log.e("liuxiaodata", "Received 5 broadcasts");
 						loadingDialog.setText(getString(R.string.userdata_synchronize5));
 					}else if(stepNum.equals("6")){
-						Log.e("liuxiaodata", "收到6广播");
+						Log.e("liuxiaodata", "Received 6 broadcasts");
 						loadingDialog.setText(getString(R.string.userdata_synchronize_success));
 						Message msg = new Message();
 						msg.what = 7;
@@ -2175,7 +2175,7 @@ OnClickListener mobileqqclick=new OnClickListener() {
 			byte[] key = new byte[1];
 			key[0] = (byte) 6;
 			byte[] l2 = new L2Bean().L2Pack(BleContants.SYN_COMMAND, BleContants.SYN_DATA_REQUEST, key);
-			Log.e(TAG, "第1天--" + UtilsLX.bytesToHexString(l2));
+			Log.e(TAG, "Day 1--" + UtilsLX.bytesToHexString(l2));
 //                String resModebyteslx = UtilsLX.bytesToHexString(bytes);
 			MainService.getInstance().writeToDevice(l2, true);
 		}
@@ -2442,7 +2442,7 @@ OnClickListener mobileqqclick=new OnClickListener() {
 		key[5] = (byte) (DateUtil.getMinute());
 		key[6] = (byte) ((System.currentTimeMillis() / 1000) % 60);
 		byte[] l2 = new L2Bean().L2Pack(BleContants.SYN_COMMAND, BleContants.SYN_DATA_REQUEST, key);
-		Log.e(TAG, "第1天--" + UtilsLX.bytesToHexString(l2));
+		Log.e(TAG, "Day 1--" + UtilsLX.bytesToHexString(l2));
 //                String resModebyteslx = UtilsLX.bytesToHexString(bytes);
 			MainService.getInstance().writeToDevice(l2, true);
 

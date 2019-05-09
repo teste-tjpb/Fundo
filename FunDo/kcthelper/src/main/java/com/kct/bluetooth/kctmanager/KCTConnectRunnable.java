@@ -7,12 +7,12 @@ import com.kct.bluetooth.KCTBluetoothManager;
 import com.kct.bluetooth.utils.LogUtil;
 
 /**
- * 版权：深圳金康特智能科技有限公司
- * 作者：ZGH
- * 版本：
- * 创建日期：2018/3/23
- * 描述: ${VERSION}
- * 修订历史：
+ * Copyright: Shenzhen Jinkant Intelligent Technology Co., Ltd.
+ * Author: ZGH
+ * Version:
+ * Creation date: 2018/3/23
+ * Description: ${VERSION}
+ * revise history:
  */
 
 public class KCTConnectRunnable implements Runnable{

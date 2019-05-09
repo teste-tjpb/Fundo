@@ -88,7 +88,7 @@ public class HttpToService extends Thread {
         } finally {
             if (flag) {
                 if (context instanceof MainActivity) {
-                    //MainActivity销毁后会报错
+                    //After the MainActivity is destroyed, it will report
                     try{
                         Thread.sleep(3000);
                         ((MainActivity) context).myHandler.sendEmptyMessage(UPDATE);
@@ -96,10 +96,10 @@ public class HttpToService extends Thread {
                         e.printStackTrace();
                     }
                 } else if (context instanceof AboutActivity) {
-                    //MainActivity销毁后会报错给MainActivity1秒时间关闭
+                    //After the MainActivity is destroyed, it will report an error to MainActivity for 1 second.
                     try{
                         Thread.sleep(3000);
-                        ((AboutActivity) context).myHandler.sendEmptyMessage(UPDATE);
+                      //  ((AboutActivity) context).myHandler.sendEmptyMessage(UPDATE);
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -109,7 +109,7 @@ public class HttpToService extends Thread {
                 if (context instanceof AboutActivity) {
                     try{
                         Thread.sleep(3000);
-                        ((AboutActivity) context).myHandler.sendEmptyMessage(NO_UPDATE);
+                      //  ((AboutActivity) context).myHandler.sendEmptyMessage(NO_UPDATE);
                     }catch (Exception e){
                         e.printStackTrace();
                     }

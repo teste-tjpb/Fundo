@@ -20,11 +20,12 @@ public class RetrofitFactory {
 
     private static final long TIMEOUT = 30;
 
-    // Retrofit是基于OkHttpClient的，可以创建一个OkHttpClient进行一些配置
+    // Retrofit is based on OkHttpClient and can create an OkHttpClient for some configuration.
     private static OkHttpClient httpClient = new OkHttpClient.Builder()
             /*
-            这里可以添加一个HttpLoggingInterceptor，因为Retrofit封装好了从Http请求到解析，
-            出了bug很难找出来问题，添加HttpLoggingInterceptor拦截器方便调试接口
+                Here you can add an HttpLoggingInterceptor, because Retrofit encapsulates the request
+                from Http to parsing, it is difficult to find out the problem with the bug, add
+                HttpLoggingInterceptor interceptor to facilitate debugging interface
              */
             .addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
                 @Override
@@ -38,9 +39,9 @@ public class RetrofitFactory {
 
     private static RetrofitService retrofitService = new Retrofit.Builder()
             .baseUrl(BASE_URL)
-            // 添加Gson转换器
+            // Add Gson Converter
             .addConverterFactory(GsonConverterFactory.create())
-            // 添加Retrofit到RxJava的转换器
+            // Add Retrofit to RxJava Converter
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(httpClient)
             .build()

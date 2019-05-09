@@ -43,7 +43,7 @@ public class SystemUtils {
                     .getPackageManager()
                     .getPackageInfo(BTNotificationApplication.getInstance().getPackageName(), 0);
             localVersion = packageInfo.versionName;
-            com.kct.bluetooth.utils.LogUtil.d("TAG", "本软件的版本号。。" + localVersion);
+            com.kct.bluetooth.utils.LogUtil.d("TAG", "The version number of the software。。" + localVersion);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }

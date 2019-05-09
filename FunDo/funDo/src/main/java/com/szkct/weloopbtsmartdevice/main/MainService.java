@@ -40,7 +40,6 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 import android.view.KeyEvent;
@@ -348,7 +347,7 @@ public final class MainService extends Service {
     private SimpleDateFormat mDateFormat = Utils.setSimpleDateFormat("yyyy-MM-dd HH");
     private String requestDate = "";
     /*******
-     * 天气相关
+     * Weather related
      ******/
     private String weatherStr = "";
     private ServiceBroadcast sBroadcast;
@@ -722,12 +721,12 @@ public final class MainService extends Service {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onServiceEventMainThread(MessageEvent event) {
-        if (event.getMessage().equals(CONNECT_SUCCESS)) {     //连接成功
+        if (event.getMessage().equals(CONNECT_SUCCESS)) {     //connection succeeded
             settingNotification();
             BluetoothDevice device = (BluetoothDevice) event.getObject();
             if(null !=  device){
-                SharedPreUtil.savePre(sContext, SharedPreUtil.USER, SharedPreUtil.MAC, device.getAddress());// 存储当前连接的蓝牙地址。
-                SharedPreUtil.savePre(sContext, SharedPreUtil.USER, SharedPreUtil.MACNAME, device.getName());// 存储当前连接的蓝牙名称。
+                SharedPreUtil.savePre(sContext, SharedPreUtil.USER, SharedPreUtil.MAC, device.getAddress());// Store the currently connected Bluetooth address。
+                SharedPreUtil.savePre(sContext, SharedPreUtil.USER, SharedPreUtil.MACNAME, device.getName());// Store the Bluetooth name of the current connection。
             }
             SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.BLE_CLICK_STOP, false);
             SharedPreUtil.setParam(sContext,SharedPreUtil.USER,SharedPreUtil.UNBOND,false);
@@ -757,23 +756,23 @@ public final class MainService extends Service {
                     && !device.getName().contains("DfuTarg")) || SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")) {  //手环
 
                 String uuid = (String) SharedPreUtil.getParam(sContext,SharedPreUtil.USER,SharedPreUtil.UUID,"");
-                L2Send.getSystrmUserData(sContext);  //设置系统设置    todo ---- 先发制式
-                L2Send.sendSynTime(sContext);       //时间设置           todo ---- 再发时间
-                L2Send.getUserInfoData(sContext);     //设置个人信息
-                L2Send.getFirmwareData();            //获取固件信息
-                L2Send.sendBraceletSet();           //读取手环设置请求
-                L2Send.sendSycnEcg();           //同步心电
+                L2Send.getSystrmUserData(sContext);  //Set system settings    todo ---- Preemptive system
+                L2Send.sendSynTime(sContext);       //time setting           todo ---- Recurrence time
+                L2Send.getUserInfoData(sContext);     //Set up personal information
+                L2Send.getFirmwareData();            //Get firmware information
+                L2Send.sendBraceletSet();           //Read the bracelet setup request
+                L2Send.sendSycnEcg();           //Synchronous ECG
 
                 String code = SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.FIRMEWAREINFO, SharedPreUtil.FIRMEWARECODE);
                 if(WEATHER_PUSH){ // StringUtils.isEmpty()!"601".equals(code) ||
-                    L2Send.syncAppWeather();   // 同步天气
+                    L2Send.syncAppWeather();   // Synchronous weather
                 }
 
-//                L2Send.syncAppWeather();   // 同步天气
+//                L2Send.syncAppWeather();   // Synchronous weather
                 if(uuid.equals(BleContants.RX_SERVICE_872_UUID.toString())) {
-                    L2Send.getWatchPushData();   //获取表盘数据
+                    L2Send.getWatchPushData();   //Get the dial data
                 }
-                L2Send.sendSyncShishiStep();  // 同步实时步数
+                L2Send.sendSyncShishiStep();  // Synchronous real-time steps
 
                 //todo --- F4设备需要发送 ，气压，海拔，紫外线
                 BluetoothDevice devices = mBluetoothAdapter.getRemoteDevice(SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.MAC));
@@ -793,12 +792,12 @@ public final class MainService extends Service {
 
                 if(ISSYNWATCHINFO){
                     if(PRESSURE){
-                        L2Send.syncWeatherIndex();  // 同步紫外线，气压,海拔
+                        L2Send.syncWeatherIndex();  // Synchronous UV, air pressure, altitude
                     }
                 }else {
                     if (devices.getName().equals("F4") || devices.getName().equals("Smare Band")
                             || devices.getName().equals("Smart band") || devices.getName().equals("sh321")) {  //
-                        L2Send.syncWeatherIndex();  // 同步紫外线，气压，海拔
+                        L2Send.syncWeatherIndex();  // Synchronous UV, air pressure, altitude
                     }
                 }
 
@@ -821,15 +820,15 @@ public final class MainService extends Service {
 
                 // todo ---- 同步健康数据
                 Intent intent2 = new Intent();
-                intent2.setAction(MainService.ACTION_SYNC_BLECONNECT);    // 发数据同步成功的广播
+                intent2.setAction(MainService.ACTION_SYNC_BLECONNECT);    // Successfully broadcast data synchronization
                 sContext.sendBroadcast(intent2);
             }else if(SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("3")){
                 //countTimer = new CountTimer(15000,1000);
-                BluetoothMtkChat.getInstance().sendApkState();   //前台运行
-                BluetoothMtkChat.getInstance().getWathchData();    //获取手表数据
-                BluetoothMtkChat.getInstance().syncRun();        //每天计步数据
+                BluetoothMtkChat.getInstance().sendApkState();   //Front desk operation
+                BluetoothMtkChat.getInstance().getWathchData();    //Get watch data
+                BluetoothMtkChat.getInstance().syncRun();        //Daily step data
 
-                BluetoothMtkChat.getInstance().synTime(sContext);  //同步时间
+                BluetoothMtkChat.getInstance().synTime(sContext);  //synchronised time
                 String unit = ((String) SharedPreUtil.getParam(sContext,SharedPreUtil.USER,SharedPreUtil.METRIC,SharedPreUtil.YES))
                         .equals(SharedPreUtil.YES) ? "0" : "1";
                 String temp = ((String) SharedPreUtil.getParam(sContext,SharedPreUtil.USER,SharedPreUtil.UNIT_TEMPERATURE,SharedPreUtil.YES))
@@ -839,8 +838,8 @@ public final class MainService extends Service {
                 String tempWatchType = SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH);
                 SharedPreUtil.setParam(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.TEMP_WATCH, tempWatchType);
 
-                BluetoothMtkChat.getInstance().synWeather();       //天气
-                BluetoothMtkChat.getInstance().synMeteorology();  //气象指数
+                BluetoothMtkChat.getInstance().synWeather();       //the weather
+                BluetoothMtkChat.getInstance().synMeteorology();  //Weather index
 
                 BTNotificationApplication.isSyncEnd = false; // todo --- 开始同步数据将标志位 置为 false
 
@@ -857,10 +856,10 @@ public final class MainService extends Service {
                 countTimer.cancel();
                 countTimer = null;
             }*/
-        } else if (event.getMessage().equals(AUTO_CONNECT)) {     //重连
+        } else if (event.getMessage().equals(AUTO_CONNECT)) {     //Reconnection
             autoConnectDevice();
 
-        } else if (event.getMessage().equals(CONNECT_STATE)) {     //连接的设备型号
+        } else if (event.getMessage().equals(CONNECT_STATE)) {     //Connected device model
             int state = 0;
             String uuid = (String) SharedPreUtil.getParam(sContext, SharedPreUtil.USER, SharedPreUtil.UUID,"");
             if(uuid.equals(BleContants.RX_SERVICE_872_UUID.toString())) {
@@ -885,7 +884,7 @@ public final class MainService extends Service {
                 myTimerTask = null;
             }
             mBluetoothAdapter.stopLeScan(mLeScanCallback);
-        }else if(event.getMessage().equals("sendFile_end")){   //dialog升级发送数据包完成
+        }else if(event.getMessage().equals("sendFile_end")){   //Dialog upgrade send packet completion
             //isSendFile = false;
             KCTBluetoothManager.getInstance().setDilog(false,iDialogCallback);
         }else if(event.getMessage().equals("mtk_sendData")){
@@ -1002,21 +1001,21 @@ public final class MainService extends Service {
             }
 
 //            if (ACTION_FINDWATCHOFF.equals(action)) {     ////MTK查找手机 关
-//                //找手机 关
+//                //Looking for a mobile phone
 //                MediaManager.stopVib();//停止震动
 //                MediaManager.stop();
 //                MediaManager.release();
 //            }
 
-            if (ACTION_AUTOCONNECT_DEVICE.equals(action)) {           //BLE自动重连
-                //断开数据全清空
+            if (ACTION_AUTOCONNECT_DEVICE.equals(action)) {           // BLE automatic reconnection
+                //Disconnect data completely empty
                 byteArr = null;
                 cmdSumLength = 0;
                 cmdLength = 0;
                 burstification = false;
                 l1Bean = null;
 
-                if ((boolean) SharedPreUtil.getParam(MainService.this, SharedPreUtil.USER, SharedPreUtil.BLE_CLICK_STOP, false)) { //手动断开
+                if ((boolean) SharedPreUtil.getParam(MainService.this, SharedPreUtil.USER, SharedPreUtil.BLE_CLICK_STOP, false)) { // Manual disconnect
                     return;
                 }
                 if (MainService.getInstance().getState() == 3) {
@@ -1037,7 +1036,7 @@ public final class MainService extends Service {
                     connectBluetooth(address,false);
                 }*/
             }
-            if (ACTION_BLECONNECTED.equals(action)) {  //BLE自动重连
+            if (ACTION_BLECONNECTED.equals(action)) {  //BLE automatic reconnection
                 SharedPreUtil.setParam(MainService.this, SharedPreUtil.USER, SharedPreUtil.BLE_CLICK_STOP, false);
                 //antoHandler.sendEmptyMessage(0);
             }
@@ -1083,7 +1082,7 @@ public final class MainService extends Service {
     };
 
     /**
-     * BK重连
+     * BK reconnect
      */
     private synchronized void autoConnectDeviceForBk() {
         Log.i(TAG, "[autoConnectDevice] begin");
@@ -1195,7 +1194,7 @@ public final class MainService extends Service {
     }
 
     /**
-     * 蓝牙重连线程
+     * Bluetooth reconnect thread
      */
     private class AutoConnectThread extends Thread{
 
@@ -1395,9 +1394,9 @@ public final class MainService extends Service {
                             if(weatherCity != null){
                                 String city = weatherCity.getCity() == null ? "" : weatherCity.getCity();
                                 String weatherCode = weatherCity.getWeatherCode();
-                                String temperature = weatherCity.getTemperature() == null ? "" : weatherCity.getTemperature();    //温度
-                                String cityid = weatherCity.getCityid() == null ? "" : weatherCity.getCityid();      //城市id
-                                String pressure = weatherCity.getPressure() == null ? "" : weatherCity.getPressure();   //气压
+                                String temperature = weatherCity.getTemperature() == null ? "" : weatherCity.getTemperature();    //temperature
+                                String cityid = weatherCity.getCityid() == null ? "" : weatherCity.getCityid();      //City id
+                                String pressure = weatherCity.getPressure() == null ? "" : weatherCity.getPressure();   //Air pressure
 
                                 SharedPreUtil.setParam(sContext, SharedPreUtil.WEATHER, SharedPreUtil.WEATHER_UPDATE_TIMES, weatherCity.getUpdateTimes() == null ? "" : weatherCity.getUpdateTimes());  // todo --- 保存天气更新的时间到本地
 
@@ -1912,7 +1911,7 @@ public final class MainService extends Service {
 
         sBroadcast = new ServiceBroadcast();
         IntentFilter filter = new IntentFilter();
-        filter.addAction(MainService.WEATHER_DATA); // 只有持有相同的action的接受者才能接收此广播
+        filter.addAction(MainService.WEATHER_DATA); // Only recipients holding the same action can receive this broadcast
         filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         registerReceiver(sBroadcast, filter);
 
@@ -2105,9 +2104,9 @@ private  void settingNotification(){
         filter.addAction(MainService.ACTION_BLECONNECTHID);  // HID 连接的广播
         this.registerReceiver(mReceiver, filter);
 
-        startSmsService();      // 短信服务
+        startSmsService();      // Short message service
         // start call service
-//        startCallService();   //打电话服务  todo --- 8.0以后不能在这启动
+//        startCallService();   //Call service  todo --- 8.0以后不能在这启动
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //        int targetSdkVersion;
@@ -2142,9 +2141,9 @@ private  void settingNotification(){
         }
 
         // showChoiceNotification();
-        startRemoteCameraService();  // 远程拍照服务
+        startRemoteCameraService();  // Remote photo service
 
-        startNotificationService();  // 通知服务
+        startNotificationService();  // Notification service
 
         WearableManager manager = WearableManager.getInstance();
         manager.addController(YahooWeatherController.getInstance(sContext));
@@ -3325,39 +3324,38 @@ private  void settingNotification(){
     private float hasDistanceTemp = 0;
 
     /**
-     * 处理L2数据
+     * Processing L2 data
      */
     @NonNull
     private void L2_Parse(byte[] bytes) {  //  L2_Parse   getL2Command
         if (bytes != null && bytes.length > 0) {
             String resModebyteslx = UtilsLX.bytesToHexString(bytes);
-            //TODO  单包数据请求
-            if (bytes.length == 5) {  //todo --- 手表主动发送的命令   bytes.length == 13     ----- 单包去掉前8byte
+            //TODO  Single packet data request
+            if (bytes.length == 5) {  //todo --- The command sent by the watch   bytes.length == 13     ----- Single package removes the first 8bytes
                 // BA30 0005 0043 0002 0500510000  --- 找手机    // BA30 0005 00BE 0007  0400460000
                 int byte1 = bytes[0];
                 int byte3 = bytes[2];
-                if (byte1 == BleContants.FIRMWARE_UPGRADE_COMMAND) {          //TODO -- 固件升级命令   0x01   byte9 == BleContants.FIRMWARE_UPGRADE_COMMAND
+                if (byte1 == BleContants.FIRMWARE_UPGRADE_COMMAND) {          //TODO -- Firmware upgrade command   0x01   byte9 == BleContants.FIRMWARE_UPGRADE_COMMAND
                     if (byte3 == BleContants.FIRMWARE_UPGRADE_ECHO) {
                         //chat.stop();
                         disConnect();
                         Intent intent = new Intent(ACTION_BLEDISCONNECTED);
                         sContext.sendBroadcast(intent);
                         SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.BLE_CLICK_STOP, true);    // false
-                        EventBus.getDefault().post(new MessageEvent("goto_updata"));//进入固件升级模式
+                        EventBus.getDefault().post(new MessageEvent("goto_updata"));//Enter firmware upgrade mode
                     }
                 }
-                else if (byte1 == BleContants.INSTALL_COMMAND) {              //TODO -- 设置命令        0x02
+                else if (byte1 == BleContants.INSTALL_COMMAND) {              //TODO -- Setting command        0x02
 
                 }
-                else if (byte1 == BleContants.WEATHER_PROPELLING) {           //TODO -- 天气推送命令     0x03
+                else if (byte1 == BleContants.WEATHER_PROPELLING) {           //TODO -- Weather push command     0x03
 
-                } else if (byte1 == BleContants.DEVICE_COMMADN) {                    //TODO -- 设备命令         0x04
+                } else if (byte1 == BleContants.DEVICE_COMMAND) {                    //TODO -- Device command         0x04
                     switch (byte3) {   // -------  key  byte11
-                        case BleContants.CRAMER_OPEN: //  打开拍照
-//                            if (!SharedPreUtil.readPre(sContext, SharedPreUtil.USER, SharedPreUtil.WATCH_ASSISTANT_CAMERA).equals("0")) {   //判断是否开启照片按钮
+                        case BleContants.CRAMER_OPEN: //  Open photo
                             if(SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")){
                                 if ((Boolean) SharedPreUtil.getParam(sContext, SharedPreUtil.USER, SharedPreUtil.TB_CAMERA_NOTIFY, true)){
-                                    Intent intent = new Intent("0x46");   // 发送远程拍照 --- 对应的广播
+                                    Intent intent = new Intent("0x46");   // Send remote photo --- corresponding broadcast
                                     sendBroadcast(intent);
                                 }
                             } else if (SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("2")) {
@@ -3369,7 +3367,7 @@ private  void settingNotification(){
 //                                    sendBroadcast(intent);
 //                                }
 
-                                if(!CameraActivity.isPhoneExitTakephoto){  // 手机端主动退出
+                                if(!CameraActivity.isPhoneExitTakephoto){  // Mobile phone actively quits
                                     Intent intentCamera = new Intent(getApplicationContext(), CameraActivity.class);     // todo  --- 打开 拍照              BTNotificationApplication.getInstance()    getApplicationContext()  sContext   getBaseContext
                                     intentCamera.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(intentCamera);
@@ -3539,7 +3537,7 @@ private  void settingNotification(){
 
                                 getSyncDataNumInService++;
 
-                                Log.e("liuxiaodata", "需要收到的数据条目为----" + BTNotificationApplication.needReceiveNum);
+                                Log.e("liuxiaodata", "The data entry that needs to be received is----" + BTNotificationApplication.needReceiveNum);
                                 if (BTNotificationApplication.needReceiveNum == 21) {  // 1/5,2/5
                                     if (getSyncDataNumInService == 2) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize1));
@@ -3548,7 +3546,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "1");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送1广播");
+                                        Log.e("liuxiaodata", "Send 1 broadcast");
                                     } else if (getSyncDataNumInService == 5) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize2));
 
@@ -3564,7 +3562,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "3");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送3广播");
+                                        Log.e("liuxiaodata", "Send 3 broadcasts");
                                     } else if (getSyncDataNumInService == 16) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
@@ -3572,7 +3570,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "4");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送4广播");
+                                        Log.e("liuxiaodata", "Send 4 broadcasts");
                                     } else if (getSyncDataNumInService == 20) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
@@ -3592,7 +3590,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "1");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送1广播");
+                                        Log.e("liuxiaodata", "Send 1 broadcast");
                                     } else if (getSyncDataNumInService == 2) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize2));
 
@@ -3608,7 +3606,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "3");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送3广播");
+                                        Log.e("liuxiaodata", "Send 3 broadcasts");
                                     } else if (getSyncDataNumInService == 4) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
@@ -3616,7 +3614,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "4");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送4广播");
+                                        Log.e("liuxiaodata", "Send 4 broadcasts");
                                     } else if (getSyncDataNumInService == 5) {
                                         Intent intent = new Intent();      // add 0414
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
@@ -3626,7 +3624,7 @@ private  void settingNotification(){
                                     }
                                 }//////////////////////////////////////////////////////////////////
 
-                                Log.e("liuxiaodata", "已收到的数据条数为--" + getSyncDataNumInService);
+                                Log.e("liuxiaodata", "The number of data received has been--" + getSyncDataNumInService);
                             }
                         }
 
@@ -3649,7 +3647,7 @@ private  void settingNotification(){
                             } else {
                                 getSyncDataNumInService++;
 
-                                Log.e("liuxiaodata", "需要收到的数据条目为----" + BTNotificationApplication.needReceiveNum);
+                                Log.e("liuxiaodata", "The data entry that needs to be received is----" + BTNotificationApplication.needReceiveNum);
                                 if (BTNotificationApplication.needReceiveNum == 21) {  // 1/5,2/5
                                     if (getSyncDataNumInService == 2) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize1));
@@ -3658,7 +3656,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "1");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送1广播");
+                                        Log.e("liuxiaodata", "Send 1 broadcast");
                                     } else if (getSyncDataNumInService == 5) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize2));
 
@@ -3674,7 +3672,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "3");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送3广播");
+                                        Log.e("liuxiaodata", "Send 3 broadcasts");
                                     } else if (getSyncDataNumInService == 16) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
@@ -3682,7 +3680,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "4");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送4广播");
+                                        Log.e("liuxiaodata", "Send 4 broadcasts");
                                     } else if (getSyncDataNumInService == 20) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
@@ -3702,7 +3700,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "1");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送1广播");
+                                        Log.e("liuxiaodata", "Send 1 broadcast");
                                     } else if (getSyncDataNumInService == 2) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize2));
 
@@ -3718,7 +3716,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "3");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送3广播");
+                                        Log.e("liuxiaodata", "Send 3 broadcasts");
                                     } else if (getSyncDataNumInService == 4) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
@@ -3726,7 +3724,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "4");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送4广播");
+                                        Log.e("liuxiaodata", "Send 4 broadcasts");
                                     } else if (getSyncDataNumInService == 5) {
                                         Intent intent = new Intent();      // add 0414
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
@@ -3736,7 +3734,7 @@ private  void settingNotification(){
                                     }
                                 }//////////////////////////////////////////////////////////////////
 
-                                Log.e("liuxiaodata", "已收到的数据条数为--" + getSyncDataNumInService);
+                                Log.e("liuxiaodata", "The number of data received has been--" + getSyncDataNumInService);
                             }
                         }
                     } else if (bytes[2] == BleContants.BRACELET_HEART_DATA_RETURN) {
@@ -3764,7 +3762,7 @@ private  void settingNotification(){
                             } else {
                                 getSyncDataNumInService++;
 
-                                Log.e("liuxiaodata", "需要收到的数据条目为----" + BTNotificationApplication.needReceiveNum);
+                                Log.e("liuxiaodata", "The data entry that needs to be received is----" + BTNotificationApplication.needReceiveNum);
                                 if (BTNotificationApplication.needReceiveNum == 21) {  // 1/5,2/5
                                     if (getSyncDataNumInService == 2) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize1));
@@ -3773,7 +3771,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "1");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送1广播");
+                                        Log.e("liuxiaodata", "Send 1 broadcast");
                                     } else if (getSyncDataNumInService == 5) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize2));
 
@@ -3781,7 +3779,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "2");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送2广播");
+                                        Log.e("liuxiaodata", "Send 2 broadcasts");
                                     } else if (getSyncDataNumInService == 13) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize3));
 
@@ -3789,7 +3787,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "3");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送3广播");
+                                        Log.e("liuxiaodata", "Send 3 broadcasts");
                                     } else if (getSyncDataNumInService == 16) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
@@ -3797,7 +3795,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "4");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送4广播");
+                                        Log.e("liuxiaodata", "Send 4 broadcasts");
                                     } else if (getSyncDataNumInService == 20) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
@@ -3806,7 +3804,7 @@ private  void settingNotification(){
                                         intent.putExtra("step", "5");
                                         sContext.sendBroadcast(intent);
 
-                                        Log.e("liuxiaodata", "发送5广播");
+                                        Log.e("liuxiaodata", "Send 5 broadcasts");
                                     }
 
                                 } else if (BTNotificationApplication.needReceiveNum == 6) {
@@ -3817,41 +3815,41 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "1");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送1广播");
+                                        Log.e("liuxiaodata", "Send 1 broadcast");
                                     } else if (getSyncDataNumInService == 2) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize2));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "2");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送2广播");
+                                        Log.e("liuxiaodata", "Send 2 broadcasts");
                                     } else if (getSyncDataNumInService == 3) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize3));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "3");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送3广播");
+                                        Log.e("liuxiaodata", "Send 3 broadcasts");
                                     } else if (getSyncDataNumInService == 4) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "4");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送4广播");
+                                        Log.e("liuxiaodata", "Send 4 broadcasts");
                                     } else if (getSyncDataNumInService == 5) {
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "5");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送5广播");
+                                        Log.e("liuxiaodata", "Send 5 broadcasts");
                                     }
                                 }//////////////////////////////////////////////////////////////////
 
-                                Log.e("liuxiaodata", "已收到的数据条数为--" + getSyncDataNumInService);
+                                Log.e("liuxiaodata", "The number of data received has been--" + getSyncDataNumInService);
                                 if (getSyncDataNumInService == BTNotificationApplication.needReceiveNum) {  //   BTNotificationApplication.bleSyncDataDays = 7;    HomeFragment.getHistoryDataDays
 //                                Intent intent = new Intent();      // add 0414
 //                                intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播      ACTION_SYNFINSH_SUCCESS
@@ -3861,7 +3859,7 @@ private  void settingNotification(){
                                     intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                     intent.putExtra("step", "6");
                                     sContext.sendBroadcast(intent);
-                                    Log.e("liuxiaodata", "发送6广播");
+                                    Log.e("liuxiaodata", "Send 6 broadcasts");
 
 //                                HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize5));
 
@@ -3872,10 +3870,10 @@ private  void settingNotification(){
 
                                     String isFirstSync = SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.ISFIRSTSYNCDATA, SharedPreUtil.SYNCED);
                                     if (StringUtils.isEmpty(isFirstSync) || isFirstSync.substring(0, 1).equals("0")) {      // TODO--- 没取过7天的数据了
-                                        SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.ISFIRSTSYNCDATA, SharedPreUtil.SYNCED, "1#" + curMacaddress);  // todo 同步完成了 --- 第一次同步 7 天的数据，取过7天的数据后 ，将 SYNCED 置1
+                                        SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.ISFIRSTSYNCDATA, SharedPreUtil.SYNCED, "1#" + curMacaddress);  // todo The synchronization is completed --- Synchronize the data for 7 days for the first time. After 7 days of data, set SYNCED to 1
                                     }
-                                } else { //todo --- 没有达到相应的接收数据的条数
-                                    mHandler.sendEmptyMessageDelayed(HEART_DATA_FAILOVER, 20000); //TODO --- 延时30秒发送，广播
+                                } else { //todo --- The number of corresponding received data has not been reached
+                                    mHandler.sendEmptyMessageDelayed(HEART_DATA_FAILOVER, 20000); //TODO ---Delayed 30 seconds to send, broadcast
                                 }
                             }
                         }
@@ -3927,36 +3925,36 @@ private  void settingNotification(){
 
                         case BleContants.REJECT_DIAL_COMMAND: // 拒接电话
                             uart_data_end_call(sContext);
-                            Log.e("phone", "拒接电话了");  // TAG
+                            Log.e("phone", "Refuse to answer the call");  // TAG
                             break;
 
                         case BleContants.ANSWER_DIAL_COMMAND: // 接电话
                             startcall();
-                            Log.e("phone", "接电话了");
+                            Log.e("phone", "Answer the call");
                             break;
 
                      
 
 
 
-                        case BleContants.PLAY_MUSIC_COMMAND: // 播放音乐推送
+                        case BleContants.PLAY_MUSIC_COMMAND: // Play music push
                             controlMusic(KEYCODE_MEDIA_PLAY_PAUSE);
                             break;
 
-                        case BleContants.PAUSE_MUSIC_COMMAND: // 暂停音乐推送
+                        case BleContants.PAUSE_MUSIC_COMMAND: // Pause music push
                             controlMusic(KEYCODE_MEDIA_PLAY_PAUSE);
                             break;
 
-                        case BleContants.LAST_MUSIC_COMMAND: // 上一首推送
+                        case BleContants.LAST_MUSIC_COMMAND: // Previous push
                             controlMusic(KEYCODE_MEDIA_PREVIOUS);
                             break;
 
-                        case BleContants.NEXT_MUSIC_COMMAND: // 下一首推送
+                        case BleContants.NEXT_MUSIC_COMMAND: // Next push
                             controlMusic(KEYCODE_MEDIA_NEXT);
                             break;
 
                     }
-                } else if (byte1 == (byte) 0x10){              //TODO   ---时钟机芯校准命令
+                } else if (byte1 == (byte) 0x10){              //TODO   ---Next clock movement calibration command...
                     switch (byte3){
                         case (byte)0x02:
                             EventBus.getDefault().post(new MessageEvent(CalibrationActivity.REFUSE_CALIBRATION));
@@ -3990,7 +3988,7 @@ private  void settingNotification(){
                     switch (bytes[2]) {
                         case BleContants.FIRMWARE_UPGRADE_REQURN:                 //TODO -- 固件信息返回
                             String version = "v" + bytes[5] + "." + bytes[6] + "." + bytes[7];          //固件版本
-                            Log.i(TAG, "固件信息版本: " + version);
+                            Log.i(TAG, "Firmware information version: " + version);
                             SharedPreUtil.savePre(sContext, SharedPreUtil.FIRMEWAREINFO, SharedPreUtil.FIRMEWAREVERSION, version);
                             int braceletType = bytes[8];
                             Log.i(TAG, "升级平台: " + braceletType);         //升级平台  0:nordic  1:dialog  2：MTK  3：智能表
@@ -4109,52 +4107,52 @@ private  void settingNotification(){
 // 0000                  2 bytes		消息推送
 // 8813 0000            4 bytes		运动目标
 // 000000               3 bytes		手势亮屏
-                        byte[] clockByte = new byte[25];       //闹钟
-                        byte[] sedentaryByte = new byte[8];    //久坐提醒
-                        byte[] userInfoByte = new byte[8];     //用户信息
-                        byte[] notifyByte = new byte[1];       //提醒模式
-                        byte[] disturbByte = new byte[5];      //免打扰设置
-                        byte[] heartByte = new byte[6];        //心率检测     byte[] heartByte = new byte[7];  TODO--- 修改为6 0703 17:41
-                        byte[] systemByte = new byte[4];       //系统设置
-                        byte[] waterByte = new byte[8];        //喝水提醒
-                        byte[] notificationByte = new byte[2]; //消息推送
-                        byte[] goalByte = new byte[4];         //运动目标
-                        byte[] gestureByte = new byte[3];        //手势亮屏
+                        byte[] clockByte = new byte[25];       //Alarm clock
+                        byte[] sedentaryByte = new byte[8];    //Sedentary reminder
+                        byte[] userInfoByte = new byte[8];     //User Info
+                        byte[] notifyByte = new byte[1];       //Reminder mode
+                        byte[] disturbByte = new byte[5];      //Do not disturb setting
+                        byte[] heartByte = new byte[6];        //Heart rate detection     byte[] heartByte = new byte[7];  TODO--- Modified to 6 0703 17:41
+                        byte[] systemByte = new byte[4];       //System settings
+                        byte[] waterByte = new byte[8];        //Drinking water reminder
+                        byte[] notificationByte = new byte[2]; //Message push
+                        byte[] goalByte = new byte[4];         //Moving target
+                        byte[] gestureByte = new byte[3];        //Gesture bright screen
 
-                        System.arraycopy(bytes, 5, clockByte, 0, clockByte.length);  // 闹钟从 5开始 25
-                        System.arraycopy(bytes, 5 + clockByte.length, sedentaryByte, 0, sedentaryByte.length);  // 久坐
-                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length, userInfoByte, 0, userInfoByte.length); // 用户信息
-                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length + userInfoByte.length, notifyByte, 0, notifyByte.length); // 提醒模式
-                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length + userInfoByte.length + notifyByte.length, disturbByte, 0, disturbByte.length); // 免打扰设置
-                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length + userInfoByte.length + notifyByte.length + disturbByte.length, heartByte, 0, heartByte.length); // 心率检测
-                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length + userInfoByte.length + notifyByte.length + disturbByte.length + heartByte.length, systemByte, 0, systemByte.length); // 系统设置
-                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length + userInfoByte.length + notifyByte.length + disturbByte.length + heartByte.length + systemByte.length, waterByte, 0, waterByte.length); // 喝水提醒
-                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length + userInfoByte.length + notifyByte.length + disturbByte.length + heartByte.length + systemByte.length + 2, goalByte, 0, goalByte.length); // 运动目标
-                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length + userInfoByte.length + notifyByte.length + disturbByte.length + heartByte.length + systemByte.length + waterByte.length + 2 + 4, gestureByte, 0, gestureByte.length); // 手势亮屏
+                        System.arraycopy(bytes, 5, clockByte, 0, clockByte.length);  // The alarm clock starts at 5 25
+                        System.arraycopy(bytes, 5 + clockByte.length, sedentaryByte, 0, sedentaryByte.length);  // Sedentary
+                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length, userInfoByte, 0, userInfoByte.length); // User Info
+                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length + userInfoByte.length, notifyByte, 0, notifyByte.length); // Reminder mode
+                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length + userInfoByte.length + notifyByte.length, disturbByte, 0, disturbByte.length); // Do not disturb setting
+                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length + userInfoByte.length + notifyByte.length + disturbByte.length, heartByte, 0, heartByte.length); // Heart rate detection
+                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length + userInfoByte.length + notifyByte.length + disturbByte.length + heartByte.length, systemByte, 0, systemByte.length); // System settings
+                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length + userInfoByte.length + notifyByte.length + disturbByte.length + heartByte.length + systemByte.length, waterByte, 0, waterByte.length); // Drinking water reminder
+                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length + userInfoByte.length + notifyByte.length + disturbByte.length + heartByte.length + systemByte.length + 2, goalByte, 0, goalByte.length); // Moving target
+                        System.arraycopy(bytes, 5 + clockByte.length + sedentaryByte.length + userInfoByte.length + notifyByte.length + disturbByte.length + heartByte.length + systemByte.length + waterByte.length + 2 + 4, gestureByte, 0, gestureByte.length); // Gesture bright screen
 
                         ArrayList<AlarmClockData> alarmList = new ArrayList<>();
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                         for (int i = 0; i < (clockByte.length / 5); i++) {
-                            Log.i(TAG, "闹钟" + (i + 1) + "  小时:" + clockByte[i * 5]);
-                            Log.i(TAG, "闹钟" + (i + 1) + "  分钟:" + clockByte[(i * 5) + 1]);
-                            Log.i(TAG, "闹钟" + (i + 1) + "  重复:" + Utils.getBinaryStrFromByte(clockByte[(i * 5) + 2]));
-                            Log.i(TAG, "闹钟" + (i + 1) + "  标签:" + clockByte[(i * 5) + 3]);
-                            Log.i(TAG, "闹钟" + (i + 1) + "  开关:" + clockByte[(i * 5) + 4]);
-//                            if(clockByte[i*5+4] ==1){ //todo -- 不用管开关
+                            Log.i(TAG, "Alarm clock" + (i + 1) + "  hour:" + clockByte[i * 5]);
+                            Log.i(TAG, "Alarm clock" + (i + 1) + "  minute:" + clockByte[(i * 5) + 1]);
+                            Log.i(TAG, "Alarm clock" + (i + 1) + "  repeat:" + Utils.getBinaryStrFromByte(clockByte[(i * 5) + 2]));
+                            Log.i(TAG, "Alarm clock" + (i + 1) + "  label:" + clockByte[(i * 5) + 3]);
+                            Log.i(TAG, "Alarm clock" + (i + 1) + "  switch:" + clockByte[(i * 5) + 4]);
+//                            if(clockByte[i*5+4] ==1){ //todo -- No need to switch
                             AlarmClockData alarmClock = new AlarmClockData();
-                            if (clockByte[(i * 5) + 3] != 1) { // 标签位为1 说明用户设置过
+                            if (clockByte[(i * 5) + 3] != 1) { // The tag bit is 1 indicating that the user has set
                                 continue;
                             }
                             int hour = clockByte[i * 5];
                             int minute = clockByte[i * 5 + 1];
-                            if (hour > 23 || hour < 0){    //小时是否大于23小时或小于0小时，统一作为0小时
+                            if (hour > 23 || hour < 0){    //Whether the hour is greater than 23 hours or less than 0 hours, unified as 0 hours
                                 hour = 0;
                             }
-                            if (minute > 59 || minute < 0){ //分钟是否大于59分钟或小于0分钟，统一作为0分钟
+                            if (minute > 59 || minute < 0){ //Whether the minute is greater than 59 minutes or less than 0 minutes, unified as 0 minutes
                                 minute = 0;
                             }
 
-                            alarmClock.setRemind(clockByte[(i * 5) + 3] + "");  // 标签
+                            alarmClock.setRemind(clockByte[(i * 5) + 3] + "");  // label
                             alarmClock.setTime(String.format(Locale.ENGLISH,"%02d", hour) + ":" + String.format(Locale.ENGLISH,"%02d", minute));
                             alarmClock.setCycle(Utils.getBinaryStrFromByte(clockByte[(i * 5) + 2]));
                             alarmClock.setMac(SharedPreUtil.readPre(sContext, SharedPreUtil.USER, SharedPreUtil.MAC));
@@ -4186,27 +4184,27 @@ private  void settingNotification(){
                         }
 //                        List ddd2 =  query.list();
 
-                        Log.e(TAG, "久坐开关:" + sedentaryByte[0]);
-                        Log.e(TAG, "久坐开始时间:" + sedentaryByte[1]);
-                        Log.e(TAG, "久坐结束时间:" + sedentaryByte[2]);
-                        Log.e(TAG, "久坐重复:" + Utils.getBinaryStrFromByte(sedentaryByte[3]).substring(0, 7));
-                        Log.e(TAG, "久坐时间:" + (((sedentaryByte[4] << 8) & 0xff00) | (sedentaryByte[5] & 0xff)));
-                        Log.e(TAG, "久坐阈值:" + (((sedentaryByte[6] << 8) & 0xff00) | (sedentaryByte[7] & 0xff)));
-                        int sedentaryStart = sedentaryByte[1];   //久坐开始时间
-                        int sedentaryEnd = sedentaryByte[2];     //久坐结束时间
-                        int sedentaryTime = ((sedentaryByte[4] << 8) & 0xff00) | (sedentaryByte[5] & 0xff);  //久坐时间
-                        int sedentaryStep = ((sedentaryByte[6] << 8) & 0xff00) | (sedentaryByte[7] & 0xff);  //久坐阈值
-                        if (sedentaryStart > 23 || sedentaryStart < 0){   //小时是否大于23小时或小于0小时，统一作为0小时
+                        Log.e(TAG, "Sedentary switch:" + sedentaryByte[0]);
+                        Log.e(TAG, "Sedentary start time:" + sedentaryByte[1]);
+                        Log.e(TAG, "Sedentary end time:" + sedentaryByte[2]);
+                        Log.e(TAG, "Sedentary repetition:" + Utils.getBinaryStrFromByte(sedentaryByte[3]).substring(0, 7));
+                        Log.e(TAG, "Sedentary time:" + (((sedentaryByte[4] << 8) & 0xff00) | (sedentaryByte[5] & 0xff)));
+                        Log.e(TAG, "Sedentary threshold:" + (((sedentaryByte[6] << 8) & 0xff00) | (sedentaryByte[7] & 0xff)));
+                        int sedentaryStart = sedentaryByte[1];   //Sedentary start time
+                        int sedentaryEnd = sedentaryByte[2];     //Sedentary end time
+                        int sedentaryTime = ((sedentaryByte[4] << 8) & 0xff00) | (sedentaryByte[5] & 0xff);  //Sedentary time
+                        int sedentaryStep = ((sedentaryByte[6] << 8) & 0xff00) | (sedentaryByte[7] & 0xff);  //Sedentary threshold
+                        if (sedentaryStart > 23 || sedentaryStart < 0){   //Whether the hour is greater than 23 hours or less than 0 hours, unified as 0 hours
                             sedentaryStart = 0;
                         }
-                        if (sedentaryEnd > 23 || sedentaryEnd < 0){    //小时是否大于23小时或小于0小时，统一作为0小时
+                        if (sedentaryEnd > 23 || sedentaryEnd < 0){    //Whether the hour is greater than 23 hours or less than 0 hours, unified as 0 hours
                             sedentaryEnd = 0;
                         }
                         List<String> sedentaryHourList = Utils.getSitList();
                         List<String> sedentaryStepList = Utils.getStepList();
                         int sedentaryTimes = 0;
                         int sedentarySteps = 0;
-                        for (int i = 0; i < sedentaryHourList.size(); i++) {    //久坐时间判断是否在30,60,90,120,150,180,210,240,270,300，330,360
+                        for (int i = 0; i < sedentaryHourList.size(); i++) {    //Sedentary time to determine whether it is 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360
                             if(sedentaryTime == Integer.parseInt(sedentaryHourList.get(i))){
                                 sedentaryTimes = sedentaryTime;
                                 break;
@@ -4215,7 +4213,7 @@ private  void settingNotification(){
                         if(sedentaryTimes == 0){
                             sedentaryTimes = 30;
                         }
-                        for (int i = 0; i < sedentaryStepList.size(); i++) {    //久坐阈值判断是否在100,200,300,400,500,600,700,800,900,1000
+                        for (int i = 0; i < sedentaryStepList.size(); i++) {    //The sedentary threshold is judged whether it is 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000
                             if(sedentaryStep == Integer.parseInt(sedentaryStepList.get(i))){
                                 sedentarySteps = sedentaryStep;
                                 break;
@@ -4232,26 +4230,26 @@ private  void settingNotification(){
                         SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.SIT_STEP, sedentarySteps);
 
 
-                        Log.i(TAG, "用户性别:" + userInfoByte[0]);
-                        Log.i(TAG, "用户年龄:" + userInfoByte[1]);
-                        Log.i(TAG, "用户身高:" + userInfoByte[2]);
-                        Log.i(TAG, "用户体重:" + userInfoByte[3]);
-                        Log.i(TAG, "用户步数:" + Utils.getInt(userInfoByte, 4));
+                        Log.i(TAG, "User gender:" + userInfoByte[0]);
+                        Log.i(TAG, "User age:" + userInfoByte[1]);
+                        Log.i(TAG, "User height:" + userInfoByte[2]);
+                        Log.i(TAG, "User weight:" + userInfoByte[3]);
+                        Log.i(TAG, "User steps:" + Utils.getInt(userInfoByte, 4));
 
 
-                        Log.i(TAG, "提醒模式:" + notifyByte[0]);
+                        Log.i(TAG, "Reminder mode:" + notifyByte[0]);
                         int notifyMode = notifyByte[0];
-                        if(notifyMode > 3 || notifyMode < 1){    //提醒模式大于3或小于1，统一作为1模式:1：亮屏；2：震动；3：亮屏+震动
+                        if(notifyMode > 3 || notifyMode < 1){    //Reminder mode is greater than 3 or less than 1, unified as 1 mode: 1: bright screen; 2: vibration; 3: bright screen + vibration
                             notifyMode = 3;
                         }
                         SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.ALARM_MODE, notifyMode);
 
 
-                        Log.i(TAG, "免打扰开关:" + disturbByte[0]);
-                        Log.i(TAG, "免打扰开始小时:" + disturbByte[1]);
-                        Log.i(TAG, "免打扰开始分钟:" + disturbByte[2]);
-                        Log.i(TAG, "免打扰结束小时:" + disturbByte[3]);
-                        Log.i(TAG, "免打扰结束分钟:" + disturbByte[4]);
+                        Log.i(TAG, "Do not disturb switch:" + disturbByte[0]);
+                        Log.i(TAG, "Do not disturb start hour:" + disturbByte[1]);
+                        Log.i(TAG, "Do not disturb start minutes:" + disturbByte[2]);
+                        Log.i(TAG, "Do not disturb end hour:" + disturbByte[3]);
+                        Log.i(TAG, "Do not disturb end minutes:" + disturbByte[4]);
                         int disturbStartHour = disturbByte[1];
                         int disturbStartMin = disturbByte[2];
                         int disturbEndHour = disturbByte[3];
@@ -4273,19 +4271,19 @@ private  void settingNotification(){
                             disturbEndMin = 0;
                         }
 
-                        SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.NO_START_TIME, disturbStartHour);//勿扰开始小时
-                        SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.NO_START_TIME_MIN, disturbStartMin);//勿扰开始分钟
-                        SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.NO_STOP_TIME, disturbEndHour);//勿扰结束小时
-                        SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.NO_STOP_TIME_MIN, disturbEndMin);//勿扰结束分钟
+                        SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.NO_START_TIME, disturbStartHour);//Do not disturb start hours
+                        SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.NO_START_TIME_MIN, disturbStartMin);//Do not disturb start minutes
+                        SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.NO_STOP_TIME, disturbEndHour);//Do not disturb the end of the hour
+                        SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.NO_STOP_TIME_MIN, disturbEndMin);//Do not disturb the minute
                         SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.NO_SWITCH, disturbByte[0] == 1 ? true : false);
 
 
-                        Log.i(TAG, "心率检测开关:" + heartByte[0]);  // 心率检测现在改为 6
-                        Log.i(TAG, "心率检测开始小时:" + heartByte[1]);
-                        Log.i(TAG, "心率检测开始分钟:" + heartByte[2]);
-                        Log.i(TAG, "心率检测结束小时:" + heartByte[3]);
-                        Log.i(TAG, "心率检测结束分钟:" + heartByte[4]);
-                        Log.i(TAG, "心率检测结束间隔:" + heartByte[5]);
+                        Log.i(TAG, "Heart rate detection switch:" + heartByte[0]);  // Heart rate detection is now changed to 6
+                        Log.i(TAG, "Heart rate detection start hour:" + heartByte[1]);
+                        Log.i(TAG, "Heart rate detection starts minutes:" + heartByte[2]);
+                        Log.i(TAG, "Heart rate detection end hour:" + heartByte[3]);
+                        Log.i(TAG, "Heart rate detection end minutes:" + heartByte[4]);
+                        Log.i(TAG, "Heart rate detection end interval:" + heartByte[5]);
 
                         int heartStartHour = heartByte[1];
                         int heartStartMin = heartByte[2];
@@ -4325,18 +4323,18 @@ private  void settingNotification(){
                         SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.HEART_FREQUENCY, frequency);  // 心率检测结束间隔
 
 
-                        Log.i(TAG, "系统设置语言:" + systemByte[0]);
-                        Log.i(TAG, "系统设置小时制:" + systemByte[1]);
-                        Log.i(TAG, "系统设置亮屏:" + systemByte[2]);
-                        Log.i(TAG, "系统设置手机配对:" + systemByte[3]);
+                        Log.i(TAG, "System setting language:" + systemByte[0]);
+                        Log.i(TAG, "System setting hourly system:" + systemByte[1]);
+                        Log.i(TAG, "System settings bright screen:" + systemByte[2]);
+                        Log.i(TAG, "System settings phone pairing:" + systemByte[3]);
 
-                        Log.i(TAG, "喝水提醒开关:" + waterByte[0]);
-                        Log.i(TAG, "喝水提醒开始小时:" + waterByte[1]);
-                        Log.i(TAG, "喝水提醒开始分钟:" + waterByte[2]);
-                        Log.i(TAG, "喝水提醒结束小时:" + waterByte[3]);
-                        Log.i(TAG, "喝水提醒结束分钟:" + waterByte[4]);
-                        Log.i(TAG, "喝水提醒重复:" + Utils.getBinaryStrFromByte(waterByte[5]).substring(0, 7));
-                        Log.i(TAG, "喝水提醒间隔:" + (((waterByte[6] << 8) & 0xff00) | (waterByte[7] & 0xff)));
+                        Log.i(TAG, "Drinking water reminder switch:" + waterByte[0]);
+                        Log.i(TAG, "Drink water reminder start hour:" + waterByte[1]);
+                        Log.i(TAG, "Drink water reminder to start minutes:" + waterByte[2]);
+                        Log.i(TAG, "Drink water reminder end hour:" + waterByte[3]);
+                        Log.i(TAG, "Drink water reminder end minutes:" + waterByte[4]);
+                        Log.i(TAG, "Drinking water reminder repeat:" + Utils.getBinaryStrFromByte(waterByte[5]).substring(0, 7));
+                        Log.i(TAG, "Drinking water reminder interval:" + (((waterByte[6] << 8) & 0xff00) | (waterByte[7] & 0xff)));
 
                         int waterStartHour = waterByte[1];
                         int waterStartMin = waterByte[2];
@@ -4375,16 +4373,16 @@ private  void settingNotification(){
                         SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.DRINK_STOP_TIME_MIN, waterEndMin);
                         SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.DRINK_FREQUENCY, waters);
 
-                        Log.i(TAG, "手势智控--左右手----" + gestureByte[0]);
-                        Log.i(TAG, "手势智控--抬手亮屏----:" + gestureByte[1]);
-                        Log.i(TAG, "手势智控--翻腕亮屏----:" + gestureByte[2]);
+                        Log.i(TAG, "Gesture intelligence control--right hand----" + gestureByte[0]);
+                        Log.i(TAG, "Gesture intelligence control--raise your hand to brighten----:" + gestureByte[1]);
+                        Log.i(TAG, "Gesture intelligence control--turning the wrist bright screen----:" + gestureByte[2]);
                         SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.GESTURE_HAND, (int)gestureByte[0]);
                         SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.RAISE_BRIGHT, gestureByte[1] == 1 ? true : false);
                         SharedPreUtil.setParam(sContext, SharedPreUtil.USER, SharedPreUtil.FANWAN_BRIGHT, gestureByte[2] == 1 ? true : false);
                     }
                 } else if (byte1 == BleContants.WEATHER_PROPELLING) {           //TODO -- 天气推送命令     0x03
 
-                } else if (byte1 == BleContants.DEVICE_COMMADN) {               //TODO -- 设备命令         0x04
+                } else if (byte1 == BleContants.DEVICE_COMMAND) {               //TODO -- 设备命令         0x04
                     switch (bytes[2]) {   //todo -----  key类型
                         case BleContants.CRAMER_OPEN: //  打开拍照
                             if (SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")){
@@ -4533,13 +4531,13 @@ private  void settingNotification(){
                     }
                     if (bytes[2] == BleContants.ELECTRIC_RETURN) {
                         int battary = bytes[5];
-                        Log.i(TAG, "设备电量： " + battary);
+                        Log.i(TAG, "Device power： " + battary);
                         int battaryType = bytes[6];
-                        Log.i(TAG, "设备电量状态: " + battaryType);
+                        Log.i(TAG, "Device status: " + battaryType);
                     }
                 } else if (byte1 == BleContants.FIND_COMMAND) {                        //TODO -- 查找命令   0x05
 //                    if (bytes[2] == BleContants.FIND_PHONE) {   // -------  key
-//                        showDialog();        //todo ----     多包找手机
+//                        showDialog();        //todo ----     Find more bags
 //                    }
                     if (bytes[2] == BleContants.FIND_DEVICE) { // 找手表  ---- 手表端回复命令
                         Intent intent = new Intent();
@@ -4709,7 +4707,7 @@ private  void settingNotification(){
                             }else{        //(手环)
                                 getSyncDataNumInService++;  //todo ---- getSyncDataNumInService 值对应设备端有几天的数据
 
-                                Log.e("liuxiaodata", "需要收到的数据条目为----" + BTNotificationApplication.needReceiveNum);
+                                Log.e("liuxiaodata", "The data entry that needs to be received is----" + BTNotificationApplication.needReceiveNum);
                                 if (BTNotificationApplication.needReceiveNum == 21) {  // 1/5,2/5
                                     if (getSyncDataNumInService == 2) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize1));
@@ -4718,7 +4716,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "1");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送1广播");
+                                        Log.e("liuxiaodata", "Send 1 broadcast");
                                     } else if (getSyncDataNumInService == 5) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize2));
 
@@ -4726,7 +4724,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "2");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送2广播");
+                                        Log.e("liuxiaodata", "Send 2 broadcasts");
                                     } else if (getSyncDataNumInService == 13) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize3));
 
@@ -4734,7 +4732,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "3");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送3广播");
+                                        Log.e("liuxiaodata", "Send 3 broadcasts");
                                     } else if (getSyncDataNumInService == 16) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
@@ -4742,7 +4740,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "4");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送4广播");
+                                        Log.e("liuxiaodata", "Send 4 broadcasts");
                                     } else if (getSyncDataNumInService == 20) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
@@ -4751,7 +4749,7 @@ private  void settingNotification(){
                                         intent.putExtra("step", "5");
                                         sContext.sendBroadcast(intent);
 
-                                        Log.e("liuxiaodata", "发送5广播");
+                                        Log.e("liuxiaodata", "Send 5 broadcasts");
                                     }
 
                                 } else if (BTNotificationApplication.needReceiveNum == 6) {
@@ -4762,7 +4760,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "1");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送1广播");
+                                        Log.e("liuxiaodata", "Send 1 broadcast");
                                     } else if (getSyncDataNumInService == 2) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize2));
 
@@ -4770,7 +4768,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "2");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送2广播");
+                                        Log.e("liuxiaodata", "Send 2 broadcasts");
                                     } else if (getSyncDataNumInService == 3) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize3));
 
@@ -4778,7 +4776,7 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "3");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送3广播");
+                                        Log.e("liuxiaodata", "Send 3 broadcasts");
                                     } else if (getSyncDataNumInService == 4) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
@@ -4786,17 +4784,17 @@ private  void settingNotification(){
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "4");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送4广播");
+                                        Log.e("liuxiaodata", "Send 4 broadcasts");
                                     } else if (getSyncDataNumInService == 5) {
                                         Intent intent = new Intent();      // add 0414
                                         intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
                                         intent.putExtra("step", "5");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送5广播");
+                                        Log.e("liuxiaodata", "Send 5 broadcasts");
                                     }
                                 }//////////////////////////////////////////////////////////////////
 
-                                Log.e("liuxiaodata", "已收到的数据条数为--" + getSyncDataNumInService);
+                                Log.e("liuxiaodata", "The number of data received has been--" + getSyncDataNumInService);
                             }
                         }
 
@@ -4871,7 +4869,7 @@ private  void settingNotification(){
                                             realStep = zhengliang;
                                         }
                                     }
-                                    Log.i(TAG, "oneDayStep--实际步数增量 ---- " + realStep);
+                                    Log.i(TAG, "oneDayStep--Actual step increment ---- " + realStep);
 
                                     if (hasStepTemp != goalSum && goalSum > hasStepTemp) {   // hasStepTemp != goalSum
                                         hasStepTemp = goalSum;
@@ -4926,7 +4924,7 @@ private  void settingNotification(){
                                 int runStep = Utils.getInt(bytes,i+4);
                                 float calorie = Utils.byte2float(bytes,i+8);
                                 float distance = Utils.byte2float(bytes,i+12);
-                                Log.i(TAG,"oneDayStep--实际步数增量 ---- " + dayStep + "; oneRunStep--实际跑步增量 ---- " + runStep + "; calorie = " + calorie + "; distance = " + distance);
+                                Log.i(TAG,"oneDayStep--Actual step increment ---- " + dayStep + "; oneRunStep--Actual running increment ---- " + runStep + "; calorie = " + calorie + "; distance = " + distance);
                                 StepData stepData = new StepData();
                                 String mcurTime = year + "-" + mouth + "-" + day + " " + String.format(Locale.ENGLISH,"%02d", j) + ":" + "00:00";
                                 Date date = StringUtils.parseStrToDate(mcurTime, StringUtils.SIMPLE_DATE_FORMAT);
@@ -4941,7 +4939,7 @@ private  void settingNotification(){
                                         stepData.setDistance(calorie - hasCalorieTemp + "");
                                         stepData.setCalorie(distance - hasDistanceTemp + "");
                                     }
-                                    Log.i(TAG, "oneDayStep--实际步数增量 ---- " + stepData.getCounts() + "; oneDayCalorie--实际卡路里增量 ---- " + stepData.getCalorie() + "; oneDayDistance--实际距离增量 ---- " + stepData.getDistance());
+                                    Log.i(TAG, "oneDayStep--Actual step increment ---- " + stepData.getCounts() + "; oneDayCalorie--Actual calorie increment ---- " + stepData.getCalorie() + "; oneDayDistance--Actual distance increment ---- " + stepData.getDistance());
 
                                     if (hasStepTemp != dayStep && dayStep > hasStepTemp) {   // hasStepTemp != goalSum
                                         hasStepTemp = dayStep;
@@ -4985,13 +4983,13 @@ private  void settingNotification(){
                             } else {
                                 getSyncDataNumInService++;
 
-                                Log.e("liuxiaodata", "需要收到的数据条目为----" + BTNotificationApplication.needReceiveNum);
+                                Log.e("liuxiaodata", "The data entry that needs to be received is----" + BTNotificationApplication.needReceiveNum);
                                 if (BTNotificationApplication.needReceiveNum == 21) {  // 1/5,2/5
                                     if (getSyncDataNumInService == 2) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize1));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "1");
                                         sContext.sendBroadcast(intent);
                                         Log.e("liuxiaodata", "发送1广播");
@@ -4999,7 +4997,7 @@ private  void settingNotification(){
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize2));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "2");
                                         sContext.sendBroadcast(intent);
                                         Log.e("liuxiaodata", "发送2广播");
@@ -5007,23 +5005,23 @@ private  void settingNotification(){
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize3));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "3");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送3广播");
+                                        Log.e("liuxiaodata", "Send 3 broadcasts");
                                     } else if (getSyncDataNumInService == 16) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "4");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送4广播");
+                                        Log.e("liuxiaodata", "Send 4 broadcasts");
                                     } else if (getSyncDataNumInService == 20) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "5");
                                         sContext.sendBroadcast(intent);
 
@@ -5035,7 +5033,7 @@ private  void settingNotification(){
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize1));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "1");
                                         sContext.sendBroadcast(intent);
                                         Log.e("liuxiaodata", "发送1广播");
@@ -5043,7 +5041,7 @@ private  void settingNotification(){
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize2));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "2");
                                         sContext.sendBroadcast(intent);
                                         Log.e("liuxiaodata", "发送2广播");
@@ -5051,28 +5049,28 @@ private  void settingNotification(){
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize3));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "3");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送3广播");
+                                        Log.e("liuxiaodata", "Send 3 broadcasts");
                                     } else if (getSyncDataNumInService == 4) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "4");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送4广播");
+                                        Log.e("liuxiaodata", "Send 4 broadcasts");
                                     } else if (getSyncDataNumInService == 5) {
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "5");
                                         sContext.sendBroadcast(intent);
                                         Log.e("liuxiaodata", "发送5广播");
                                     }
                                 }//////////////////////////////////////////////////////////////////
 
-                                Log.e("liuxiaodata", "已收到的数据条数为--" + getSyncDataNumInService);
+                                Log.e("liuxiaodata", "The number of data received has been--" + getSyncDataNumInService);
                             }
                         }
 
@@ -5207,7 +5205,7 @@ private  void settingNotification(){
 
                                 for (int j = 0; j < list1.size(); j++) {
                                     for (int i = 0; i < sleepList.size(); i++) {
-                                        if (list1.get(j).getStarttimes().equals(sleepList.get(i).getStarttimes())) {  //todo --- 查询数据库中的睡眠开始时间，是否与设备传过来的睡眠开始是否相等，若相等，说明传过,删除，没穿过不删除
+                                        if (list1.get(j).getStarttimes().equals(sleepList.get(i).getStarttimes())) {  //todo --- Query whether the sleep start time in the database is equal to the start of sleep passed by the device. If they are equal, it means passing, deleting, not passing, not deleting.
                                             db.deleteSleepData(list1.get(j).getId());
                                         }
                                     }
@@ -5218,7 +5216,7 @@ private  void settingNotification(){
                                 List<SleepData> list2 = query2.list();
                                 for (int j = 0; j < list2.size(); j++) {
                                     for (int i = 0; i < sleepList.size(); i++) {
-                                        if (list2.get(j).getStarttimes().equals(sleepList.get(i).getStarttimes())) {  //todo --- 查询数据库中的睡眠开始时间，是否与设备传过来的睡眠开始是否相等，若相等，说明传过,删除，没穿过不删除
+                                        if (list2.get(j).getStarttimes().equals(sleepList.get(i).getStarttimes())) {  //todo --- Query whether the sleep start time in the database is equal to the start of sleep passed by the device. If they are equal, it means passing, deleting, not passing, not deleting.
                                             db.deleteSleepData(list2.get(j).getId());
                                         }
                                     }
@@ -5229,7 +5227,7 @@ private  void settingNotification(){
                                 List<SleepData> list1 = query1.list();
                                 for (int j = 0; j < list1.size(); j++) {
                                     for (int i = 0; i < sleepList.size(); i++) {
-                                        if (list1.get(j).getStarttimes().equals(sleepList.get(i).getStarttimes())) {  //todo --- 查询数据库中的睡眠开始时间，是否与设备传过来的睡眠开始是否相等，若相等，说明传过,删除，没穿过不删除
+                                        if (list1.get(j).getStarttimes().equals(sleepList.get(i).getStarttimes())) {  //todo --- Query whether the sleep start time in the database is equal to the start of sleep passed by the device. If they are equal, it means passing, deleting, not passing, not deleting.
                                             db.deleteSleepData(list1.get(j).getId());
                                         }
                                     }
@@ -5240,22 +5238,22 @@ private  void settingNotification(){
                             SharedPreUtil.savePre(sContext, SharedPreUtil.SLEEP, SharedPreUtil.readPre(this, SharedPreUtil.USER, SharedPreUtil.MAC), sleepList.get(sleepList.size() - 1).getEndTime());
                         }
                         for (int i = 0; i < sleepList.size(); i++) {
-                            db.saveSleepData(sleepList.get(i));      // 重新保存对应日期的睡眠数据
+                            db.saveSleepData(sleepList.get(i));      // Resave sleep data for the corresponding date
                         }
-                    } else if (bytes[2] == BleContants.BRACELET_HEART_DATA_RETURN) {            //TODO 手环心率数据返回  ----历史(0xA4)
+                    } else if (bytes[2] == BleContants.BRACELET_HEART_DATA_RETURN) {            //TODO Hand ring heart rate data return  ----history(0xA4)
 
                         if(!BTNotificationApplication.isSyncEnd) {
-                            if (SharedPreUtil.readPre(sContext, SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")) {    //(智能表)
+                            if (SharedPreUtil.readPre(sContext, SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")) {    //(Smart watch)
                                 if (needReceDataNumber == 1) {
                                     needReceDataNumber = 2;
                                     Intent intent = new Intent();
-                                    intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                    intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                     intent.putExtra("step", "2");
                                     sContext.sendBroadcast(intent);
                                 }else if(needReceDataNumber == 2){
                                     needReceDataNumber = 3;
                                     Intent intent = new Intent();
-                                    intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                    intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                     intent.putExtra("step", "3");
                                     sContext.sendBroadcast(intent);
                                 }
@@ -5266,51 +5264,51 @@ private  void settingNotification(){
                             } else {
                                 getSyncDataNumInService++;
 
-                                Log.e("liuxiaodata", "需要收到的数据条目为----" + BTNotificationApplication.needReceiveNum);
+                                Log.e("liuxiaodata", "The data entry that needs to be received is----" + BTNotificationApplication.needReceiveNum);
                                 if (BTNotificationApplication.needReceiveNum == 21) {  // 1/5,2/5
                                     if (getSyncDataNumInService == 2) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize1));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "1");
                                         sContext.sendBroadcast(intent);
 
-                                        Log.e("liuxiaodata", "发送1广播");
+                                        Log.e("liuxiaodata", "Send 1 broadcast");
                                     } else if (getSyncDataNumInService == 5) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize2));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "2");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送2广播");
+                                        Log.e("liuxiaodata", "Send 2 broadcasts");
                                     } else if (getSyncDataNumInService == 13) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize3));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "3");
                                         sContext.sendBroadcast(intent);
 
-                                        Log.e("liuxiaodata", "发送3广播");
+                                        Log.e("liuxiaodata", "Send 3 broadcasts");
                                     } else if (getSyncDataNumInService == 16) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "4");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送4广播");
+                                        Log.e("liuxiaodata", "Send 4 broadcasts");
                                     } else if (getSyncDataNumInService == 20) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "5");
                                         sContext.sendBroadcast(intent);
 
-                                        Log.e("liuxiaodata", "发送5广播");
+                                        Log.e("liuxiaodata", "Send 5 broadcasts");
                                     }
 
                                 } else if (BTNotificationApplication.needReceiveNum == 6) {
@@ -5318,52 +5316,52 @@ private  void settingNotification(){
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize1));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播     ACTION_SYNFINSH_STEP
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization     ACTION_SYNFINSH_STEP
                                         intent.putExtra("step", "1");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送1广播");
+                                        Log.e("liuxiaodata", "Send 1 broadcast");
                                     } else if (getSyncDataNumInService == 2) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize2));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "2");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送2广播");
+                                        Log.e("liuxiaodata", "Send 2 broadcasts");
                                     } else if (getSyncDataNumInService == 3) {
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize3));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "3");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送3广播");
+                                        Log.e("liuxiaodata", "Send 3 broadcasts");
                                     } else if (getSyncDataNumInService == 4) {
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "4");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送4广播");
+                                        Log.e("liuxiaodata", "Send 4 broadcasts");
                                     } else if (getSyncDataNumInService == 5) {
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "5");
                                         sContext.sendBroadcast(intent);
-                                        Log.e("liuxiaodata", "发送5广播");
+                                        Log.e("liuxiaodata", "Send 5 broadcasts");
                                     }
                                 }
 
-                                Log.e("liuxiaodata", "已收到的数据条数为--" + getSyncDataNumInService);
+                                Log.e("liuxiaodata", "The number of data received has been--" + getSyncDataNumInService);
                                 if (getSyncDataNumInService == BTNotificationApplication.needReceiveNum) {  //   BTNotificationApplication.bleSyncDataDays = 7;    HomeFragment.getHistoryDataDays
 //                                Intent intent = new Intent();      // add 0414
-//                                intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+//                                intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
 //                                sContext.sendBroadcast(intent);
 
                                     Intent intent = new Intent();      // add 0414
-                                    intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                    intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                     intent.putExtra("step", "6");
                                     sContext.sendBroadcast(intent);
-                                    Log.e("liuxiaodata", "发送6广播");
+                                    Log.e("liuxiaodata", "Send 6 broadcasts");
 
 //                                HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize5));
 
@@ -5373,11 +5371,11 @@ private  void settingNotification(){
                                     String curMacaddress = SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.MAC);
 
                                     String isFirstSync = SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.ISFIRSTSYNCDATA, SharedPreUtil.SYNCED);
-                                    if (StringUtils.isEmpty(isFirstSync) || isFirstSync.substring(0, 1).equals("0")) {      // TODO--- 没取过7天的数据了
-                                        SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.ISFIRSTSYNCDATA, SharedPreUtil.SYNCED, "1#" + curMacaddress);  // todo 同步完成了 --- 第一次同步 7 天的数据，取过7天的数据后 ，将 SYNCED 置1
+                                    if (StringUtils.isEmpty(isFirstSync) || isFirstSync.substring(0, 1).equals("0")) {      // TODO--- I have not taken 7 days of data.
+                                        SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.ISFIRSTSYNCDATA, SharedPreUtil.SYNCED, "1#" + curMacaddress);  // todo The synchronization is complete --- Synchronize 7 days of data for the first time, set SYNCED after 7 days of data
                                     }
-                                } else { //todo --- 没有达到相应的接收数据的条数
-                                    mHandler.sendEmptyMessageDelayed(HEART_DATA_FAILOVER, 20000); //TODO --- 延时30秒发送，广播
+                                } else { //todo --- The number of corresponding received data has not been reached
+                                    mHandler.sendEmptyMessageDelayed(HEART_DATA_FAILOVER, 20000); //TODO --- Delayed 30 seconds to send, broadcast
                                 }
                             }
                         }
@@ -5386,7 +5384,7 @@ private  void settingNotification(){
                         byte[] heart = new byte[7]; // ????? 7    byte[] heart = new byte[10]
                         int l2Length = (((bytes[3] << 8) & 0xff00) | (bytes[4] & 0xff));
                         int runCount = l2Length / 7;
-                        SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.DEFAULT_HEART_RATE, "1");  // 显示心率页面的 标识
+                        SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.DEFAULT_HEART_RATE, "1");  // Display the identity of the heart rate page
 
                         Query query = null;
                         List<HearData> list = null;
@@ -5428,7 +5426,7 @@ private  void settingNotification(){
                             if(StringUtils.isEmpty(beginTime)){
                                 continue;
                             }
-                            boolean isFlag = false;  //判断是否有相同数据
+                            boolean isFlag = false;  //Determine if there is the same data
                             try {
                                 date = new SimpleDateFormat(Utils.YYYY_MM_DD_HH_MM_SS, Locale.ENGLISH).parse(beginTime);
                                 if (null == date) {
@@ -5468,14 +5466,14 @@ private  void settingNotification(){
                                 hearData.setHeartbeat(hearts + "");      // 107
                                 hearData.setHigt_hata(hearts + "");
                                 hearData.setLow_hata(hearts + "");
-                                hearData.setAvg_hata(hearts + "");//平均的心率
+                                hearData.setAvg_hata(hearts + "");// Average heart rate
                                 hearDataList.add(hearData);
                             }
                         }
                         Log.e("UPDTA", "3");
                         heartAllList.addAll(hearDataList);
                         heartdataWrite(hearDataList,false);
-                    } else if (bytes[2] == BleContants.BRACELREALRUN) {                      //TODO 手环实时计步数据返回 (0xAC)
+                    } else if (bytes[2] == BleContants.BRACELREALRUN) {                      //TODO Hand ring real-time step data return (0xAC)
                         int run = Utils.getInt(bytes, 5);
                         Log.e(TAG, "bracel run =" + run);
                         float calorie = Utils.getFloat(bytes, 9);  // 16.079199
@@ -5491,7 +5489,7 @@ private  void settingNotification(){
                         SharedPreUtil.savePre(sContext, SharedPreUtil.BLEWATCHDATA, SharedPreUtil.WATCHTIME,  String.format(Locale.ENGLISH,  df.format(new Date()) + ""));
 //                        String distance = String.format(Locale.ENGLISH, "%.2f", (allStep * 0.7) / 1000.0);   String.format(Locale.ENGLISH, "%1$02d-%2$02d-%3$02d", mai, sec, yunshu) df.format(new Date()) + "");
 //                        SharedPreUtil.savePre(sContext, SharedPreUtil.BLEWATCHDATA, SharedPreUtil.WATCHTIME, df.format(new Date()) + "");
-                        //todo ---- 添加判断 当 run 步数为0 时， 说明是 0点清0数据 或 固件升级了 --- 应该将同步历史的步数也清0
+                        //todo ---- Add judgment When the number of run steps is 0, the description is 0 to clear the data or the firmware is upgraded --- The number of steps in the synchronization history should also be cleared.
                         if(run == 0){
                             SharedPreUtil.savePre(sContext, SharedPreUtil.BLEWATCHDATA, SharedPreUtil.RUN, "0");
                             SharedPreUtil.savePre(sContext, SharedPreUtil.BLEWATCHDATA, SharedPreUtil.CALORIE,  "0");
@@ -5505,20 +5503,20 @@ private  void settingNotification(){
 //                            SharedPreUtil.savePre(sContext, SharedPreUtil.BLEWATCHDATA, SharedPreUtil.WATCHSYNCTIME, df.format(new Date()) + "");  //存手环同步时间
                         }
 
-                        if(BTNotificationApplication.isSyncEnd) {  //todo --- 同步数据完成才发送 同步实时计步的广播
+                        if(BTNotificationApplication.isSyncEnd) {  //todo --- Synchronous data is completed before sending a synchronous real-time step broadcast
                             Intent intent = new Intent();
-                            intent.setAction(MainService.ACTION_SYNFINSH_SUCCESS);    //todo ----BLE 实时步数的广播 发数据同步成功的广播       ACTION_SYNFINSH
+                            intent.setAction(MainService.ACTION_SYNFINSH_SUCCESS);    //todo ----BLE Broadcast of real-time steps, successful broadcast of data synchronization       ACTION_SYNFINSH
                             sendBroadcast(intent);
                         }
 
 //                        Intent intent = new Intent();
-//                        intent.setAction(MainService.ACTION_SYNFINSH_SUCCESS);    //todo ----BLE 实时步数的广播 发数据同步成功的广播       ACTION_SYNFINSH
+//                        intent.setAction(MainService.ACTION_SYNFINSH_SUCCESS);    //todo ----BLE Broadcast of real-time steps, successful broadcast of data synchronization      ACTION_SYNFINSH
 //                        sendBroadcast(intent);
                     } else if (bytes[2] == BleContants.BRACELREALHEART) {
-                        //TODO 手环实时心率数据返回 (0xAB)
+                        //TODO Bracelet real-time heart rate data return (0xAB)
 
                         int heart = bytes[5] & 0xff;
-                        Log.e(TAG,"实时心率 ： " + heart);
+                        Log.e(TAG,"Real-time heart rate ： " + heart);
                         if(heart > 0){
                             SendHate(heart);
                         }
@@ -5537,18 +5535,18 @@ private  void settingNotification(){
                         }*/
 
 
-                    } else if (bytes[2] == BleContants.BRACELREALSPORT) {                         //TODO 手环运动模式数据返回 (0xA5)
+                    } else if (bytes[2] == BleContants.BRACELREALSPORT) {                         //TODO Bracelet motion mode data return (0xA5)
                         int l2ValueLength = (((bytes[3] << 8) & 0xff00) | (bytes[4] & 0xff));
                         if (l2ValueLength == 0) {
                             Intent broadcastIntent = new Intent();
-                            broadcastIntent.setAction(MainService.ACTION_SYNFINSH_SPORTS); // todo  --- 当没有运动模式数据时，发广播，销毁加载的同步框
+                            broadcastIntent.setAction(MainService.ACTION_SYNFINSH_SPORTS); // todo  --- When there is no motion mode data, send a broadcast, destroy the loaded sync box
                             getApplicationContext().sendBroadcast(broadcastIntent);
                             return;
                         }
                         if(l2ValueLength % 16 == 0) {
                             if(!isGPS) {
-                                byte[] sports = new byte[16];   //运动模式数组
-                                int sportCount = (l2ValueLength) / 16;   //运动模式数据组个数
+                                byte[] sports = new byte[16];   //Motion mode array
+                                int sportCount = (l2ValueLength) / 16;   //Number of sports mode data sets
                                 List<GpsPointDetailData> listGps = new ArrayList<>();
                                 for (int i = 0; i < sportCount; i++) {
                                     GpsPointDetailData gpsPointDetailData = new GpsPointDetailData();
@@ -5587,13 +5585,13 @@ private  void settingNotification(){
 //                                endTime = year + "-" + month + "-" + day + " " + endHour + ":" + endMin + ":00";
                                         try {
                                             Date startDate = simpleDateFormat.parse(startTime);
-                                            Calendar calendar = Calendar.getInstance();   // 当前第一天的日期  2017-06-28
+                                            Calendar calendar = Calendar.getInstance();   // Current day of the first day  2017-06-28
                                             calendar.setTime(startDate);
 //                                    String  mcurDate = getDateFormat.format(calendar.getTime());  //  TODO---- 当前天的日期   --- 2017-11-08
-                                            calendar.add(Calendar.DAY_OF_MONTH, 1);  //设置为后1天
+                                            calendar.add(Calendar.DAY_OF_MONTH, 1);  //Set to 1 day after
                                             SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-                                            String lastOneDay = sdf2.format(calendar.getTime());//todo 后一天的日期  --- 2017-11-09       2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
-                                            Log.e(TAG, "当前日期的后1天日期为 ---- " + lastOneDay);
+                                            String lastOneDay = sdf2.format(calendar.getTime());//todo 后一天的日期  --- 2017-11-09       2017-09-29    ----- Save this date locally. When the current date of the current homepage is 2017-09-29, set the 7-day sync flag to 0.
+                                            Log.e(TAG, "The date after the current date is 1 day ---- " + lastOneDay);
 
                                             endTime = lastOneDay + " " + endHour + ":" + endMin + ":00";    // 2017-11-09 09:26:00
                                         } catch (ParseException e) {
@@ -5609,10 +5607,10 @@ private  void settingNotification(){
                                         Date startDate = simpleDateFormat.parse(startTime);
                                         Date endDate = simpleDateFormat.parse(endTime);
                                         long sportTime = 0;
-                                        /*if (endDate.getTime() > startDate.getTime()) { //TODO --- 运动模式数据跨天时，日期是前一天的日期
-                                            sportTime = endDate.getTime() - startDate.getTime();  //todo --- 秒数
+                                        /*if (endDate.getTime() > startDate.getTime()) { //TODO --- Sports mode data across days, date is the date of the previous day
+                                            sportTime = endDate.getTime() - startDate.getTime();  //todo --- Seconds
                                         } else {
-                                            sportTime = startDate.getTime() - endDate.getTime();  //todo --- 秒数
+                                            sportTime = startDate.getTime() - endDate.getTime();  //todo --- Seconds
                                         }*/
                                         sportTime = Math.abs(endDate.getTime() - startDate.getTime());
 
@@ -5649,11 +5647,11 @@ private  void settingNotification(){
                                         gpsPointDetailData.setSportTime(s1);
 
 //                                long ddd = startDate.getTime();   // 1498721520000  --- 1498721940000 ---
-                                        gpsPointDetailData.setTimeMillis(startDate.getTime() / 1000 + "");     // 运动数据开始时间 --- 该字段必须设置，否则，运动模式数据列表错乱
+                                        gpsPointDetailData.setTimeMillis(startDate.getTime() / 1000 + "");     // Motion data start time --- This field must be set, otherwise, the motion mode data list is garbled.
                                         gpsPointDetailData.setSportType(sportType + "");
 
                                         String code = SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.FIRMEWAREINFO, SharedPreUtil.FIRMEWARECODE); //
-                                        if("473".equals(code) || "193".equals(code) || "199".equals(code) || "496".equals(code)) {// todo  --- AB227-X2+ 跑步模式距离算法改为90CM,序列号193,473
+                                        if("473".equals(code) || "193".equals(code) || "199".equals(code) || "496".equals(code)) {// todo  --- AB227-X2+ Running mode distance algorithm changed to 90CM, serial number 193, 473
 //                                            gpsPointDetailData.setMile(step * 0.9);
                                             int userHeightI = 170;
                                             String userHeight = SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.HEIGHT, "170");
@@ -5675,19 +5673,19 @@ private  void settingNotification(){
                                                 }
                                             }
 
-                                            if(sportType == 1){  // todo --- 健走
+                                            if(sportType == 1){  // todo --- Walking
                                                 if(sex == 1){ // 男
                                                     gpsPointDetailData.setMile(step * 0.320*userHeightI/100);  // 0.415
                                                 }else { // 女
                                                     gpsPointDetailData.setMile(step * 0.313*userHeightI/100);  // 0.413
                                                 }
-                                            }else if(sportType == 2){  // todo --- 跑步
+                                            }else if(sportType == 2){  // todo --- Run
                                                 if(sex == 1){ // 男
                                                     gpsPointDetailData.setMile(step * 0.415*userHeightI/100);  // 0.516
                                                 }else { // 女
                                                     gpsPointDetailData.setMile(step * 0.413*userHeightI/100);    // 0.5
                                                 }
-                                            }else if(sportType == 4){   // todo --- 爬山
+                                            }else if(sportType == 4){   // todo --- Mountain climbing
                                                 if(sex == 1){ // 男
                                                     gpsPointDetailData.setMile(step * 0.320*userHeightI/100); // 0.415
                                                 }else { // 女
@@ -5708,7 +5706,7 @@ private  void settingNotification(){
                                             userHeightI = Integer.valueOf(userHeight);
                                         }
 
-                                        String distance = String.format(Locale.ENGLISH, "%.3f", (realStep * (0.415 * (float) userHeightI) / 100000));  //TODO BLE手环给的计算公式*/
+                                        String distance = String.format(Locale.ENGLISH, "%.3f", (realStep * (0.415 * (float) userHeightI) / 100000));  //TODO Calculation formula given by BLE bracelet*/
                                         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //                                        gpsPointDetailData.setMile(step * 0.7);  // todo  --- AB227-X2+ 跑步模式距离算法改为90CM,序列号193,473
@@ -5887,27 +5885,27 @@ private  void settingNotification(){
                             }
                         }
 //                        Utils.saveSpoetData(listGps, null, sContext);
-                    } else if (bytes[2] == BleContants.BLOOD_OXYGEN_HIS) {                         //TODO -- 血氧数据返回    0xAE
+                    } else if (bytes[2] == BleContants.BLOOD_OXYGEN_HIS) {                         //TODO -- Blood oxygen data return    0xAE
 
-                    } else if (bytes[2] == BleContants.BLOOD_PRESSURE_HIS) {                 //TODO -- 历史血压数据返回    0xAD
-                        if (SharedPreUtil.readPre(sContext, SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")) {    //(智能表)
+                    } else if (bytes[2] == BleContants.BLOOD_PRESSURE_HIS) {                 //TODO -- Historical blood pressure data returned    0xAD
+                        if (SharedPreUtil.readPre(sContext, SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")) {    //(Smart watch)
                             Log.e(TAG,"needSendDataType = " + needSendDataType + " ; needReceDataNumber = " + needReceDataNumber);
                             if (needReceDataNumber == 1) {
                                 needReceDataNumber = 2;
                                 Intent intent = new Intent();
-                                intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                 intent.putExtra("step", "2");
                                 sContext.sendBroadcast(intent);
                             } else if (needReceDataNumber == 2) {
                                 needReceDataNumber = 3;
                                 Intent intent = new Intent();
-                                intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                 intent.putExtra("step", "3");
                                 sContext.sendBroadcast(intent);
                             } else if(needReceDataNumber == 3){
                                 needReceDataNumber = 4;
                                 Intent intent = new Intent();
-                                intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                 intent.putExtra("step", "4");
                                 sContext.sendBroadcast(intent);
                             }
@@ -5950,28 +5948,28 @@ private  void settingNotification(){
                         }
 
 
-                    } else if (bytes[2] == BleContants.BLOOD_PRESSURE) {                 //TODO --  实时血压数据返回    0xAD
+                    } else if (bytes[2] == BleContants.BLOOD_PRESSURE) {                 //TODO --  Real-time blood pressure data return    0xAD
                         int bp_max = bytes[5] & 0xFF;
                         int bp_min = bytes[6] & 0xFF;
-                        //判断当前手环类型 cf006
+                        //Determine the current bracelet type cf006
 
-                        if(BTNotificationApplication.isSyncEnd) {  //todo --- 同步数据完成才发送 同步实时计步的广播
-                            SendXieya(bp_min,bp_max);   //todo   ---  BLE实时血压
+                        if(BTNotificationApplication.isSyncEnd) {  //todo --- 同Synchronous data is completed before sending a synchronous real-time step broadcast
+                            SendXieya(bp_min,bp_max);   //todo   ---  BLE real-time blood pressure
                         }
 
-                    } else if (bytes[2] == BleContants.BLOOD_OXYGEN) {                 //TODO --  实时血氧数据返回    0xAD
+                    } else if (bytes[2] == BleContants.BLOOD_OXYGEN) {                 //TODO --  Real-time blood oxygen data return    0xAD
                         int oxygen = bytes[5] & 0xFF;             //血氧值
                         Log.e(TAG, "实时血氧 ： " + oxygen);  //    
 
-                        if(BTNotificationApplication.isSyncEnd) {  //todo --- 同步数据完成才发送 同步实时计步的广播
-                            SenDXieyang(oxygen);      //todo   ---  BLE实时血氧
+                        if(BTNotificationApplication.isSyncEnd) {  //todo --- Synchronous data is completed before sending a synchronous real-time step broadcast
+                            SenDXieyang(oxygen);      //todo   ---  BLE real-time blood oxygenation
                         }
                     }
-                } else if (byte1 == BleContants.CALIBRATION_COMMAND) {                       //TODO -- 校准命令    0x0B
+                } else if (byte1 == BleContants.CALIBRATION_COMMAND) {                       //TODO -- Calibration command    0x0B
 
-                } else if (byte1 == BleContants.FACTORY_COMMAND) {                             //TODO -- 工厂命令   0x0C
+                } else if (byte1 == BleContants.FACTORY_COMMAND) {                             //TODO -- Factory order   0x0C
 
-                }else if (byte1 == BleContants.PUSH_DATA_TO_PHONE_COMMAND) {                        //TODO -- 查找命令   0x0D   推送数据到手机 (接挂电话相关)
+                }else if (byte1 == BleContants.PUSH_DATA_TO_PHONE_COMMAND) {                        //TODO -- Find command   0x0D   Push data to mobile phone (Connected phone related)
                     //    0A00A300 64110909000000004C00000059000000A6000000B0000000E1000000F3000001360000028E00000C1000000EDA0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
                     //    0A00A300 641109080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000063300000C2600000E3E00000F1D
                     switch (byte3) {   // -------  key                                      BA300 0080 04F000A0D00010003000101      0A00 AD00 08 1109080101000000
@@ -5981,11 +5979,11 @@ private  void settingNotification(){
                             int gesNum = bytes[6];
                             if(gesNum == 1){
                                 Intent intent = new Intent();
-                                intent.setAction(MainService.ACTION_GESTURE_ON);    // 发数据同步成功的广播
+                                intent.setAction(MainService.ACTION_GESTURE_ON);    // Successfully broadcast data synchronization
                                 sendBroadcast(intent);
                             }else{
                                 Intent intent = new Intent();
-                                intent.setAction(MainService.ACTION_GESTURE_OFF);    // 发数据同步成功的广播
+                                intent.setAction(MainService.ACTION_GESTURE_OFF);    // Successfully broadcast data synchronization
                                 sendBroadcast(intent);
                             }
 
@@ -6000,7 +5998,7 @@ private  void settingNotification(){
 //                            break;
 
                     }
-                }else if (byte1 == (byte) 0x10){              //TODO   ---时钟机芯校准命令
+                }else if (byte1 == (byte) 0x10){              //TODO   ---Clock movement calibration command
                     switch (byte3){
                         case (byte)0x02:
                             EventBus.getDefault().post(new MessageEvent(CalibrationActivity.REFUSE_CALIBRATION));
@@ -6023,8 +6021,8 @@ private  void settingNotification(){
 
                             break;
                     }
-                }else if (byte1 == BleContants.COMMAND_WEATHER_INDEX) {//TODO -- 表盘推送    0x0E 多包
-                    if (bytes[2] == BleContants.DIAL_PUSH) {   // 表盘推送       0E 00 E2 00 06  00 00 00 00 00 00   ------     0E 00 E2 00 02 01 00
+                }else if (byte1 == BleContants.COMMAND_WEATHER_INDEX) {//TODO -- Dial push    0x0E Multi-package
+                    if (bytes[2] == BleContants.DIAL_PUSH) {   // Dial push       0E 00 E2 00 06  00 00 00 00 00 00   ------     0E 00 E2 00 02 01 00
                         int packageNum = WatchPushActivityNew.fileByte.length/256;    // 0E00E20006 00 0100 0000 00    ------
                         int lastpackageNum = WatchPushActivityNew.fileByte.length%256;
                        /* int packageNum = WatchPushActivityNew.fileByte.length/256;    // 0E00E20006 00 0100 0000 00    ------
@@ -6037,38 +6035,38 @@ private  void settingNotification(){
 //                        indexHpy = 0;
                         int packageNumHpy = 0;    // 0E00E20006 00 0100 0000 00    ------
                         int lastpackageNumHpy = 0;*/
-                        if(bytes[6] == 0 && bytes.length>7){  // TODO -- 没有表盘   --- 根据返回Byte数组的长度 加判断
+                        if(bytes[6] == 0 && bytes.length>7){  // TODO -- No dial   --- According to the length of the returned Byte array plus judgment
                             byte[] value = new byte[262];
-                            value[0] = (byte)0x01; // 固定1字节
-                            value[1] = (byte)00; // 4字节偏移地址
+                            value[0] = (byte)0x01; // Fixed 1 byte
+                            value[1] = (byte)00; // 4-byte offset address
                             value[2] = (byte)00;
                             value[3] = (byte)00;
                             value[4] = (byte)00;
-                            value[5] = (byte)00; // 固定1字节
-                            // Object src : 原数组 int srcPos : 元数据的起始  Object dest : 目标数组  int destPos : 目标数组起始  int length  : 要copy的长度
-                            System.arraycopy(WatchPushActivityNew.fileByte, 0, value, 6, 256);   // 将 固件包 的 起始 第8位 copy 4位 到  mFileImgHdr.uid
+                            value[5] = (byte)00; // Fixed 1 byte
+                            // Object src : The original array int srcPos : the start of the metadata Object dest : the target array int destPos : the start of the target array int length : the length to be copied
+                            System.arraycopy(WatchPushActivityNew.fileByte, 0, value, 6, 256);   // Start the firmware package bit 8 copy 4 bit to mFileImgHdr.uid
                             L2Send.sendPushDialPicData(value);
-                        }else if(bytes[6] == 1&& bytes.length>7){  // TODO -- 表盘未推送完     0E 00 E2 00 01 01
+                        }else if(bytes[6] == 1&& bytes.length>7){  // TODO -- The dial has not been pushed     0E 00 E2 00 01 01
                             isHasPianYi = true;
 
-                            byte[] valueLast = new byte[4]; //  todo  有推送偏移地址    0E 00 E2 00 06  00 00   00 00 00 00
+                            byte[] valueLast = new byte[4]; //  todo  Push offset address    0E 00 E2 00 06  00 00   00 00 00 00
                             valueLast[0] = bytes[7];
                             valueLast[1] = bytes[8];
                             valueLast[2] = bytes[9];
                             valueLast[3] = bytes[10]; // 保存偏移地址
-                            ipianYi = NumberBytes.byteArrayToInt(valueLast);   // todo --- 已经发送过的图片 数据
+                            ipianYi = NumberBytes.byteArrayToInt(valueLast);   // todo --- Image data that has been sent
 
                             packageNumHpy = (WatchPushActivityNew.fileByte.length - ipianYi)/256;    // 0E00E20006 00 0100 0000 00    ------
                             lastpackageNumHpy = (WatchPushActivityNew.fileByte.length - ipianYi)%256;
 
                             byte[] value = new byte[262];
-                            value[0] = (byte)0x01; // 固定1字节
-                            value[1] = bytes[7]; // 4字节偏移地址
+                            value[0] = (byte)0x01; // Fixed 1 byte
+                            value[1] = bytes[7]; // 4-byte offset address
                             value[2] = bytes[8];
                             value[3] = bytes[9];        //     int dddd = NumberBytes.byteArrayToInt(bb);
                             value[4] = bytes[10];
-                            value[5] = (byte)00; // 固定1字节
-                            // Object src : 原数组 int srcPos : 元数据的起始  Object dest : 目标数组  int destPos : 目标数组起始  int length  : 要copy的长度
+                            value[5] = (byte)00; // Fixed 1 byte
+                            // Object src : 原The original array int srcPos : the start of the metadata Object dest : the target array int destPos : the start of the target array int length : the length to be copied
 //                            System.arraycopy(WatchPushActivityNew.fileByte, 0, value, 6, 256);   // 将 固件包 的 起始 第8位 copy 4位 到  mFileImgHdr.uid
 
                             if(WatchPushActivityNew.fileByte.length - ipianYi >= 256){
@@ -6076,18 +6074,18 @@ private  void settingNotification(){
                             }else {
                                 System.arraycopy(WatchPushActivityNew.fileByte,ipianYi, value, 6, WatchPushActivityNew.fileByte.length - ipianYi);
                             }
-//                            System.arraycopy(WatchPushActivityNew.fileByte,ipianYi, value, 6, 256);  // todo ---- 还需要考虑 是否 够 256 字节
+//                            System.arraycopy(WatchPushActivityNew.fileByte,ipianYi, value, 6, 256);  // todo ---- Also need to consider whether it is enough 256 bytes
                             L2Send.sendPushDialPicData(value);
-                        }else if(bytes[6] == 2 && bytes.length>7){  // TODO -- 表盘已推送完
+                        }else if(bytes[6] == 2 && bytes.length>7){  // TODO -- The dial has been pushed
                             Toast.makeText(BTNotificationApplication.getInstance(),getString(R.string.dialpush_ed),Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent();
-                            intent.setAction(MainService.ACTION_PUSHPIC_FINISH);   //TODO  ---  发广播，
+                            intent.setAction(MainService.ACTION_PUSHPIC_FINISH);   //TODO  ---  Broadcast，
                             sendBroadcast(intent);
                         }
 
-                        if(bytes[5] == 1 && bytes.length == 7){   // 0E 00 E2 00 02 0100  ---- 发送升级包 应该为 6个字节 （第2条命令）
+                        if(bytes[5] == 1 && bytes.length == 7){   // 0E 00 E2 00 02 0100  ---- Send upgrade package should be 6 bytes (2nd command)
 //                            int indexHpy = 0;
-                            if(isHasPianYi){ // 有偏移，有表盘未推送完   ----    ipianYi 偏移
+                            if(isHasPianYi){ // There is offset, there is a dial that has not been pushed  ----    ipianYi Offset
                                 indexHpy++;
 //                                int packageNumHpy = (WatchPushActivityNew.fileByte.length - ipianYi)/256;    // 0E00E20006 00 0100 0000 00    ------
 //                                int lastpackageNumHpy = (WatchPushActivityNew.fileByte.length - ipianYi)%256;
@@ -6095,7 +6093,7 @@ private  void settingNotification(){
                                 if(isEnd){
                                     indexHpy = 0;
                                     byte[] value = new byte[1];
-                                    value[0] = (byte)0x02; // 固定1字节
+                                    value[0] = (byte)0x02; // Fixed 1 byte
                                     L2Send.sendPushDialPicData(value);
                                     isHasPianYi = false;
                                     return;
@@ -6111,12 +6109,12 @@ private  void settingNotification(){
 //                                    value[2] = (byte)(pianyiAdd >> 8);
 //                                    value[3] = (byte)(pianyiAdd >> 16);
 //                                    value[4] = (byte)(pianyiAdd >> 24);
-                                    value[4] = (byte)(pianyiAdd & 0xff); // 4字节偏移地址
+                                    value[4] = (byte)(pianyiAdd & 0xff); // 4-byte offset address
                                     value[3] = (byte)(pianyiAdd >> 8);
                                     value[2] = (byte)(pianyiAdd >> 16);
                                     value[1] = (byte)(pianyiAdd >> 24);
 
-                                    value[5] = (byte)00; // 固定1字节
+                                    value[5] = (byte)00; // Fixed 1 byte
                                     // Object src : 原数组 int srcPos : 元数据的起始  Object dest : 目标数组  int destPos : 目标数组起始  int length  : 要copy的长度
                                     System.arraycopy(WatchPushActivityNew.fileByte, pianyiAdd, value, 6, 256);   // 将 固件包 的 起始 第8位 copy 4位 到  mFileImgHdr.uid
                                     L2Send.sendPushDialPicData(value);
@@ -6129,12 +6127,12 @@ private  void settingNotification(){
 //                                    value[2] = (byte)(pianyiAdd >> 8);
 //                                    value[3] = (byte)(pianyiAdd >> 16);
 //                                    value[4] = (byte)(pianyiAdd >> 24);
-                                    value[4] = (byte)(pianyiAdd & 0xff); // 4字节偏移地址
+                                    value[4] = (byte)(pianyiAdd & 0xff); // 4-byte offset address
                                     value[3] = (byte)(pianyiAdd >> 8);
                                     value[2] = (byte)(pianyiAdd >> 16);
                                     value[1] = (byte)(pianyiAdd >> 24);
 
-                                    value[5] = (byte)00; // 固定1字节
+                                    value[5] = (byte)00; // Fixed 1 byte
                                     // Object src : 原数组 int srcPos : 元数据的起始  Object dest : 目标数组  int destPos : 目标数组起始  int length  : 要copy的长度
                                     System.arraycopy(WatchPushActivityNew.fileByte, pianyiAdd, value, 6, lastpackageNum);   // 将 固件包 的 起始 第8位 copy 4位 到  mFileImgHdr.uid
                                     L2Send.sendPushDialPicData(value);
@@ -6154,12 +6152,12 @@ private  void settingNotification(){
                                 if(isEnd){
                                     index = 0;
                                     byte[] value = new byte[1];
-                                    value[0] = (byte)0x02; // 固定1字节
+                                    value[0] = (byte)0x02; // Fixed 1 byte
                                     L2Send.sendPushDialPicData(value);
                                     return;
                                 }
 
-                                if(index +1 <= packageNum){ // 最后一个完整包       0E 00 E2 00 02 02 00  ----  0E 00 E2 00 02 02 01 （最后一条命令）
+                                if(index +1 <= packageNum){ // The last complete package       0E 00 E2 00 02 02 00  ----  0E 00 E2 00 02 02 01 （Last command）
                                     isEnd = false;
                                     int pianyiAdd = index*256;
                                     byte[] value = new byte[262];
@@ -6169,31 +6167,31 @@ private  void settingNotification(){
 //                                    value[2] = (byte)(pianyiAdd >> 8);
 //                                    value[3] = (byte)(pianyiAdd >> 16);
 //                                    value[4] = (byte)(pianyiAdd >> 24);
-                                    value[4] = (byte)(pianyiAdd & 0xff); // 4字节偏移地址
+                                    value[4] = (byte)(pianyiAdd & 0xff); // 4-byte offset address
                                     value[3] = (byte)(pianyiAdd >> 8);
                                     value[2] = (byte)(pianyiAdd >> 16);
                                     value[1] = (byte)(pianyiAdd >> 24);
 
-                                    value[5] = (byte)00; // 固定1字节
+                                    value[5] = (byte)00; // Fixed 1 byte
                                     // Object src : 原数组 int srcPos : 元数据的起始  Object dest : 目标数组  int destPos : 目标数组起始  int length  : 要copy的长度
                                     System.arraycopy(WatchPushActivityNew.fileByte, pianyiAdd, value, 6, 256);   // 将 固件包 的 起始 第8位 copy 4位 到  mFileImgHdr.uid
                                     L2Send.sendPushDialPicData(value);
                                 }else {
                                     int pianyiAdd = packageNum*256;
                                     byte[] value = new byte[6+ lastpackageNum];
-                                    value[0] = (byte)0x01; // 固定1字节
+                                    value[0] = (byte)0x01; // Fixed 1 byte
 
 //                                    value[1] = (byte)(pianyiAdd & 0xff); // 4字节偏移地址
 //                                    value[2] = (byte)(pianyiAdd >> 8);
 //                                    value[3] = (byte)(pianyiAdd >> 16);
 //                                    value[4] = (byte)(pianyiAdd >> 24);
-                                    value[4] = (byte)(pianyiAdd & 0xff); // 4字节偏移地址
+                                    value[4] = (byte)(pianyiAdd & 0xff); // 4-byte offset address
                                     value[3] = (byte)(pianyiAdd >> 8);
                                     value[2] = (byte)(pianyiAdd >> 16);
                                     value[1] = (byte)(pianyiAdd >> 24);
 
 
-                                    value[5] = (byte)00; // 固定1字节
+                                    value[5] = (byte)00; // Fixed 1 byte
                                     // Object src : 原数组 int srcPos : 元数据的起始  Object dest : 目标数组  int destPos : 目标数组起始  int length  : 要copy的长度
                                     System.arraycopy(WatchPushActivityNew.fileByte, pianyiAdd, value, 6, lastpackageNum);   // 将 固件包 的 起始 第8位 copy 4位 到  mFileImgHdr.uid
                                     L2Send.sendPushDialPicData(value);
@@ -6248,9 +6246,9 @@ private void SendHate(int heart){
     heartAllList.add(hearData);
     heartdataWrite(heartList,true);
     Intent intent = new Intent();      // add 0414
-    //todo    ACTION_SYNARTHEART  ---- BLE 平台同步数据的时候，不让刷新实时心率的数据
+    //todo    ACTION_SYNARTHEART  ---- BLE When the platform synchronizes data, it does not allow the data of the real-time heart rate to be refreshed.
 
-    if(BTNotificationApplication.isSyncEnd){  // 同步数据成功 才发实时心率数据
+    if(BTNotificationApplication.isSyncEnd){  // Synchronize data successfully before sending real-time heart rate data
         intent.setAction(MainService.ACTION_SYNARTHEART);
         intent.putExtra("heart", heart+"");
 //        intent.putExtra("time", hearData.getBinTime());
@@ -6266,7 +6264,7 @@ private void SendHate(int heart){
 
 
     /**
-     * 发送血压
+     * Send blood pressure
      * @param
      */
    private void SendXieya(int bp_min,int bp_max){   //      
@@ -6280,7 +6278,7 @@ private void SendHate(int heart){
 
 
                             Bloodpressure bloodpressure = new Bloodpressure();
-                            Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+                            Date curDate = new Date(System.currentTimeMillis());//Get current time
                             String str = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(curDate);
                             long time = System.currentTimeMillis();//long now = android.os.SystemClock.uptimeMillis();
                             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
@@ -6294,14 +6292,14 @@ private void SendHate(int heart){
                             bloodpressure.setId(Long.valueOf("0"));
                             bloodpressure.setConunt(count + "");
                             BbloodpressureList.add(bloodpressure);
-                            saveBloodpressure(BbloodpressureList);//保存到数据库
+                            saveBloodpressure(BbloodpressureList); // Save to database
                             BbloodpressureList.clear();
        }
    }
 
 
     /**
-     * 发送血氧
+     * Send blood oxygen
      * @param
      */
     private  void SenDXieyang(int oxygen){
@@ -6346,7 +6344,7 @@ private void SendHate(int heart){
      * @param list
      */
 
-    public synchronized void saveOxygen(List<Oxygen> list) {  // TODO ---- 保存心率数据（参数，心率的开始时间，心率的数值）
+    public synchronized void saveOxygen(List<Oxygen> list) {  // TODO ---- Save heart rate data (parameters, heart rate start time, heart rate values)
         if (db == null) {
             db = DBHelper.getInstance(sContext);
         }
@@ -6358,7 +6356,7 @@ private void SendHate(int heart){
                 SimpleDateFormat mformatter = Utils.setSimpleDateFormat("yyyy-MM-dd");
                 Oxygen oxygen = new Oxygen();
                 oxygen.setOxygen(list.get(i).getOxygen());
-                oxygen.setHour(list.get(i).getHour());//测试时间
+                oxygen.setHour(list.get(i).getHour());//testing time
                 oxygen.setData(list.get(i).getData() + "");
                 if (null == list.get(i).getHeightOxygen()) {
                     oxygen.setHeightOxygen(list.get(i).getOxygen());
@@ -6376,7 +6374,7 @@ private void SendHate(int heart){
             }
 
             Intent intent = new Intent();
-            intent.setAction(MainService.ACTION_SYNARTBO);    //发送血压血氧
+            intent.setAction(MainService.ACTION_SYNARTBO);    //Send blood pressure oxygen
 //            intent.putExtra("bo", oxygen + "");
             sContext.sendBroadcast(intent);
 
@@ -6385,7 +6383,7 @@ private void SendHate(int heart){
     }
 
 
-    public synchronized void saveTemperature(List<Temperature> list) throws ParseException {  // TODO ---- 保存心率数据（参数，心率的开始时间，心率的数值）
+    public synchronized void saveTemperature(List<Temperature> list) throws ParseException {  // TODO ---- Save heart rate data (parameters, heart rate start time, heart rate values)
         if (db == null) {
             db = DBHelper.getInstance(sContext);
         }
@@ -6397,12 +6395,12 @@ private void SendHate(int heart){
                 db.saveTemperature(temperature);
             }
             Intent intent = new Intent();
-            intent.setAction(MainService.ACTION_SYNARTBO);    //发送血压血氧
+            intent.setAction(MainService.ACTION_SYNARTBO);    //Send blood pressure oxygen
             sContext.sendBroadcast(intent);
         }
     }
 
-    public synchronized void saveTemperature(Temperature temperature) throws ParseException {  // TODO ---- 保存心率数据（参数，心率的开始时间，心率的数值）
+    public synchronized void saveTemperature(Temperature temperature) throws ParseException {  // TODO ----Save heart rate data (parameters, heart rate start time, heart rate values)）
         if (db == null) {
             db = DBHelper.getInstance(sContext);
         }
@@ -6449,7 +6447,7 @@ private void SendHate(int heart){
     }
 
     /**
-     * 保存血压 数据
+     * Save blood pressure data
      *
      * @param list
      */
@@ -6474,9 +6472,9 @@ private void SendHate(int heart){
 
                 SimpleDateFormat mformatter = Utils.setSimpleDateFormat("yyyy-MM-dd");
                 Bloodpressure bloodpressure = new Bloodpressure();
-                bloodpressure.setHeightBlood(list.get(i).getHeightBlood());//高压
-                bloodpressure.setMinBlood(list.get(i).getMinBlood());//低压
-                bloodpressure.setHour(list.get(i).getHour());//测试时间
+                bloodpressure.setHeightBlood(list.get(i).getHeightBlood());//high pressure
+                bloodpressure.setMinBlood(list.get(i).getMinBlood());//Low pressure
+                bloodpressure.setHour(list.get(i).getHour());//testing time
                 bloodpressure.setData(list.get(i).getData() + "");
                 //bloodpressure.setId(Long.valueOf("0"));
                 bloodpressure.setConunt(list.get(i).getConunt());
@@ -6487,7 +6485,7 @@ private void SendHate(int heart){
                 SharedPreUtil.savePre(this, SharedPreUtil.BLOOD_PRESSURE, SharedPreUtil.readPre(sContext, SharedPreUtil.USER, SharedPreUtil.MAC), list.get(list.size() - 1).getData() + " " + list.get(list.size() - 1).getHour() + "");  //存最后个血压数据的时间 2018-03-23 09:00:00
             }
             Intent intent = new Intent();
-            intent.setAction(MainService.ACTION_SYNARTBP);    //发送血压
+            intent.setAction(MainService.ACTION_SYNARTBP);    //Send blood pressure
 //            intent.putExtra("bp_min", bp_min + "");
 //            intent.putExtra("bp_max", bp_max + "");
             sContext.sendBroadcast(intent);
@@ -6510,29 +6508,29 @@ private void SendHate(int heart){
             boolean b = list1.size() == 0 ? true : false;
 
             if (list1.size() != 0) {
-                for (int j = 0; j < list1.size(); j++) {   // 只要数据库有运动模式数据，先清除
-                    for (GpsPointDetailData mDetailData : list) {      // todo --- 新产生的运动模式的数据
+                for (int j = 0; j < list1.size(); j++) {   // As long as the database has motion mode data, clear first
+                    for (GpsPointDetailData mDetailData : list) {      // todo --- Newly generated motion pattern data
                         if(mDetailData.getDate().equals(list1.get(j).getDate())){
                             db.DeleteGpsPointData(list1.get(j));
                         }
                     }
                 }
 
-                for (GpsPointDetailData mDetailData : list) {      // todo --- 新产生的运动模式的数据
+                for (GpsPointDetailData mDetailData : list) {      // todo --- Newly generated motion pattern data
                     db.saveGpsPointDeatilData(mDetailData);
                 }
 
             }else {
-                for (GpsPointDetailData mDetailData : list) {      // todo --- 新产生的运动模式的数据
+                for (GpsPointDetailData mDetailData : list) {      // todo --- Newly generated motion pattern data
                     db.saveGpsPointDeatilData(mDetailData);
                 }
             }
-            SharedPreUtil.savePre(getApplicationContext(), SharedPreUtil.SPORT_BT, SharedPreUtil.readPre(getApplicationContext(), SharedPreUtil.USER, SharedPreUtil.MAC), list.get(list.size() - 1).getTimeMillis() + "");  // 运动模式 的数据 保存到本地 数据库 时，保存当前的系统时间，作为下一次 ，获取数据的起点
+            SharedPreUtil.savePre(getApplicationContext(), SharedPreUtil.SPORT_BT, SharedPreUtil.readPre(getApplicationContext(), SharedPreUtil.USER, SharedPreUtil.MAC), list.get(list.size() - 1).getTimeMillis() + "");  // When the data of the sport mode is saved to the local database, the current system time is saved as the starting point for the next data acquisition.
         }
 
         if(!isReceiveSport){
             Intent broadcastIntent = new Intent();
-            broadcastIntent.setAction(MainService.ACTION_SYNFINSH_SPORTS); // 发广播，运动模式数据 同步成功    ---- 保存3次，发3个广播
+            broadcastIntent.setAction(MainService.ACTION_SYNFINSH_SPORTS); // Broadcast, sports mode data, successful synchronization   ---- Save 3 times and send 3 broadcasts
             getApplicationContext().sendBroadcast(broadcastIntent);
         }
 
@@ -6553,7 +6551,7 @@ private void SendHate(int heart){
     public void disConnect() {
         if(null != mHidConncetUtil && null != connectDevice){  // null != connectDevice
             mHidConncetUtil.unPair(connectDevice);
-            mHidConncetUtil.disConnect(connectDevice);   // todo --- 绑定后，再连接   ---- 通过反射连接
+            mHidConncetUtil.disConnect(connectDevice);   // todo --- After binding, connect again  ---- Connected by reflection
         }
         
         KCTBluetoothManager.getInstance().disConnect_a2d();

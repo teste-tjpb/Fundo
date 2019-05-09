@@ -224,7 +224,7 @@ public class BTNotificationApplication extends Application {
         public void uncaughtException(Thread thread, Throwable ex) {
 
             if (SharedPreUtil.readPre(getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")) {
-                byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.APP_BLUETOOTH_DISCONNECT, null);  //  验证 OK
+                byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.APP_BLUETOOTH_DISCONNECT, null);  //  验证 OK
                 MainService.getInstance().writeToDevice(l2, true);
             }
 

@@ -151,7 +151,7 @@ public class DetailedFragment extends Fragment implements View.OnClickListener {
         sportdataerror_tv = (TextView) mView.findViewById(R.id.sportdataerror_tv);
 
         sportmode_twopage_logo_iv = (ImageView) mView.findViewById(R.id.sportmode_twopage_logo_iv);
-        if(SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.THEME_WHITE).equals("0")){  // 白色背景
+        if(SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.THEME_WHITE).equals("0")){  // White background
             sportmode_twopage_logo_iv.setImageResource(R.drawable.sportmode_logo_w);
         }else{
             sportmode_twopage_logo_iv.setImageResource(R.drawable.sportmode_logo_b);
@@ -750,13 +750,13 @@ public class DetailedFragment extends Fragment implements View.OnClickListener {
         if (Gdata.getMid() != Gdata.NOT_LOGIN) {
             String photoName = SharedPreUtil.readPre(getActivity(), SharedPreUtil.USER, SharedPreUtil.FACE);
             String path = FileUtils.SDPATH + photoName;
-            Log.e("MyDataActivity ", " 显示的图片路径：" + path);
+            Log.e("MyDataActivity ", " Displayed image path：" + path);
             File file = new File(path);
             if (file.exists()) {
                 Bitmap bitmap = BitmapFactory.decodeFile(path);
                 if(bitmap != null)
                     detail_icon.setImageBitmap(ImageCacheUtil.toRoundBitmap(bitmap));
-                Log.e("MyDataActivity ", " 显示本地图片");
+                Log.e("MyDataActivity ", " Show local image");
             }
             detail_name.setText(Gdata.getPersonData().getUsername());
         }else{
@@ -781,12 +781,12 @@ public class DetailedFragment extends Fragment implements View.OnClickListener {
             return;
         }
         String path = FileUtils.SDPATH + photoName;
-        Log.e("MyDataActivity ", " 显示的图片路径：" + path);
+        Log.e("MyDataActivity ", " Displayed image path：" + path);
         File file = new File(path);
         if (file.exists()) {
             Bitmap bitmap = BitmapFactory.decodeFile(path);
             detail_icon.setImageBitmap(ImageCacheUtil.toRoundBitmap(bitmap));
-            Log.e("MyDataActivity ", " 显示本地图片");
+            Log.e("MyDataActivity ", " Show local image");
         }
     }
     public void onDestroyView() {

@@ -92,7 +92,7 @@ public class GestureControlActivity extends AppCompatActivity {
         bytes[1] = (byte) (tb_raise_bright.isChecked()?1:0);
         bytes[2] = (byte) (tb_fanwan_bright.isChecked()?1:0);
 
-        L2Send.sendNotify(BleContants.DEVICE_COMMADN, BleContants.GESTURE, bytes);
+        L2Send.sendNotify(BleContants.DEVICE_COMMAND, BleContants.GESTURE, bytes);
         finish();
     }
 

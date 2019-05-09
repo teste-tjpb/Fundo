@@ -389,7 +389,7 @@
 //            }
 //            if (MainService.getInstance().getState() == 3) {  // 连接成功时，点击条目，断开蓝牙
 //                 if(SharedPreUtil.readPre(LinkBleAcitivity.this,SharedPreUtil.USER,SharedPreUtil.WATCH).equals("1")) {
-//                                byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.APP_BLUETOOTH_DISCONNECT, null);  //  验证 OK
+//                                byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.APP_BLUETOOTH_DISCONNECT, null);  //  验证 OK
 //                                MainService.getInstance().writeToDevice(l2, true);
 //                  }
 //            }
@@ -449,7 +449,7 @@
 //        WearableManager.getInstance().unregisterWearableListener(mWearableListener);
 //        if (MainService.getInstance().getState() < 3) {
 //            if(SharedPreUtil.readPre(LinkBleAcitivity.this,SharedPreUtil.USER,SharedPreUtil.WATCH).equals("1")) {
-//                byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.APP_BLUETOOTH_DISCONNECT, null);  //  验证 OK
+//                byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.APP_BLUETOOTH_DISCONNECT, null);  //  验证 OK
 //                MainService.getInstance().writeToDevice(l2, true);
 //            }
 //        }
@@ -555,7 +555,7 @@
 //                // TODO ---  发送断开蓝牙的命令
 //                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                if(SharedPreUtil.readPre(LinkBleAcitivity.this,SharedPreUtil.USER,SharedPreUtil.WATCH).equals("1")) {
-//                    byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.APP_BLUETOOTH_DISCONNECT, null);  //  验证 OK
+//                    byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.APP_BLUETOOTH_DISCONNECT, null);  //  验证 OK
 //                    MainService.getInstance().writeToDevice(l2, true);
 //                }
 //                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -805,7 +805,7 @@
 //                }
 //                if (MainService.getInstance().getState() == 3) {
 //                    if(SharedPreUtil.readPre(LinkBleAcitivity.this,SharedPreUtil.USER,SharedPreUtil.WATCH).equals("1")) {
-//                        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.APP_BLUETOOTH_DISCONNECT, null);  //  验证 OK
+//                        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.APP_BLUETOOTH_DISCONNECT, null);  //  验证 OK
 //                        MainService.getInstance().writeToDevice(l2, true);
 //                    }
 //                    SharedPreUtil.setParam(LinkBleAcitivity.this,SharedPreUtil.USER,SharedPreUtil.BLE_CLICK_STOP,true);

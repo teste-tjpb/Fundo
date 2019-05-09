@@ -3,21 +3,21 @@ package com.szkct.bluetoothgyl;
 import java.util.UUID;
 
 /**
- * 版权：深圳金康特智能科技有限公司
- * 作者：ZGH
- * 版本：
- * 创建日期：2017/2/17
- * 描述: ${VERSION}
- * 修订历史：
+ * copyright：Shenzhen Jinkangte Intelligent Technology Co., Ltd.
+ * Author：ZGH
+ * version：
+ * Creation date：2017/2/17
+ * description: ${VERSION}
+ * revise history：
  */
 public class BleContants {
 
     public final static byte PROTOCOL_MARK = (byte) 0xBA;
     /**
-     * 唯一标识
+     * Uniquely identifies
      */
 
-    //体温
+    //body temperature
     public final static byte TEMPERATURE_COMMAND = (byte) 0x12;
     //固件升级
     public final static byte ECG_COMMAND = (byte) 0x11;
@@ -138,7 +138,7 @@ public class BleContants {
      */
 
     //设备命令
-    public final static byte DEVICE_COMMADN = (byte) 0x04;
+    public final static byte DEVICE_COMMAND = (byte) 0x04;
 
 
     //体温返回
@@ -330,21 +330,21 @@ public class BleContants {
      * 提醒
      */
 
-    public final static byte REMIND_INCALL = (byte) 0x00;  /*来电提醒*/
-    public final static byte REMIND_SMS = (byte) 0x01;  /*短信提醒*/
-    public final static byte REMIND_QQ = (byte) 0x02;  /*QQ提醒*/
-    public final static byte REMIND_WX = (byte) 0x03;  /*微信提醒*/
-    public final static byte REMIND_FACEBOOK = (byte) 0x04;  /*FB提醒*/
-    public final static byte REMIND_MESSENGER = (byte) 0x05;  /*Messenger提醒*/
-    public final static byte REMIND_TWITTER = (byte) 0x06;  /*twitter提醒*/
-    public final static byte REMIND_WHATSAPP = (byte) 0x07;  /*whatsapp提醒*/
-    public final static byte REMIND_INSTAGRAM = (byte) 0x08;  /*instagram提醒*/
-    public final static byte REMIND_LINKEDIN = (byte) 0x09;  /*linkedin提醒*/
-    public final static byte REMIND_OTHER = (byte) 0x0A;  /*other提醒*/
-    public final static byte REMIND_LINE = (byte) 0x0B;  /*LINE提醒*/
+    public final static byte REMIND_INCALL = (byte) 0x00;  /*incoming call*/
+    public final static byte REMIND_SMS = (byte) 0x01;  /*SMS notification*/
+    public final static byte REMIND_QQ = (byte) 0x02;  /*QQ reminder*/
+    public final static byte REMIND_WX = (byte) 0x03;  /*WeChat reminder*/
+    public final static byte REMIND_FACEBOOK = (byte) 0x04;  /*FB reminder*/
+    public final static byte REMIND_MESSENGER = (byte) 0x05;  /*Messenger reminder*/
+    public final static byte REMIND_TWITTER = (byte) 0x06;  /*Twitter reminder*/
+    public final static byte REMIND_WHATSAPP = (byte) 0x07;  /*Whatsapp reminder*/
+    public final static byte REMIND_INSTAGRAM = (byte) 0x08;  /*Instagram reminder*/
+    public final static byte REMIND_LINKEDIN = (byte) 0x09;  /*Linkedin reminder*/
+    public final static byte REMIND_OTHER = (byte) 0x0A;  /*Other reminder*/
+    public final static byte REMIND_LINE = (byte) 0x0B;  /*LINE reminder*/
 
-    public final static byte REMIND_HUNGUP = (byte) 0x0F;  /*挂断电话提醒*/
-    public final static byte REMIND_RING = (byte) 0x10;  /*接电话提醒*/
+    public final static byte REMIND_HUNGUP = (byte) 0x0F;  /*Hang up the phone reminder*/
+    public final static byte REMIND_RING = (byte) 0x10;  /*Answer the phone*/
 
 
     public final static byte REMIND_DISRURB = (byte) 0x64;
@@ -447,7 +447,7 @@ public class BleContants {
      */
 
     public final static byte ACTUAL_SYN_DATA_REQUEST = (byte) 0xA6;
-   
+
 
     /**
      * 手环睡眠数据返回
@@ -482,19 +482,19 @@ public class BleContants {
 
 
 
-    public final static byte BLOOD_PRESSURE_HIS = (byte) 0xAD;//!< 血压数据返回 0xAD
-    public final static byte BLOOD_OXYGEN_HIS = (byte) 0xAE; //!< 血氧数据返回 0xAE   
-    public final static byte BLOOD_PRESSURE = (byte) 0xB1; //!< 实时血压数据返回 0xB1
-    public final static byte BLOOD_OXYGEN = (byte) 0xB2;  //!< 实时血氧数据返回 0xB2
+    public final static byte BLOOD_PRESSURE_HIS = (byte) 0xAD;//!< Blood pressure data return 0xAD
+    public final static byte BLOOD_OXYGEN_HIS = (byte) 0xAE; //!< Blood oxygen data return 0xAE
+    public final static byte BLOOD_PRESSURE = (byte) 0xB1; //!< Real-time blood pressure data return 0xB1
+    public final static byte BLOOD_OXYGEN = (byte) 0xB2;  //!< Real-time blood oxygen data return 0xB2
 
-    //校准命令
+    //Calibration command
     public final static byte CALIBRATION_COMMAND = (byte) 0x0B;
     /**
      * 校准命令
      */
     public final static byte CALIBRATION_DAY_SPORT = (byte) 0xB0;
     /**
-     * 当天运动校准
+     * Day motion calibration
      */
 
     //工厂命令
@@ -503,21 +503,21 @@ public class BleContants {
      * 工厂命令
      */
 
-    public final static byte PUSH_DATA_TO_PHONE_COMMAND = (byte) 0x0D;  // 	推送数据到手机
+    public final static byte PUSH_DATA_TO_PHONE_COMMAND = (byte) 0x0D;  // 	Push data to mobile phone
 
-    public final static byte GESTURE_PUSH_COMMAND = (byte) 0x01;   // 手势智控推送
+    public final static byte GESTURE_PUSH_COMMAND = (byte) 0x01;   // Gesture smart push
 
-    public final static byte REJECT_DIAL_COMMAND = (byte) 0x02;   // 拒接电话推送
+    public final static byte REJECT_DIAL_COMMAND = (byte) 0x02;   // Refuse to push the phone
 
-    public final static byte ANSWER_DIAL_COMMAND = (byte) 0x03;   // 接收电话推送
+    public final static byte ANSWER_DIAL_COMMAND = (byte) 0x03;   // Receiving phone push
 
-    public final static byte COMMAND_WEATHER_INDEX = (byte) 0x0E;  //气象指数  & 表盘推送
+    public final static byte COMMAND_WEATHER_INDEX = (byte) 0x0E;  //Weather Index & Dial Push
 
-    public final static byte WEATHER_INDEX = (byte) 0xE1;  //气象指数
+    public final static byte WEATHER_INDEX = (byte) 0xE1;  //Weather index
 
-    public final static byte DIAL_PUSH = (byte) 0xE2;  //表盘推送
+    public final static byte DIAL_PUSH = (byte) 0xE2;  //Dial push
 
-    public final static byte PLAY_MUSIC_COMMAND = (byte) 0x04;   // 播放音乐推送
+    public final static byte PLAY_MUSIC_COMMAND = (byte) 0x04;   // Play music push
     public final static byte PAUSE_MUSIC_COMMAND = (byte) 0x05;   // 暂停音乐推送
     public final static byte LAST_MUSIC_COMMAND = (byte) 0x06;   // 上一首推送
     public final static byte NEXT_MUSIC_COMMAND = (byte) 0x07;   // 下一首推送

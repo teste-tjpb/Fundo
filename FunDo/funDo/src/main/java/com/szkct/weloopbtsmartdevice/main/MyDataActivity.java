@@ -700,7 +700,7 @@ public class MyDataActivity extends AppCompatActivity implements android.view.Vi
 
                 String photoName = SharedPreUtil.readPre(MyDataActivity.this, SharedPreUtil.USER, SharedPreUtil.FACE);
                 String path = SDPATH + photoName;
-                Log.e("MyDataActivity ", " 显示的图片路径：" + path);
+                Log.e("MyDataActivity ", " Displayed image path：" + path);
                 File file = new File(path);
                 if (!file.exists() || !file.isFile()) {
                     dismissLoadingDialog();
@@ -1605,7 +1605,7 @@ public class MyDataActivity extends AppCompatActivity implements android.view.Vi
                         SharedPreUtil.savePre(getApplicationContext(), SharedPreUtil.USER, SharedPreUtil.WEIGHT_US, Utils.kgTolb(pv_all.getValue()));
                         String sendContent = pv_all.getValue() + "";   // 发送的数据内容   dhhbn  ---- dhhbn刘亦菲刘肖刘德华
                         /*byte[] keyValue = sendContent.getBytes();
-                        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.SYNC_USER_WEIGHT,keyValue);  //   04 16
+                        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.SYNC_USER_WEIGHT,keyValue);  //   04 16
                         MainService.getInstance().writeToDevice(l2, true);*/
                         synUserInfo();
                         break;
@@ -1620,7 +1620,7 @@ public class MyDataActivity extends AppCompatActivity implements android.view.Vi
                         SharedPreUtil.savePre(getApplicationContext(), SharedPreUtil.USER, SharedPreUtil.WEIGHT, Utils.lbTokg(pv_all.getValue()));
                         String sendContentlbs = pv_all.getValue() + "";   
                         /*byte[] keyValuelbs = sendContentlbs.getBytes();
-                        byte[] l2us = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.SYNC_USER_WEIGHT,keyValuelbs);  //   04 16
+                        byte[] l2us = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.SYNC_USER_WEIGHT,keyValuelbs);  //   04 16
                         MainService.getInstance().writeToDevice(l2us, true);*/
                         synUserInfo();
                         break;

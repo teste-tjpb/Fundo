@@ -156,7 +156,7 @@ public class PushdialFragment extends Fragment {    // 表盘推送
 //                    byte[] value = new byte[1];
 //                    value[0] = 6;
                     String keyValue = position + "";
-                    byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.DIAL_REQUEST,keyValue.getBytes());  //   04 4E -- 表盘推送，发送对应的表盘序号
+                    byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.DIAL_REQUEST,keyValue.getBytes());  //   04 4E -- 表盘推送，发送对应的表盘序号
                     MainService.getInstance().writeToDevice(l2, true);
 
                 }

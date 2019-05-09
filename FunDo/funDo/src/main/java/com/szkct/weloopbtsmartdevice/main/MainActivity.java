@@ -189,7 +189,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         super.onNewIntent(intent);
         if(null!=intent&&null!=intent. getStringExtra("Notification")){
 
-            /** 点击通知,如果当前的Activity是OutdoorRunActitivy,则跳到它那里 */
+            /** Click on the notification, if the current Activity is OutdoorRunActitivy, then jump to it */
             if(AppActivitysLifecycleCallback.getLastActivity() != null){
                 if(AppActivitysLifecycleCallback.getLastActivity().getLocalClassName().equals(OutdoorRunActitivy.class.getName())){
                     Intent intentTemp =new Intent(this, OutdoorRunActitivy.class);
@@ -252,7 +252,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
                         MainService.getInstance().sendMessage(PUSHIN_STRING);  // TODO  -------   ????
 
 //						String keyValue = position + "";
-//						byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.DIAL_REQUEST,keyValue.getBytes());  //   04 4E -- 表盘推送，发送对应的表盘序号
+//						byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.DIAL_REQUEST,keyValue.getBytes());  //   04 4E -- 表盘推送，发送对应的表盘序号
 //						MainService.getInstance().writeToDevice(l2, true);
                     }
                     break;
@@ -302,7 +302,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         }
     };
 
-    //接收Service发过来的消息
+    //Receive the message sent by the Service
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onServiceEventMainThread(MessageEvent event) {
     }
@@ -310,7 +310,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
     private ScreenReceiverUtil.SreenStateListener mScreenListenerer = new ScreenReceiverUtil.SreenStateListener() {
         @Override
         public void onSreenOn() {
-            // 亮屏，移除"1像素"
+            // Bright screen, remove "1 pixel"
             mScreenManager.finishActivity();
 
             isScreenOn = true;
@@ -318,7 +318,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
         @Override
         public void onSreenOff() {
-            // 接到锁屏广播，将SportsActivity切换到可见模式
+            // Receive the lock screen broadcast, switch SportsActivity to visible mode
             mScreenManager.startActivity();
 
             isScreenOn = false;
@@ -326,7 +326,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
         @Override
         public void onUserPresent() {
-            // 解锁，暂不用，保留
+            // Unlock, don't use, keep
         }
     };
 
@@ -343,7 +343,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         hc.open(this);
         checkUpdate();
 
-        if(Utils.isServiceRunning(this,"com.szkct.map.service.SportService")){  //判断运动模式是否在进行，是的话跳转到运动模式界面
+        if(Utils.isServiceRunning(this,"com.szkct.map.service.SportService")){  //Determine if the sport mode is in progress, if yes, jump to the sport mode interface
             startActivity(new Intent(this,OutdoorRunActitivy.class));
         }
 
@@ -525,14 +525,14 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
             public void accept(@NonNull Boolean granted) throws Exception {
                 if (granted) {
                     // 用户已经同意该权限
-                    Logg.e(TAG, "accept:同意的权限 " + granted);
+                    Logg.e(TAG, "accept:Agreed authority " + granted);
                     whenFirstPerOK();
                     //	MainService.getInstance().startCallService();
                     //    sendBroadcast(new Intent(SportService.PERMISION_GRANTED_GPS));
                     //    isFirstGetPermision = false;
                 } else {
                     // 用户拒绝了该权限，并且选中『不再询问』
-                    Logg.e(TAG, "accept:用户拒绝了该权限 " + granted);
+                    Logg.e(TAG, "accept:User denied this permission " + granted);
                     showPermissionPrompt();
                 }
             }
@@ -607,7 +607,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
                         isUpDateFlagForMain = true;  //TODO  ---  有强制升级，不需要普通升级
 
 //                        UpdateActivity.startSelf(updateBean);
-                        //////////todo --- 强制升级 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //////////todo --- Forced upgrade /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         showDialog();
                         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     }
@@ -621,7 +621,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         }
     }
 
-    private void showDialog() {  //todo ---- 还需要考虑 重新设置 目标后，应该将  isShowAlertDialog 置为 false
+    private void showDialog() {  //todo ---- Also need to consider resetting the target, you should set isShowAlertDialog to false
         final android.app.AlertDialog myDialog;
 //        if(!isShowAlertDialog) {//是否显示过
         myDialog = new android.app.AlertDialog.Builder(MainActivity.this).create();
@@ -681,12 +681,12 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 //                });
     }
 
-    private void toUpdate() {  // 国外引导到google
+    private void toUpdate() {  // Guided to google abroad
         String url = null;
         if(updateBean != null){
-            url = updateBean.getAppMarketForeignUrl(); //Google apk下载链接
+            url = updateBean.getAppMarketForeignUrl(); //Google Apk download link
         }
-        //todo 立即更新
+        //todo update immediately
         if (NetWorkUtils.isConnect(this)) {
             try {
 //                SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.IS_USER_COMMENT, "0");//     0：未评论 1：已评论
@@ -704,7 +704,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 
     private void initView() {
-        //判断主题。
+        //Judging subject。
         if (SharedPreUtil.readPre(this, SharedPreUtil.USER, SharedPreUtil.THEME_WHITE).equals("0")) {
             setTheme(R.style.KCTStyleWhite);
         } else {
@@ -763,11 +763,11 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 
     private void initRadioButton() {
-        homeBtn = (RadioButton) findViewById(R.id.iv_personal_homepage);     // 主Fragment
-        helpBtn = (RadioButton) findViewById(R.id.iv_personal_settinghelp);   // 我的Fragment
-        bigdataBtn = (RadioButton) findViewById(R.id.iv_personal_bigdata);     // 大数据
-        bleServiceBtn = (RadioButton) findViewById(R.id.iv_personal_bleservice);  // 手表助手
-        healthBtn = (RadioButton) findViewById(R.id.iv_personal_health);       // 健康
+        homeBtn = (RadioButton) findViewById(R.id.iv_personal_homepage);     // Main Fragment
+        helpBtn = (RadioButton) findViewById(R.id.iv_personal_settinghelp);   // My Fragment
+        bigdataBtn = (RadioButton) findViewById(R.id.iv_personal_bigdata);     // Big Data
+        bleServiceBtn = (RadioButton) findViewById(R.id.iv_personal_bleservice);  // Watch assistant
+        healthBtn = (RadioButton) findViewById(R.id.iv_personal_health);       // health
         homeBtn.setOnClickListener(this);
         helpBtn.setOnClickListener(this);
         bigdataBtn.setOnClickListener(this);
@@ -791,14 +791,14 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         MobclickAgent.onPause(this);
 
         if (!isUpDateFlagForMain && NetWorkUtils.isConnect(this)) {
-            // 请求网络是否更新apk
+            // Request network update apk
             new HttpToService(this).start();
         }
 
     }
 
     /**
-     * TODO --- 返回键按下两次退出应用程序
+     * TODO --- Return key Press twice to exit the application
      *
      * onKeyDown  /onKeyUp 区别
      *
@@ -810,13 +810,13 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
                 long secondTime = System.currentTimeMillis();
-                // 如果两次按键时间间隔大于2秒，则不退出
+                // If the keystroke interval is greater than 2 seconds, it will not exit
                 if (secondTime - firstTime > 2000) {
                     Toast.makeText(this, R.string.quit_app, Toast.LENGTH_SHORT).show();
-                    // 更新firstTime
+                    // Update firstTime
                     firstTime = secondTime;
                     return true;
-                    // 两次按键小于2秒时，退出应用
+                    // Exit the app twice when the button is less than 2 seconds
                 } else {
                     finish();
                 }
@@ -830,7 +830,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         EventBus.getDefault().unregister(this);
         SharedPreferences sharedPreferences = getSharedPreferences(SHAREDPREFERENCES_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isFirstIn", false);  //  todo --- 退出app时，将isFirstIn 置为false
+        editor.putBoolean("isFirstIn", false);  //  todo --- IsFirstIn is set to false when exiting the app
         editor.commit();
 
 
@@ -863,7 +863,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 //        moveTaskToBack(true);
 //    }
 
-    // 注册广播的方法
+    // Method of registering a broadcast
     private void registerBroad() {
         stb = new SetthemeBroadcast();
         IntentFilter filter = new IntentFilter();
@@ -892,7 +892,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
     }
 
     AlertDialog perAlert;
-    /****** 以下 mtk add ****/
+    /****** the following mtk add ****/
     private void showPermissionPrompt() {
         Builder builder = new Builder(this);
         builder.setTitle(getString(R.string.permision_alert_title));
@@ -959,7 +959,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
                     intent = getAppDetailsSettingsIntent(packageName);
                 }
                 break;
-            case Sony: // 索尼
+            case Sony: // Sony
                 intent.putExtra("packageName", packageName);
                 intent.setComponent(new ComponentName("com.sonymobile.cta", "com.sonymobile.cta.SomcCTAMainActivity"));
                 break;
@@ -967,7 +967,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
                 intent.putExtra("packageName", packageName);
                 intent.setComponent(new ComponentName("com.coloros.safecenter", "com.coloros.safecenter.permission.PermissionManagerActivity"));
                 break;
-            case EUI: // 乐视
+            case EUI: // LeTV
                 intent.putExtra("packageName", packageName);
                 intent.setComponent(new ComponentName("com.letv.android.letvsafe", "com.letv.android.letvsafe.PermissionAndApps"));
                 break;
@@ -977,13 +977,13 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
                 ComponentName comp = new ComponentName("com.android.settings", "com.android.settings.Settings$AccessLockSummaryActivity");
                 intent.setComponent(comp);
                 break;
-            case SamSung: // 三星
-            case SmartisanOS: // 锤子
+            case SamSung: // Samsung
+            case SmartisanOS: // hammer
                 gotoAppDetailSetting(packageName);
                 break;
             default:
                 intent.setAction(Settings.ACTION_SETTINGS);
-                Log.i(IntentUtils.class.getSimpleName(), "没有适配该机型, 跳转普通设置界面");
+                Log.i(IntentUtils.class.getSimpleName(), "Not adapted to this model, Jump to the normal settings interface");
                 success = false;
                 break;
         }
@@ -991,10 +991,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
             context.startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
-            // 跳转失败, 前往普通设置界面
+            // Jump failed, go to the normal settings interface
            startActivity(getSettingIntent());
             success = false;
-            Log.i(IntentUtils.class.getSimpleName(), "无法跳转权限界面, 开始跳转普通设置界面");
+            Log.i(IntentUtils.class.getSimpleName(), "Unable to jump permission interface, Start to jump to the normal settings interface");
         }
         return success;
     }
@@ -1005,7 +1005,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
     }
 
     /**
-     * 获取 MIUI 版本号
+     * Get the MIUI version number
      */
     private static String getMiuiVersion() {
         String propName = "ro.miui.ui.version.name";

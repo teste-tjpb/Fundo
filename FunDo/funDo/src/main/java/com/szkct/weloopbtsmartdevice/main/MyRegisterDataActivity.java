@@ -773,12 +773,12 @@ public class MyRegisterDataActivity extends AppCompatActivity implements View.On
 			String photoUrl = SharedPreUtil.readPre(getApplicationContext(),
 					SharedPreUtil.USER, SharedPreUtil.FACEURL);
 			String path = FileUtils.SDPATH + photoName;
-			Log.e("MyDataActivity ", " 显示的图片路径：" + path);
+			Log.e("MyDataActivity ", " Displayed image path：" + path);
 			File file = new File(path);
 			if (file.exists()) {
 				Bitmap bitmap = BitmapFactory.decodeFile(path);     // addlx
 				headPhoto.setImageBitmap(ImageCacheUtil.toRoundBitmap(bitmap));
-				Log.e("MyDataActivity ", " 显示本地图片");
+				Log.e("MyDataActivity ", " Show local image");
 			} else {
 				if (NetWorkUtils.isConnect(getApplicationContext())
 						&& !mid.equals("")) {
@@ -808,12 +808,12 @@ public class MyRegisterDataActivity extends AppCompatActivity implements View.On
 				return;
 			}
 			String path = FileUtils.SDPATH + photoName;
-			Log.e("MyDataActivity ", " 显示的图片路径：" + path);
+			Log.e("MyDataActivity ", " Displayed image path：" + path);
 			File file = new File(path);
 			if (file.exists()) {
 				Bitmap bitmap = BitmapFactory.decodeFile(path);
 				headPhoto.setImageBitmap(ImageCacheUtil.toRoundBitmap(bitmap));    // addlx
-				Log.e("MyDataActivity ", " 显示本地图片");
+				Log.e("MyDataActivity ", " Show local image");
 			}
 
 		}

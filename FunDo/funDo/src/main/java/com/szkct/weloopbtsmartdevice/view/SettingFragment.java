@@ -178,7 +178,7 @@ public class SettingFragment extends Fragment implements OnClickListener {
         if (Gdata.getMid() != Gdata.NOT_LOGIN) {  
             String photoName = SharedPreUtil.readPre(getActivity(), SharedPreUtil.USER, SharedPreUtil.FACE);
             String path = FileUtils.SDPATH + photoName;
-            Log.e("MyDataActivity ", " 显示的图片路径：" + path);
+            Log.e("MyDataActivity ", " Displayed image path：" + path);
             File file = new File(path);
             if (file.exists()) {
                 Bitmap bitmap = BitmapFactory.decodeFile(path);
@@ -194,7 +194,7 @@ public class SettingFragment extends Fragment implements OnClickListener {
                     }
                 }
 //                    my_touxian.setImageBitmap(ImageCacheUtil.toRoundBitmap(bitmap));  // todo --- 设置头像
-                Log.e("MyDataActivity ", " 显示本地图片");
+                Log.e("MyDataActivity ", " Show local image");
             } else {
                 if (SharedPreUtil.readPre(getContext(), SharedPreUtil.USER, SharedPreUtil.SEX).equals("1")) {
                     my_touxian.setImageResource(R.drawable.head_women);
@@ -823,12 +823,12 @@ public class SettingFragment extends Fragment implements OnClickListener {
             return;
         }
         String path = FileUtils.SDPATH + photoName;
-        Log.e("MyDataActivity ", " 显示的图片路径：" + path);
+        Log.e("MyDataActivity ", " Displayed image path：" + path);
         File file = new File(path);
         if (file.exists()) {
             Bitmap bitmap = BitmapFactory.decodeFile(path);
             my_touxian.setImageBitmap(ImageCacheUtil.toRoundBitmap(bitmap));
-            Log.e("MyDataActivity ", " 显示本地图片");
+            Log.e("MyDataActivity ", " Show local image");
         }
     }
 

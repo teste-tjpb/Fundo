@@ -3,7 +3,7 @@ package com.kct.bluetooth.bean;
 import android.bluetooth.BluetoothDevice;
 
 /**
- * @Description: 设备信息
+ * @Description: Device Information
  */
 public class BluetoothLeDevice {
 

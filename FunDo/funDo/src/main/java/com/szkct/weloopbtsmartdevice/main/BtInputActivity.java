@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -88,7 +87,7 @@ public class BtInputActivity extends Activity implements OnClickListener {   // 
                                 String sendContent = etv.getText().toString();   // 发送的数据内容   dhhbn  ---- dhhbn刘亦菲刘肖刘德华
                                 if(sendContent.getBytes().length > 0 && sendContent.getBytes().length <= 60) {
                                     byte[] keyValue = sendContent.getBytes();
-                                    byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.KEY_INPUTASSIT_SEND, keyValue);  //   04 16
+                                    byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.KEY_INPUTASSIT_SEND, keyValue);  //   04 16
                                     MainService.getInstance().writeToDevice(l2, true);
                                 }else if(sendContent.getBytes().length > 60){
                                     Toast.makeText(BtInputActivity.this,getString(R.string.data_too_long),Toast.LENGTH_SHORT).show();
@@ -128,7 +127,7 @@ public class BtInputActivity extends Activity implements OnClickListener {   // 
                         jsonObject.put("SETTEXT", etv.getText().toString());
 //                        MainService.getInstance().sendMessage("incm" + jsonObject.toString());
                         if(jsonObject.toString().getBytes().length > 0 && jsonObject.toString().getBytes().length <= 60) {
-                            byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.KEY_SHEAR_PLATE, jsonObject.toString().getBytes());  //   04 17
+                            byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.KEY_SHEAR_PLATE, jsonObject.toString().getBytes());  //   04 17
                             MainService.getInstance().writeToDevice(l2, true);
                         }else if(jsonObject.toString().getBytes().length > 60){
                             Toast.makeText(BtInputActivity.this,getString(R.string.data_too_long),Toast.LENGTH_SHORT).show();
@@ -152,7 +151,7 @@ public class BtInputActivity extends Activity implements OnClickListener {   // 
         super.onResume();
         //TODO --- 进入协助输入页面时，发送 协助输入开始命令
 //        MainService.getInstance().sendMessage("w101");
-        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.INPUTASSIT_START,null);  //   04 4d
+        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.INPUTASSIT_START,null);  //   04 4d
         MainService.getInstance().writeToDevice(l2, true);
 
     }
@@ -163,7 +162,7 @@ public class BtInputActivity extends Activity implements OnClickListener {   // 
         super.onPause();
 //        MainService.getInstance().sendMessage("w100");
 
-        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.KEY_INPUTASSIT_END,null);  //   04 18
+        byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.KEY_INPUTASSIT_END,null);  //   04 18
         MainService.getInstance().writeToDevice(l2, true);
     }
 

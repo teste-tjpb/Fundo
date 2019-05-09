@@ -4,7 +4,7 @@ import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 
 /**
- * @Description: 连接设备回调
+ * @Description: Connected device callback
  */
 public interface IBluetoothGattCallback {
 

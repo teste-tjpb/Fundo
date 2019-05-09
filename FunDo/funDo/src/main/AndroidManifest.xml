@@ -3,7 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.kct.fundo.btnotification"
           android:versionCode="1287"
-          android:versionName="V1.4.2">
+          android:versionName="V1.4.9">
 
     <uses-sdk
         android:minSdkVersion="18"

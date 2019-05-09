@@ -117,7 +117,7 @@ public class Wifiactivity extends Activity implements OnClickListener {
         if (MainService.getInstance().getState() == 3) {
 //			MainService.getInstance().sendMessage("w001");   // 发 命令 刷新 WiFi 列表
 
-            byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.SYN_WIFI, null);  // 手表WiFi  04 4c    ---- 发送WiFi 命令
+            byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.SYN_WIFI, null);  // 手表WiFi  04 4c    ---- 发送WiFi 命令
             MainService.getInstance().writeToDevice(l2, true);
         } else {
             Toast.makeText(getApplication(), getString(R.string.not_connected), Toast.LENGTH_SHORT).show();

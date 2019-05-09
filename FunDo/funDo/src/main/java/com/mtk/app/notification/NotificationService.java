@@ -11,7 +11,7 @@ import android.util.Log;
 import com.mediatek.ctrl.notification.NotificationEventListener;
 import com.szkct.weloopbtsmartdevice.main.BTNotificationApplication;
 
-public class NotificationService implements NotificationEventListener {    // 配对时弹出的框是，是MTKjar包中的
+public class NotificationService implements NotificationEventListener {    // The box that pops up when pairing is, is in the MTKjar package.
     private static final String TAG = "AppManager/NotificationService";
 
     public void notifyBlockListChanged(String appId) {

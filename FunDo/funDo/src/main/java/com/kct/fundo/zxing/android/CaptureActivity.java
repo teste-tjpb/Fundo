@@ -95,9 +95,9 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 	protected void onResume() {
 		super.onResume();
 
-		// CameraManager必须在这里初始化，而不是在onCreate()中。
-		// 这是必须的，因为当我们第一次进入时需要显示帮助页，我们并不想打开Camera,测量屏幕大小
-		// 当扫描框的尺寸不正确时会出现bug
+		// CameraManager must be initialized here, not in onCreate().
+		// This is necessary because we need to display the help page when we first enter, we don't want to open the Camera, measure the screen size
+		// A bug occurs when the size of the scan box is incorrect
 		cameraManager = new CameraManager(getApplication());
 
 		viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);

@@ -465,7 +465,7 @@ private void initedittext() {
 						+"w50253d"+sos_input_number2.getText().toString()+"w50253d"+sos_input_number3.getText().toString());*/
 				//String sosContacts = s1+s2+s3;
 				Log.e("[SOSCallActivity]",sosContacts.toString());
-				byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMADN, BleContants.SOS,sosContacts.toString().getBytes());  // 发送紧急拨号 紧急联系人 到 手表
+				byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.SOS,sosContacts.toString().getBytes());  // 发送紧急拨号 紧急联系人 到 手表
 				MainService.getInstance().writeToDevice(l2, true);
 
 			}else{

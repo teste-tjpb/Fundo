@@ -667,7 +667,7 @@ public class TrajectoryMapFragment extends Fragment implements View.OnClickListe
         }
 
         sportmode_logo = (ImageView) mView.findViewById(R.id.sportmode_logo);
-        if(SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.THEME_WHITE).equals("0")){  // 白色背景
+        if(SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.THEME_WHITE).equals("0")){  // White background
             sportmode_logo.setImageResource(R.drawable.sportmode_logo_w);
         }else{
             sportmode_logo.setImageResource(R.drawable.sportmode_logo_b);

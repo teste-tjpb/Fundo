@@ -41,7 +41,7 @@ public class ScreenReceiverUtil {    // todo --  监听亮灭屏的工具类
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            Log.d("KeepAppAlive","SreenLockReceiver-->监听到系统广播："+action);
+            Log.d("KeepAppAlive","SreenLockReceiver-->Listen to system broadcast："+action);
             if(mStateReceiverListener == null){
                 return;
             }

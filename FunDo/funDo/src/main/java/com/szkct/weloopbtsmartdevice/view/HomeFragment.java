@@ -2550,24 +2550,24 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
 
     public void weatherInit() {
         isInit = false;
-        // 检查网络是否可用
+        // Check if the network is available
         if (NetWorkUtils.isConnect(mContext)) {
             mLocationClient = new AMapLocationClient(mContext.getApplicationContext());
             mLocationClient.setLocationListener(HomeFragment.this);
             weatherShow();
             InitLocation();
             if (!mLocationClient.isStarted()) {
-                Log.e("开始定位", "..........");
+                Log.e("Comece o posicionamento", "..........");
                 mLocationClient.startLocation();
             }
         } else {
-            weatherShow();    //todo --- 获取数据失败，也显示天气 ？？？
-            Toast.makeText(mContext, getString(R.string.no_net_noweather), Toast.LENGTH_LONG).show();  // 网络未连接,获取数据失败
+            weatherShow();    //todo --- Failed to get data, also shows weather？？？
+            Toast.makeText(mContext, getString(R.string.no_net_noweather), Toast.LENGTH_LONG).show();  // The network is not connected, failing to get data
         }
     }
 
     /**
-     * 开始定位
+     * Start positioning
      */
     private void InitLocation() {
         mClientOption = new AMapLocationClientOption();
@@ -2586,39 +2586,39 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
 
         StatService.onResume(this);
 
-        // 接受日期选着Activity 穿过来的数据
+        // Accept the date and select the data that the Activity passes through.
         dealDateShow();
-        /**获取运动类型  1.健走 2.户外跑 3.登山跑 4.越野跑 5.室内跑 6.半马 7.全马**/
+        /**Get the type of exercise  1.Walking 2.Running outdoors 3.Mountaineering 4.Trail running 5.Indoor running 6.Half horse 7.Whole horse**/
         String sport = SharedPreUtil.readPre(mContext, SharedPreUtil.STATUSFLAG, SharedPreUtil.SPORTMODE);
         if (StringUtils.isEmpty(sport)) {
             sport = "1";
         }
-        updateSportDate(sport);//更新数据
-        updateSportView(sport);//更新UI
+        updateSportDate(sport);//update data
+        updateSportView(sport);//UpdateUI
         if (SharedPreUtil.readPre(mContext, SharedPreUtil.USER, SharedPreUtil.WATCH).equals("2") || SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.TEMP_WATCH).equals("2")) {
            /* iv_bo.setVisibility(View.VISIBLE);
             iv_bp.setVisibility(View.VISIBLE);
-            tv_bo.setVisibility(View.VISIBLE);  // 血氧值
+            tv_bo.setVisibility(View.VISIBLE);  // Blood oxygen value
             tv_bp_min.setVisibility(View.VISIBLE);  // 血压值
             tv_bp_max.setVisibility(View.VISIBLE);   //血压值*/
         } else {
             iv_bp.setVisibility(View.GONE);
             iv_bo.setVisibility(View.GONE);
-            tv_bo.setVisibility(View.GONE);  // 血氧值
-            tv_bp_min.setVisibility(View.GONE);  // 血压值
-            tv_bp_max.setVisibility(View.GONE);   //血压值
+            tv_bo.setVisibility(View.GONE);  // Blood oxygen value
+            tv_bp_min.setVisibility(View.GONE);  // Blood pressure value
+            tv_bp_max.setVisibility(View.GONE);   //Blood pressure value
         }
 
-        DateInit();// 日期的处理及显示选中当天的运动及睡眠数据
+        DateInit();// Date processing and display of the day's exercise and sleep data
 
         String curMacaddress = SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.MAC);
         if (!StringUtils.isEmpty(curMacaddress)) {
-            Calendar calendar = Calendar.getInstance();   // 当前第一天的日期  2017-06-28
+            Calendar calendar = Calendar.getInstance();   // Current day of the first day  2017-06-28
             calendar.setTime(new Date());
-            String mcurDate = getDateFormat.format(calendar.getTime());  //当前系统的日期
+            String mcurDate = getDateFormat.format(calendar.getTime());  //Current system date
             String Last7DayDate = SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE);
             if (!StringUtils.isEmpty(Last7DayDate) && Last7DayDate.equals(mcurDate) && !StringUtils.isEmpty(curMacaddress)) {
-                SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.ISFIRSTSYNCDATA, SharedPreUtil.SYNCED, "0:" + curMacaddress);//TODO ---将取7取过7天数据的标志重置为0--- 没有取过 7 天的数据
+                SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.ISFIRSTSYNCDATA, SharedPreUtil.SYNCED, "0:" + curMacaddress);//TODO ---Reset the flag that took 7 days to 7 days to 0.--- Did not take 7 days of data
             }
         }
     }
@@ -2628,7 +2628,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
         super.onPause();
         MobclickAgent.onPageEnd("HomeFragment");
 
-        StatService.onPause(this);   // todo --- 百度
+        StatService.onPause(this);   // todo --- Baidu
     }
 
     private void dealDateShow() {
@@ -2701,29 +2701,29 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
     private String fileName = "screenshot_analysis.png";
     private String detailPath = filePath + File.separator + fileName;
 
-    private void showShare(int pageIndex) {  // 分享
+    private void showShare(int pageIndex) {  // share it
         ScreenshotsShare.savePicture(ScreenshotsShare.takeScreenShot(getActivity(), pageIndex), filePath, fileName);
         //  ShareSDK.initSDK(getActivity());  // ShareSDK
         mapPackageName = setImage(getActivity());
         OnekeyShare oks = new OnekeyShare();
-        // 关闭sso授权
+        // Turn off sso authorization
         oks.disableSSOWhenAuthorize();
-        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
+        // Title title, Evernote, Email, Messaging, WeChat, Renren and QQ Space
         oks.setTitle(getString(R.string.app_name));
         // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
 //        oks.setTitleUrl("http://fundoshouhu.szkct.cn/funfit.html");
         oks.setTitleUrl("http://www.fundo.cc");
-        // text是分享文本，所有平台都需要这个字段
+        // tText is the shared text, all fields need this field
         oks.setText(getString(R.string.welcome_funrun));
-        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        // imagePath is the local path of the image. This parameter is supported by platforms other than Linked-In.
         oks.setImagePath(detailPath);// 确保SDcard下面存在此张图片
-        // url仅在微信（包括好友和朋友圈）中使用
+        // Url is only used on WeChat (including friends and friends)
         // oks.setUrl("http://sharesdk.cn");
-        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+        // Comment is my comment on this sharing, only used in Renren and QQ space
         oks.setComment(getString(R.string.welcome_funrun));
-        // site是分享此内容的网站名称，仅在QQ空间使用
+        // Site is the name of the site that shares this content, only used in the QQ space
         oks.setSite("");
-        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        // ssiteUrl is the address of the website sharing this content, only used in the QQ space
         oks.setSiteUrl("");
         oks.setTheme(OnekeyShareTheme.CLASSIC);
         if (android.os.Build.VERSION.SDK_INT < 21) {
@@ -2744,7 +2744,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
             oks.setCustomerLogo(drawableToBitmap(getActivity().getDrawable(R.drawable.ssdk_oks_classic_strava)), "strava", stravaclick);
         }
 
-        // 启动分享GUI
+        // Start sharing GUI
         oks.show(getActivity());
         dismissLoadingDialog();
     }
@@ -4218,7 +4218,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                 String stepNum = intent.getStringExtra("step");
                 if (null == loadingDialog) {   //todo ---  蓝牙连上的时候，同步数据（TMK平台）    && SharedPreUtil.readPre(getActivity(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("3")
                     if (stepNum.equals("6")) {
-                        Log.e("liuxiaodata", "收到6广播");
+                        Log.e("liuxiaodata", "Received 6 broadcasts");
                         setCurDate();
 
                         new Thread(new Runnable() {
@@ -4236,22 +4236,22 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                 } else if (null != loadingDialog && !StringUtils.isEmpty(stepNum)) {
 
                     if (stepNum.equals("1")) {
-                        Log.e("liuxiaodata", "收到1广播");
+                        Log.e("liuxiaodata", "Received 1 broadcast");
                         loadingDialog.setText(getString(R.string.userdata_synchronize1));
                     } else if (stepNum.equals("2")) {
-                        Log.e("liuxiaodata", "收到2广播");
+                        Log.e("liuxiaodata", "Received 2 broadcasts");
                         loadingDialog.setText(getString(R.string.userdata_synchronize2));
                     } else if (stepNum.equals("3")) {
-                        Log.e("liuxiaodata", "收到3广播");
+                        Log.e("liuxiaodata", "Received 3 broadcasts");
                         loadingDialog.setText(getString(R.string.userdata_synchronize3));
                     } else if (stepNum.equals("4")) {
-                        Log.e("liuxiaodata", "收到4广播");
+                        Log.e("liuxiaodata", "Received 4 broadcasts");
                         loadingDialog.setText(getString(R.string.userdata_synchronize4));
                     } else if (stepNum.equals("5")) {
-                        Log.e("liuxiaodata", "收到5广播");
+                        Log.e("liuxiaodata", "Received 5 broadcasts");
                         loadingDialog.setText(getString(R.string.userdata_synchronize5));
                     } else if (stepNum.equals("6")) {
-                        Log.e("liuxiaodata", "收到6广播");
+                        Log.e("liuxiaodata", "Received 6 broadcasts");
 
                         loadingDialog.setText(getString(R.string.userdata_synchronize_success));
                         Message msg = new Message();
@@ -5510,7 +5510,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
         key[5] = (byte) (DateUtil.getMinute());
         key[6] = (byte) ((System.currentTimeMillis() / 1000) % 60);
         byte[] l2 = new L2Bean().L2Pack(BleContants.SYN_COMMAND, BleContants.SYN_DATA_REQUEST, key);
-        Log.e(TAG, "第1天--" + UtilsLX.bytesToHexString(l2));
+        Log.e(TAG, "Day 1--" + UtilsLX.bytesToHexString(l2));
 //                String resModebyteslx = UtilsLX.bytesToHexString(bytes);
         MainService.getInstance().writeToDevice(l2, true);
 
@@ -5527,7 +5527,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
 //                String t1 = UtilsLX.bytesToHexString(key2);
         byte[] l22 = new L2Bean().L2Pack(BleContants.SYN_COMMAND, BleContants.SYN_DATA_REQUEST, key2);
         String t2 = UtilsLX.bytesToHexString(l22);    // 0A00A000070311061E0F2706
-        Log.e(TAG, "第2天--" + UtilsLX.bytesToHexString(l22));
+        Log.e(TAG, "Day 2--" + UtilsLX.bytesToHexString(l22));
         MainService.getInstance().writeToDevice(l22, true);
 
         byte[] key3 = new byte[7];
@@ -5543,7 +5543,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
 
         byte[] l23 = new L2Bean().L2Pack(BleContants.SYN_COMMAND, BleContants.SYN_DATA_REQUEST, key3);
         String t3 = UtilsLX.bytesToHexString(l23);   // 0A00A00007030000000F2729
-        Log.e(TAG, "第3天--" + UtilsLX.bytesToHexString(l23));
+        Log.e(TAG, "Day 3--" + UtilsLX.bytesToHexString(l23));
         MainService.getInstance().writeToDevice(l23, true);
 
         byte[] key4 = new byte[7];
@@ -5558,7 +5558,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
 //                String t44 = UtilsLX.bytesToHexString(key4);
         byte[] l24 = new L2Bean().L2Pack(BleContants.SYN_COMMAND, BleContants.SYN_DATA_REQUEST, key4);
         String t4 = UtilsLX.bytesToHexString(l24);
-        Log.e(TAG, "第4天--" + UtilsLX.bytesToHexString(l24));
+        Log.e(TAG, "Day 4--" + UtilsLX.bytesToHexString(l24));
         MainService.getInstance().writeToDevice(l24, true);
 
         byte[] key5 = new byte[7];
@@ -5570,7 +5570,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
         key5[5] = (byte) (DateUtil.getMinute());
         key5[6] = (byte) ((System.currentTimeMillis() / 1000) % 60);
         byte[] l25 = new L2Bean().L2Pack(BleContants.SYN_COMMAND, BleContants.SYN_DATA_REQUEST, key5);
-        Log.e(TAG, "第5天--" + UtilsLX.bytesToHexString(l25));
+        Log.e(TAG, "Day 5--" + UtilsLX.bytesToHexString(l25));
         MainService.getInstance().writeToDevice(l25, true);
 
         byte[] key6 = new byte[7];
@@ -5635,7 +5635,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                 calendar.add(Calendar.DAY_OF_MONTH, 6);  //设置为后7天
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                 String last7Day = sdf2.format(calendar.getTime());//获得后7天     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
-                Log.e(TAG, "当前日期的后6天日期为 ---- " + last7Day);
+                Log.e(TAG, "The last 6 days of the current date are ---- " + last7Day);
                 SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 保存后7天开始日期
 
                 if (index == 3) {
@@ -5651,7 +5651,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                 calendar.add(Calendar.DAY_OF_MONTH, 6);  //设置为后7天
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                 String last7Day = sdf2.format(calendar.getTime());//获得后7天     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
-                Log.e(TAG, "当前日期的后6天日期为 ---- " + last7Day);
+                Log.e(TAG, "The last 6 days of the current date are ---- " + last7Day);
                 SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 保存后7天开始日期
 
                 if (index == 3) {
@@ -5700,7 +5700,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                 calendar.add(Calendar.DAY_OF_MONTH, 5);  //设置为后7天
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                 String last7Day = sdf2.format(calendar.getTime());//获得后7天     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
-                Log.e(TAG, "当前日期的后6天日期为 ---- " + last7Day);
+                Log.e(TAG, "The last 6 days of the current date are ---- " + last7Day);
                 SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 保存后7天开始日期
 
                 if (index == 3) {
@@ -5715,7 +5715,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                 calendar.add(Calendar.DAY_OF_MONTH, 5);  //设置为后7天
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                 String last7Day = sdf2.format(calendar.getTime());//获得后7天     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
-                Log.e(TAG, "当前日期的后6天日期为 ---- " + last7Day);
+                Log.e(TAG, "The last 6 days of the current date are ---- " + last7Day);
                 SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 保存后7天开始日期
 
                 if (index == 3) {
@@ -5730,7 +5730,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                 calendar.add(Calendar.DAY_OF_MONTH, 5);  //设置为后7天
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                 String last7Day = sdf2.format(calendar.getTime());//获得后7天     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
-                Log.e(TAG, "当前日期的后6天日期为 ---- " + last7Day);
+                Log.e(TAG, "The last 6 days of the current date are ---- " + last7Day);
                 SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 保存后7天开始日期
                 if (index == 3) {
                     sendLast5DaysData(3);
@@ -5778,7 +5778,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                 calendar.add(Calendar.DAY_OF_MONTH, 4);  //设置为后7天
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                 String last7Day = sdf2.format(calendar.getTime());//获得后7天     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
-                Log.e(TAG, "当前日期的后6天日期为 ---- " + last7Day);
+                Log.e(TAG, "The last 6 days of the current date are ---- " + last7Day);
                 SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 保存后7天开始日期
 
                 if (index == 3) {
@@ -5843,7 +5843,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
     }
 
     private void getLast3DaysData(Boolean isHasLast2DayData, int index) {
-        if (!isHasLast2DayData) {  //TODO 前2天没有数据 --- 取前2天的数据
+        if (!isHasLast2DayData) {  //TODO No data for the previous 2 days --- Take the first 2 days of data
             String isSync7DaysData = SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.ISFIRSTSYNCDATA, SharedPreUtil.SYNCED);  //是否同步过7天的设备--- 根据mac地址
             String curMacaddress = SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.MAC);
             String[] oldRecords = new String[2];
@@ -5851,18 +5851,18 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                 oldRecords = isSync7DaysData.split("#");
             }
 
-            Calendar calendar = Calendar.getInstance();   // 当前第一天的日期  2017-06-28
+            Calendar calendar = Calendar.getInstance();   // Current day of the first day  2017-06-28
             calendar.setTime(new Date());
-            String mcurDate = getDateFormat.format(calendar.getTime());  //  TODO---- 当前天的日期   --- 2017-09-22
+            String mcurDate = getDateFormat.format(calendar.getTime());  //  TODO---- Current day's date   --- 2017-09-22
 
-            if (StringUtils.isEmpty(isSync7DaysData)) {      //todo   0--- 没有取过 7 天的数据
+            if (StringUtils.isEmpty(isSync7DaysData)) {      //todo   0--- Did not take 7 days of data
                 SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.ISFIRSTSYNCDATA, SharedPreUtil.SYNCED, "0#" + curMacaddress);// 0--- 没有取过 7 天的数据
 
-                calendar.add(Calendar.DAY_OF_MONTH, 3);  //设置为后7天
+                calendar.add(Calendar.DAY_OF_MONTH, 3);  //Set to 7 days after
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-                String last7Day = sdf2.format(calendar.getTime());//获得后7天     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
-                Log.e(TAG, "当前日期的后6天日期为 ---- " + last7Day);
-                SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 保存后7天开始日期
+                String last7Day = sdf2.format(calendar.getTime());//7 days after the acquisition     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
+                Log.e(TAG, "The last 6 days of the current date are ---- " + last7Day);
+                SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 7 days start date after saving
                 if (index == 3) {
                     sendLast3DaysData(3);
                 } else if (index == 1) {
@@ -5870,14 +5870,14 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                 } else if (index == 2) {
                     sendLast3DaysData(2);
                 }
-            } else if (oldRecords[0].equals("0")) {        //todo   0--- 没有取过 7 天的数据
-                SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.ISFIRSTSYNCDATA, SharedPreUtil.SYNCED, "0#" + curMacaddress);// 0--- 没有取过 7 天的数据
+            } else if (oldRecords[0].equals("0")) {        //todo   0--- Did not take 7 days of data
+                SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.ISFIRSTSYNCDATA, SharedPreUtil.SYNCED, "0#" + curMacaddress);// 0--- Not taken 7 Day data
 
-                calendar.add(Calendar.DAY_OF_MONTH, 3);  //设置为后7天
+                calendar.add(Calendar.DAY_OF_MONTH, 3);  //Set to 7 days after
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-                String last7Day = sdf2.format(calendar.getTime());//获得后7天     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
+                String last7Day = sdf2.format(calendar.getTime()); // Save this date locally. When the current date of the current homepage is 2017-09-29, set the 7-day sync flag to 0.
 //                Log.e(TAG, "当前日期的后6天日期为 ---- " + last7Day);
-                SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 保存后7天开始日期
+                SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 7 days start date after saving
 
                 if (index == 3) {
                     sendLast3DaysData(3);
@@ -5889,9 +5889,9 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
             } else if (oldRecords[0].equals("1") && !oldRecords[1].equals(curMacaddress)) {  // todo -- 取过7天的数据，但不是当前设备
                 SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.ISFIRSTSYNCDATA, SharedPreUtil.SYNCED, "0#" + curMacaddress);// 0--- 没有取过 7 天的数据
 
-                calendar.add(Calendar.DAY_OF_MONTH, 3);  //设置为后7天
+                calendar.add(Calendar.DAY_OF_MONTH, 3);  //Set to 7 days after
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-                String last7Day = sdf2.format(calendar.getTime());//获得后7天     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
+                String last7Day = sdf2.format(calendar.getTime());//7 days after the acquisition     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
 //                Log.e(TAG, "当前日期的后6天日期为 ---- " + last7Day);
                 SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 保存后7天开始日期
 
@@ -5932,7 +5932,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
             BTNotificationApplication.needGetHeartDayNum = 2;
         }
 
-        // TODO 前1天没有数据 --- 取前1天的数据(默认取两天的数据)
+        // TODO No data for the previous day --- Take the data of the previous day (the default is two days of data)
         byte[] key = new byte[7];
         key[0] = (byte) index;
         key[1] = (byte) (DateUtil.getYear() - 2000);
@@ -5984,24 +5984,24 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
     private boolean isHasLast6DayHeartData = false;
 
     public void sendSyncData(int index) {
-        //todo ---- 1：第一次同步时取 7 天的数据，后面都取两天的数据  （）
+        //todo ---- 1: Take 7 days of data for the first synchronization, and take two days of data afterwards ()
         if (db == null) {
             db = DBHelper.getInstance(BTNotificationApplication.getInstance());
         }
-        if (index == 3) {  // 计步  --- X2只有分段步数
+        if (index == 3) {  // Step  --- X2 only has the number of steps
             Query query = null;
             query = db.getRunDao().queryBuilder().where(RunDataDao.Properties.Mac.eq(SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.MAC)))
                     .where(RunDataDao.Properties.Step.notEq("0"))
                     .build();  // 1489824000     2017-03-16 19:00:00    .where(RunDataDao.Properties.Date.eq(arr.get(1).getBinTime().substring(0, 10)))   ---   .where(RunDataDao.Properties.Step.notEq("0")).build();
-            List<RunData> slist = query.list();  // TODO ---获取到本地运动所有的计步数据
+            List<RunData> slist = query.list();  // TODO ---Get all the step data for local sports
 
             Calendar calendar = Calendar.getInstance();   // 当前第一天的日期  2017-06-28
             calendar.setTime(new Date());
-            String mcurDate = getDateFormat.format(calendar.getTime());  //  TODO---- 当前天的日期   --- 2017-09-22
+            String mcurDate = getDateFormat.format(calendar.getTime());  //  TODO---- Current day's date   --- 2017-09-22
 
             Calendar calendar1 = Calendar.getInstance();
             calendar1.set(Calendar.DAY_OF_MONTH, calendar1.get(Calendar.DAY_OF_MONTH) - 1);
-            String mcurDate1 = getDateFormat.format(calendar1.getTime());  // todo --- 2017-06-27 前1天的数据     ---- 2017-06-30
+            String mcurDate1 = getDateFormat.format(calendar1.getTime());  // todo --- 2017-06-27 Data from the previous day     ---- 2017-06-30
             isHasLast1DaySportData = false;
 
             Calendar calendar2 = Calendar.getInstance();
@@ -6029,24 +6029,24 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
             String mcurDate6 = getDateFormat.format(calendar6.getTime()); // 2017-06-23         前6天的数据
             isHasLast6DaySportData = false;
             if (slist.size() > 0) {
-                for (int i = 0; i < slist.size(); i++) {  // TODO --- 遍历所有的计步数据，获取该条数据对应的日期
-                    String mItemData = slist.get(i).getDate(); // 对应条目的日期
-                    if (mItemData.equals(mcurDate1)) {  // 前1天有数据
+                for (int i = 0; i < slist.size(); i++) {  // TODO --- Traverse all the step data to get the date corresponding to the data
+                    String mItemData = slist.get(i).getDate(); // The date of the corresponding entry
+                    if (mItemData.equals(mcurDate1)) {  // Data from the previous day
                         isHasLast1DaySportData = true;
                     }
-                    if (mItemData.equals(mcurDate2)) {  // 前2天有数据
+                    if (mItemData.equals(mcurDate2)) {  // Data for the first 2 days
                         isHasLast2DaySportData = true;
                     }
-                    if (mItemData.equals(mcurDate3)) {  // 前3天有数据
+                    if (mItemData.equals(mcurDate3)) {  // Data for the first 3 days
                         isHasLast3DaySportData = true;
                     }
-                    if (mItemData.equals(mcurDate4)) {  // 前4天有数据
+                    if (mItemData.equals(mcurDate4)) {  // Data for the first 4 days
                         isHasLast4DaySportData = true;
                     }
-                    if (mItemData.equals(mcurDate5)) {  // 前5天有数据
+                    if (mItemData.equals(mcurDate5)) {  // Data for the first 5 days
                         isHasLast5DaySportData = true;
                     }
-                    if (mItemData.equals(mcurDate6)) {  // 前6天有数据
+                    if (mItemData.equals(mcurDate6)) {  // Data for the first 6 days
                         isHasLast6DaySportData = true;
                     }
                 }
@@ -6064,10 +6064,10 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                 if (StringUtils.isEmpty(isSync7DaysData)) {      //todo   0--- 没有取过 7 天的数据
                     SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.ISFIRSTSYNCDATA, SharedPreUtil.SYNCED, "0#" + curMacaddress);// 0--- 没有取过 7 天的数据
 
-                    calendar.add(Calendar.DAY_OF_MONTH, 7);  //设置为后7天
+                    calendar.add(Calendar.DAY_OF_MONTH, 7);  //Set to 7 days after
                     SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                     String last7Day = sdf2.format(calendar.getTime());//获得后7天 2017-09-25    2017-10-02    ----- 将此日期 保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
-                    Log.e(TAG, "当前日期的后6天日期为 ---- " + last7Day);
+                    Log.e(TAG, "The last 6 days of the current date are ---- " + last7Day);
                     SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 保存后7天开始日期
 
                     sendLast7DaysData(3);
@@ -6108,9 +6108,9 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                         .where(SleepDataDao.Properties.Mac
                                 .eq(SharedPreUtil.readPre(getActivity(), SharedPreUtil.USER, SharedPreUtil.SHOWMAC))).build();
             }
-            List<SleepData> slist = query.list();  // TODO ---获取到本地睡眠所有的数据
+            List<SleepData> slist = query.list();  // TODO ---Get all the data to sleep locally
 
-            Calendar calendar = Calendar.getInstance();   // 当前第一天的日期  2017-06-28
+            Calendar calendar = Calendar.getInstance();   // Current day of the first day  2017-06-28
             calendar.setTime(new Date());
             String mcurDate = getDateFormat.format(calendar.getTime());  // 2017-06-28     ----- 2017-07-01
 
@@ -6180,7 +6180,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                     calendar.add(Calendar.DAY_OF_MONTH, 7);  //设置为后7天
                     SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                     String last7Day = sdf2.format(calendar.getTime());//获得后7天     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
-                    Log.e(TAG, "当前日期的后6天日期为 ---- " + last7Day);
+                    Log.e(TAG, "The last 6 days of the current date are ---- " + last7Day);
                     SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 保存后7天开始日期
                     sendLast7DaysData(1);
                 } else if (oldRecords[0].equals("0")) {        //todo   0--- 没有取过 7 天的数据
@@ -6207,7 +6207,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
             } else {
                 getLast6DaysData(isHasLast5DaySleepData, 1);
             }
-        } else if (index == 2) {  // todo ---- 心率     999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+        } else if (index == 2) {  // todo ---- Heart rate     999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
             Query query = null;
             if (SharedPreUtil.readPre(getActivity(), SharedPreUtil.USER, SharedPreUtil.SHOWMAC).equals("")) {  // 需要展示的设备的数据的mac地址
                 query = db.getHearDao().queryBuilder()
@@ -6295,7 +6295,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                     calendar.add(Calendar.DAY_OF_MONTH, 7);  //设置为后7天
                     SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                     String last7Day = sdf2.format(calendar.getTime());//获得后7天     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
-                    Log.e(TAG, "当前日期的后6天日期为 ---- " + last7Day);
+                    Log.e(TAG, "The last 6 days of the current date are ---- " + last7Day);
                     SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 保存后7天开始日期
 
                     sendLast7DaysData(2);
@@ -6305,7 +6305,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                     calendar.add(Calendar.DAY_OF_MONTH, 7);  //设置为后7天
                     SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                     String last7Day = sdf2.format(calendar.getTime());//获得后7天     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
-                    Log.e(TAG, "当前日期的后6天日期为 ---- " + last7Day);
+                    Log.e(TAG, "The last 6 days of the current date are ---- " + last7Day);
                     SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 保存后7天开始日期
 
                     sendLast7DaysData(2);
@@ -6315,7 +6315,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                     calendar.add(Calendar.DAY_OF_MONTH, 7);  //设置为后7天
                     SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                     String last7Day = sdf2.format(calendar.getTime());//获得后7天     2017-09-29    ----- 将此日期保存本地，当前主页的当前日期为  2017-09-29 时，将 同步7天的标志位 置为  0
-                    Log.e(TAG, "当前日期的后6天日期为 ---- " + last7Day);
+                    Log.e(TAG, "The last 6 days of the current date are ---- " + last7Day);
                     SharedPreUtil.savePre(BTNotificationApplication.getInstance(), SharedPreUtil.LAST7DAY, SharedPreUtil.LAST7DAY_DATE, last7Day);// 保存后7天开始日期
                     sendLast7DaysData(2);
                 } else {
@@ -6330,7 +6330,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
             byte[] key = new byte[1];
             key[0] = (byte) 6;
             byte[] l2 = new L2Bean().L2Pack(BleContants.SYN_COMMAND, BleContants.SYN_DATA_REQUEST, key);
-            Log.e(TAG, "第1天--" + UtilsLX.bytesToHexString(l2));
+            Log.e(TAG, "Day 1--" + UtilsLX.bytesToHexString(l2));
 //                String resModebyteslx = UtilsLX.bytesToHexString(bytes);
             MainService.getInstance().writeToDevice(l2, true);
         }

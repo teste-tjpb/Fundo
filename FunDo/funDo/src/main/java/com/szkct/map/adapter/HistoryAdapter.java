@@ -631,17 +631,17 @@ public class HistoryAdapter extends BaseAdapter {
             }
 
             if (SharedPreUtil.readPre(mContext, SharedPreUtil.USER, SharedPreUtil.THEME_WHITE).equals("0")) {   // todo --- 设置 运动模式的图标   ---白色背景
-                if (gpsData.getDeviceType().equals("1")) {  // 手机端数据
+                if (gpsData.getDeviceType().equals("1")) {  // Mobile phone data
                     viewHolder.item_ico.setImageResource(SECTION_DRAWABLE_WHITE_WATCH[type]);
                 } else { // 手表端数据
                     if (SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("3") || SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.TEMP_WATCH).equals("3")) { //MTK
-                        viewHolder.item_ico.setImageResource(SECTION_DRAWABLE_WHITE_WATCH_MTK[type]);   // mtk白色运动模式图标
+                        viewHolder.item_ico.setImageResource(SECTION_DRAWABLE_WHITE_WATCH_MTK[type]);   // Mtk white sport mode icon
                     } else {
                         viewHolder.item_ico.setImageResource(SECTION_DRAWABLE_WHITE_WATCH[type]);
                     }
                 }
             } else {  // todo --- 黑色背景
-                if (gpsData.getDeviceType().equals("1")) {  // 手机端数据
+                if (gpsData.getDeviceType().equals("1")) {  // Mobile phone data
                     viewHolder.item_ico.setImageResource(SECTION_DRAWABLE_WATCH[type]);
                 } else { // 手表端数据
                     if (SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("3") || SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.TEMP_WATCH).equals("3")) { //MTK   type = 1

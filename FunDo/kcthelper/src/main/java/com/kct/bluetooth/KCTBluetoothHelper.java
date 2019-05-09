@@ -53,7 +53,7 @@ import static com.kct.bluetooth.bean.KCTGattAttributes.RX_SERVICE_872_UUID_SCAN;
 import static com.kct.bluetooth.bean.KCTGattAttributes.RX_SERVICE_UUID;
 
 /**
- * 版权：深圳金康特智能科技有限公司 作者：ZGH 版本： 创建日期：2017/10/10 描述: ${VERSION} 修订历史：
+ * Copyright: Intelligent Technology Co., Ltd. of Shenzhen Conte: ZGH Version: Creation Date: 2017/10/10 Description: $ {VERSION} Revision History:
  */
 
 public class KCTBluetoothHelper implements IBluetoothGattCallback {
@@ -62,21 +62,21 @@ public class KCTBluetoothHelper implements IBluetoothGattCallback {
 	private static final String LIB_VERSION = "1.2.2"; //SDK版本
 
 	private Context context;
-	private BluetoothManager mBluetoothManager;        //蓝牙管理
-	private BluetoothAdapter mBluetoothAdapter;        //蓝牙适配器
-	private BluetoothDevice mConnectDevice;            //连接设备
-	private String mConnectAddress;                    //连接蓝牙地址
-	private BluetoothGatt mBluetoothGatt;              //蓝牙gatt
-	private KCTBluetoothGattCallback mGattCallback;    //蓝牙回调
-	private int state;                                 //连接状态 0：未连接；2：连接中；3：已连接；4：连接断开
+	private BluetoothManager mBluetoothManager;        //Bluetooth management
+	private BluetoothAdapter mBluetoothAdapter;        //Bluetooth adapter
+	private BluetoothDevice mConnectDevice;            //Connecting device
+	private String mConnectAddress;                    //Connect to a Bluetooth address
+	private BluetoothGatt mBluetoothGatt;              //Bluetooth gatt
+	private KCTBluetoothGattCallback mGattCallback;    //Bluetooth callback
+	private int state;                                 //Connection status 0: not connected; 2: connecting; 3: connected; 4: disconnected
 
-	private KCTSendCommand kctSendCommand;             //发送线程
-	private KCTReceiveCommand kctReceiveCommand;       //接收线程
-	private ArrayList<IConnectListener> iConnectListeners;   //状态回调
-	private BluetoothGattCharacteristic RxChar;        //特征值
-	private int mtuSize = 20;                          //mtu传输大小
+	private KCTSendCommand kctSendCommand;             //Send thread
+	private KCTReceiveCommand kctReceiveCommand;       //Receiving thread
+	private ArrayList<IConnectListener> iConnectListeners;   //State callback
+	private BluetoothGattCharacteristic RxChar;        //Eigenvalues
+	private int mtuSize = 20;                          //Mtu transfer size
 	private BluetoothGattService RxService;            //GattService
-	private UUID serviceUuid;                          //蓝牙UUID
+	private UUID serviceUuid;                          //Bluetooth UUID
 
 	private boolean isSendFile = false;
 
@@ -172,7 +172,7 @@ public class KCTBluetoothHelper implements IBluetoothGattCallback {
 	}
 
 	/**
-	 * 连接蓝牙
+	 * Connect to Bluetooth
 	 * @param address
 	 * @param listeners
 	 * @return
@@ -321,7 +321,8 @@ public class KCTBluetoothHelper implements IBluetoothGattCallback {
 	}
 
 	/**
-	 * 清理本地的BluetoothGatt 的缓存，以保证在蓝牙连接设备的时候，设备的服务、特征是最新的
+	 * Clean up the local BluetoothGatt's cache to ensure that the device's services and features are
+	 * up to date when Bluetooth is connected to the device.
 	 * 
 	 * @param gatt
 	 * @return
@@ -362,7 +363,7 @@ public class KCTBluetoothHelper implements IBluetoothGattCallback {
 
 
 	/**
-	 * 蓝牙发送数据
+	 * Bluetooth send data
 	 */
 	public void writeToDevice(byte[] bytes) {
 		if (bytes == null || bytes.length == 0) {
@@ -409,7 +410,7 @@ public class KCTBluetoothHelper implements IBluetoothGattCallback {
 		}
 
 		int length = bytes.length;
-		if (length <= mtuSize) { // 每次最多写入20字节
+		if (length <= mtuSize) { // Write up to 20 bytes at a time
 			if (RxChar == null) {
 				return;
 			}
@@ -458,21 +459,21 @@ public class KCTBluetoothHelper implements IBluetoothGattCallback {
 	}
 
 	/**
-	 * 获取蓝牙连接状态值
+	 * Get the Bluetooth connection status value
 	 */
 	public int getConnectState() {
 		return state;
 	}
 
 	/**
-	 * 获取蓝牙连接设备
+	 * Get a Bluetooth connected device
 	 */
 	public BluetoothDevice getConnectDevice() {
 		return mConnectDevice;
 	}
 
 	/**
-	 * 搜索设备
+	 * Search device
 	 */
 	public void scanDevice(boolean scan) {
 		if(iScanCallback == null){
@@ -486,7 +487,7 @@ public class KCTBluetoothHelper implements IBluetoothGattCallback {
 	}
 
 	/**
-	 * 外部接口回调集合
+	 * External interface callback collection
 	 * @param listeners
 	 */
 	public void updateIConnectListener(ArrayList<IConnectListener> listeners) {
@@ -508,7 +509,7 @@ public class KCTBluetoothHelper implements IBluetoothGattCallback {
 
 
 	/**
-	 * 设置蓝牙连接状态
+	 * Set the Bluetooth connection status
 	 */
 	public synchronized void setConnectState(int state) {
 		this.state = state;
@@ -554,7 +555,7 @@ public class KCTBluetoothHelper implements IBluetoothGattCallback {
 	}
 
 	/**
-	 * Dialog升级
+	 * Dialog upgrade
 	 */
 	public void setDialog(boolean isSendFile,IDialogCallback dialogCallback){
 		this.isSendFile = isSendFile;
