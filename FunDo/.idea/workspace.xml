@@ -185,72 +185,12 @@
     <last-search-timestamp>1557341273810</last-search-timestamp>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b2d9a83-fa15-4137-9fcc-70b0d80767c7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="5b2d9a83-fa15-4137-9fcc-70b0d80767c7" name="Default" comment="Refatorações iniciais">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FunDo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FunDo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/funDo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/funDo.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/funDo/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/cn/sharesdk/onekeyshare/OnekeyShare.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/cn/sharesdk/onekeyshare/OnekeyShare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/kct/fundo/zxing/android/CaptureActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/kct/fundo/zxing/android/CaptureActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/NotificationDataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/NotificationDataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/NotificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/remotecamera/CustomCameraView.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/remotecamera/CustomCameraView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/bluetoothgyl/BleContants.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/bluetoothgyl/BleContants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/bluetoothgyl/L2Send.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/bluetoothgyl/L2Send.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/map/TrajectoryMapFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/map/TrajectoryMapFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/map/adapter/HistoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/map/adapter/HistoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/AlarmClockActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/AlarmClockActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/GestureControlActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/GestureControlActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/NewWaterMakActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/NewWaterMakActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/SportHistoryActivityForMtkYouyong.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/SportHistoryActivityForMtkYouyong.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/AboutActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/AboutActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/BTNotificationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/BTNotificationApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/BtInputActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/BtInputActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/DisconbleActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/DisconbleActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/LinkBleAcitivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/LinkBleAcitivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/LinkBleActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/LinkBleActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/SinglePixelActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/SinglePixelActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainService.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MyDataActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MyDataActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MyRegisterDataActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MyRegisterDataActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/SoscallActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/SoscallActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/SportHistoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/SportHistoryActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/VersionDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/VersionDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/Wifiactivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/Wifiactivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/net/HttpToService.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/net/HttpToService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/net/RetrofitFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/net/RetrofitFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/util/DailogUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/util/DailogUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/util/ScreenReceiverUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/util/ScreenReceiverUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/util/SharedPreUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/util/SharedPreUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/util/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/util/StringUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/util/SystemUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/util/SystemUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/AnalysisFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/AnalysisFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/DetailedFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/DetailedFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/HelperFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/HelperFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/HomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/PushdialFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/PushdialFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/SettingFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/SettingFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/res/drawable/home_best_record_bg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/res/drawable/home_best_record_bg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/res/values-pt-rPT/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/res/values-pt-rPT/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funDo/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/funDo/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/kcthelper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/kcthelper.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTBluetoothHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTBluetoothHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTBluetoothManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTBluetoothManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTBroadcastReceive.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTBroadcastReceive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTDFUService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTDFUService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTLoadJNICommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTLoadJNICommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTReceiveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTReceiveCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTSendCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTSendCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/bean/BluetoothLeDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/bean/BluetoothLeDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/callback/IBluetoothGattCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/callback/IBluetoothGattCallback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/callback/IConnectListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/callback/IConnectListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/callback/IDFUProgressCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/callback/IDFUProgressCallback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/callback/IDialogCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/callback/IDialogCallback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/callback/IScanCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/callback/IScanCallback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/kctmanager/DFUProgressListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/kctmanager/DFUProgressListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/kctmanager/KCTConnectRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/kctmanager/KCTConnectRunnable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/kctmanager/KCTSendDataRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/kctmanager/KCTSendDataRunnable.java" afterDir="false" />
     </list>
     <ignored path="FunDo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -281,55 +221,10 @@
     <favorites_list name="FunDo" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="1182" column="44" selection-start-line="1182" selection-start-column="44" selection-end-line="1182" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="1938" column="9" selection-start-line="1938" selection-start-column="9" selection-end-line="1938" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/DisconbleActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="97" column="43" selection-start-line="97" selection-start-column="43" selection-end-line="97" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/funDo/src/main/res/values-pt-rPT/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="48" column="57" selection-start-line="48" selection-start-column="57" selection-end-line="48" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>第1天</find>
-      <find>请求的是</find>
-      <find>Limiar</find>
-      <find>about_logo</find>
-      <find>white</find>
-      <find>THEME</find>
-      <find>&quot;THEME&quot;</find>
-      <find>SharedPreferences</find>
       <find>THEME_</find>
       <find>发送4广播</find>
       <find>whae</find>
@@ -345,13 +240,21 @@
       <find>Raining</find>
       <find>Ecg De</find>
       <find>Alarme</find>
-      <find>weathercit</find>
       <find>ecg</find>
       <find>Instalação d</find>
       <find>unit_setting</find>
       <find>add_device</find>
       <find>Conectando</find>
       <find>Conectad</find>
+      <find>weathercit</find>
+      <find>服务 发送广播</find>
+      <find>connect</find>
+      <find>启动1像素保活</find>
+      <find>service</find>
+      <find>BluetoothGatt</find>
+      <find>BluetoothGattServer</find>
+      <find>Device power</find>
+      <find>batter</find>
     </findStrings>
     <dirStrings>
       <dir>user.</dir>
@@ -367,8 +270,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/funDo/src/main/res/values-ar/strings.xml" />
-        <option value="$PROJECT_DIR$/funDo/src/main/res/values-de-rDE/strings.xml" />
         <option value="$PROJECT_DIR$/funDo/src/main/res/values-es-rES/strings.xml" />
         <option value="$PROJECT_DIR$/funDo/src/main/res/values-fr-rFR/strings.xml" />
         <option value="$PROJECT_DIR$/funDo/src/main/res/values-it-rIT/strings.xml" />
@@ -396,7 +297,6 @@
         <option value="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/SportHistoryActivity.java" />
         <option value="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/AlarmClockActivity.java" />
         <option value="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/util/SystemUtils.java" />
-        <option value="$PROJECT_DIR$/funDo/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/VersionDetail.java" />
         <option value="$PROJECT_DIR$/funDo/build/generated/source/buildConfig/debug/com/kct/fundo/btnotification/BuildConfig.java" />
         <option value="$PROJECT_DIR$/funDo/build/generated/source/buildConfig/release/com/kct/fundo/btnotification/BuildConfig.java" />
@@ -416,16 +316,18 @@
         <option value="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainActivity.java" />
         <option value="$PROJECT_DIR$/funDo/src/main/java/cn/sharesdk/onekeyshare/OnekeyShare.java" />
         <option value="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/DisconbleActivity.java" />
-        <option value="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainService.java" />
         <option value="$PROJECT_DIR$/funDo/src/main/res/values-pt-rPT/strings.xml" />
+        <option value="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/LinkBleActivity.java" />
+        <option value="$PROJECT_DIR$/funDo/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/SinglePixelActivity.java" />
+        <option value="$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainService.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="29" />
     <option name="width" value="1920" />
-    <option name="height" value="1050" />
+    <option name="height" value="1052" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -433,8 +335,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -444,38 +346,12 @@
             </path>
             <path>
               <item name="FunDo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FunDo" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="funDo" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
               <item name="FunDo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FunDo" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="funDo" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FunDo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FunDo" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="funDo" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="outputs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FunDo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FunDo" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="funDo" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="outputs" type="462c0819:PsiDirectoryNode" />
-              <item name="apk" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FunDo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FunDo" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="funDo" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="outputs" type="462c0819:PsiDirectoryNode" />
-              <item name="apk" type="462c0819:PsiDirectoryNode" />
-              <item name="release" type="462c0819:PsiDirectoryNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Gradle: cn.jiguang.sdk:jcore:1.1.9@aar" type="70bed36:NamedLibraryElementNode" />
             </path>
           </expand>
           <select />
@@ -508,14 +384,14 @@
     <property name="SearchEverywhereHistoryKey" value="Ver&#9;PSI&#9;JAVA://com.szkct.weloopbtsmartdevice.main.VersionDetail&#10;Count&#9;PSI&#9;JAVA://com.szkct.weloopbtsmartdevice.main.SportsTheCountdownActivity&#10;Sports&#9;PSI&#9;JAVA://com.szkct.map.service.SportService&#10;NewW&#9;PSI&#9;JAVA://com.szkct.weloopbtsmartdevice.activity.NewWaterMakActivity&#10;Wel&#9;FILE&#9;file://E:/0000002018Demo/FundoGongban/server/6yue/0619/me0727Fundo/FunDo/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/WelcomeActivity.java&#10;His&#9;FILE&#9;file://E:/0000002018Demo/FundoGongban/server/6yue/0619/me0727Fundo/FunDo/funDo/src/main/java/com/szkct/map/adapter/HistoryAdapter.java&#10;Exc&#9;PSI&#9;JAVA://com.mtk.app.thirdparty.EXCDController&#10;Sport&#9;FILE&#9;file://E:/0000002018Demo/FundoGongban/server/6yue/0619/me0727Fundo/FunDo/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/SportHistoryActivity.java&#10;L2&#9;FILE&#9;file://E:/0000002018Demo/FundoGongban/server/6yue/0619/me0727Fundo/FunDo/funDo/src/main/java/com/szkct/bluetoothgyl/L2Send.java&#10;Hid&#9;PSI&#9;JAVA://com.szkct.weloopbtsmartdevice.util.HidConncetUtil&#10;Main&#9;FILE&#9;file://E:/0000002018Demo/FundoGongban/server/6yue/0619/me0727Fundo/FunDo/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainActivity.java&#10;Wx&#9;FILE&#9;file://E:/0000002018Demo/FundoGongban/server/6yue/0619/me0727Fundo/FunDo/funDo/src/main/java/com/szkct/weloopbtsmartdevice/login/WxGuildeActivity.java&#10;Heal&#9;PSI&#9;JAVA://com.szkct.weloopbtsmartdevice.view.HealthFragment&#10;Hel&#9;FILE&#9;file://E:/0000002018Demo/FundoGongban/server/6yue/0619/me0727Fundo/FunDo/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/HelperFragment.java&#10;HOme&#9;PSI&#9;JAVA://com.szkct.weloopbtsmartdevice.view.HomeFragment&#10;Fir&#9;PSI&#9;JAVA://com.szkct.weloopbtsmartdevice.main.FirmWareUpdateActivity&#10;BT&#9;PSI&#9;JAVA://com.szkct.weloopbtsmartdevice.main.BTNotificationApplication&#10;ble&#9;PSI&#9;JAVA://com.szkct.bluetoothgyl.BleContants" />
     <property name="android.sdk.path" value="D:/liuxiao/AndroidSdks" />
     <property name="device.picker.selection" value="0047201895" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../watch/GettingWatchData" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="sync.plugin.last.upgrade.timestamp" value="1557335171272" />
+    <property name="sync.plugin.last.upgrade.timestamp" value="1557498183854" />
   </component>
   <component name="PsdUISettings">
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
@@ -905,6 +781,14 @@
       <option name="presentableId" value="Default" />
       <updated>1533895427310</updated>
     </task>
+    <task id="LOCAL-00001" summary="Refatorações iniciais">
+      <created>1557426786023</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1557426786024</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -917,11 +801,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1920" height="1050" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="29" width="1920" height="1052" extended-state="6" />
     <layout>
       <window_info id="Resources Explorer" order="0" sideWeight="0.4990792" weight="0.32959402" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49539596" visible="true" weight="0.2628205" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49539596" visible="true" weight="0.2628205" />
       <window_info id="Structure" order="2" sideWeight="0.49539596" weight="0.25" />
       <window_info id="Build Variants" order="3" sideWeight="0.50460404" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="4" />
@@ -929,16 +812,16 @@
       <window_info id="Captures" order="6" sideWeight="0.50092083" side_tool="true" weight="0.2628205" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info id="Palette&#9;" order="8" />
-      <window_info anchor="bottom" id="Build" order="0" weight="0.32963374" />
+      <window_info anchor="bottom" id="Build" order="0" weight="0.393134" />
       <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32852387" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.34850165" />
-      <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.49946582" weight="0.3973363" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3477298" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946582" weight="0.39645627" />
+      <window_info anchor="bottom" id="Find" order="4" visible="true" weight="0.27131784" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49946582" weight="0.32963374" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.32963374" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005342" side_tool="true" type="SLIDING" weight="0.3973363" />
+      <window_info anchor="bottom" id="Event Log" internal_type="SLIDING" order="9" sideWeight="0.5005342" side_tool="true" type="SLIDING" weight="0.3973363" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.32963374" />
       <window_info anchor="bottom" id="Application Servers" order="11" />
       <window_info anchor="bottom" id="Version Control" order="12" />
@@ -951,10 +834,10 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Designer" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Device File Explorer" order="5" side_tool="true" weight="0.32959402" />
-      <window_info anchor="right" id="Theme Preview" order="6" />
-      <window_info anchor="right" id="Preview" order="7" weight="0.32959402" />
-      <window_info anchor="right" id="Gradle" order="8" weight="0.32995737" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Preview" order="6" weight="0.32959402" />
+      <window_info anchor="right" id="Gradle" order="7" weight="0.32995737" />
+      <window_info anchor="right" id="Device File Explorer" order="8" side_tool="true" weight="0.32959402" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -965,322 +848,31 @@
       <collection />
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Refatorações iniciais" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refatorações iniciais" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/CallService.java</url>
-          <line>260</line>
+          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/BluetoothLeService.java</url>
+          <line>122</line>
           <properties />
-          <option name="timeStamp" value="6" />
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/NeNotificationService.java</url>
-          <line>77</line>
+          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/BluetoothLeService.java</url>
+          <line>281</line>
           <properties />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/NotificationReceiver19.java</url>
-          <line>127</line>
-          <properties />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/NotificationDataManager.java</url>
-          <line>138</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/CallService.java</url>
-          <line>253</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/HelperFragment.java</url>
-          <line>1021</line>
-          <properties />
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/remotecamera/CameraActivity.java</url>
-          <line>99</line>
-          <properties />
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/remotecamera/CameraActivity.java</url>
-          <line>141</line>
-          <properties />
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/remotecamera/CameraActivity.java</url>
-          <line>144</line>
-          <properties />
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/remotecamera/CameraActivity.java</url>
-          <line>148</line>
-          <properties />
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainService.java</url>
-          <line>1299</line>
-          <properties />
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/HelperFragment.java</url>
-          <line>1780</line>
-          <properties />
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/HelperFragment.java</url>
-          <line>1785</line>
-          <properties />
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/bluetoothgyl/L2Send.java</url>
-          <line>537</line>
-          <properties />
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/CallService.java</url>
-          <line>70</line>
-          <properties />
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/CallService.java</url>
-          <line>133</line>
-          <properties />
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/CallService.java</url>
-          <line>160</line>
-          <properties />
-          <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/CallService.java</url>
-          <line>155</line>
-          <properties />
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/CallService.java</url>
-          <line>76</line>
-          <properties />
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/CallService.java</url>
-          <line>112</line>
-          <properties />
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/map/SportsHistoryActivity.java</url>
-          <line>671</line>
-          <properties />
-          <option name="timeStamp" value="62" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/SportHistoryActivityForMtkYouyong.java</url>
-          <line>464</line>
-          <properties />
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/SportHistoryActivityForMtkYouyong.java</url>
-          <line>473</line>
-          <properties />
-          <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/SportHistoryActivityForMtkYouyong.java</url>
-          <line>479</line>
-          <properties />
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/SportHistoryActivityForMtkYouyong.java</url>
-          <line>481</line>
-          <properties />
-          <option name="timeStamp" value="66" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/SportHistoryActivityForMtkYouyong.java</url>
-          <line>575</line>
-          <properties />
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/SportHistoryActivityForMtkYouyong.java</url>
-          <line>573</line>
-          <properties />
-          <option name="timeStamp" value="68" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/SportHistoryActivityForMtkYouyong.java</url>
-          <line>1086</line>
-          <properties />
-          <option name="timeStamp" value="69" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainService.java</url>
-          <line>1729</line>
-          <properties />
-          <option name="timeStamp" value="72" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/WelcomeActivity.java</url>
-          <line>779</line>
-          <properties />
-          <option name="timeStamp" value="77" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/WelcomeActivity.java</url>
-          <line>856</line>
-          <properties />
-          <option name="timeStamp" value="78" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/WelcomeActivity.java</url>
-          <line>437</line>
-          <properties />
-          <option name="timeStamp" value="79" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/WelcomeActivity.java</url>
-          <line>145</line>
-          <properties />
-          <option name="timeStamp" value="81" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/WelcomeActivity.java</url>
-          <line>498</line>
-          <properties />
-          <option name="timeStamp" value="88" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/thirdparty/EXCDController.java</url>
-          <line>1249</line>
-          <properties />
-          <option name="timeStamp" value="90" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/thirdparty/EXCDController.java</url>
-          <line>1221</line>
-          <properties />
-          <option name="timeStamp" value="91" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/DetailedFragment.java</url>
-          <line>395</line>
-          <properties />
-          <option name="timeStamp" value="92" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/DetailedFragment.java</url>
-          <line>397</line>
-          <properties />
-          <option name="timeStamp" value="93" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/map/adapter/HistoryAdapter.java</url>
-          <line>322</line>
-          <properties />
-          <option name="timeStamp" value="94" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/map/adapter/HistoryAdapter.java</url>
-          <line>320</line>
-          <properties />
-          <option name="timeStamp" value="95" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/map/adapter/HistoryAdapter.java</url>
-          <line>368</line>
-          <properties />
-          <option name="timeStamp" value="96" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/WelcomeActivity.java</url>
-          <line>176</line>
-          <properties />
-          <option name="timeStamp" value="97" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/WelcomeActivity.java</url>
-          <line>218</line>
-          <properties />
-          <option name="timeStamp" value="98" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/WelcomeActivity.java</url>
-          <line>247</line>
-          <properties />
-          <option name="timeStamp" value="99" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/WelcomeActivity.java</url>
-          <line>794</line>
-          <properties />
-          <option name="timeStamp" value="100" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/WelcomeActivity.java</url>
-          <line>447</line>
-          <properties />
-          <option name="timeStamp" value="101" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/WelcomeActivity.java</url>
-          <line>495</line>
-          <properties />
-          <option name="timeStamp" value="102" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/WelcomeActivity.java</url>
-          <line>499</line>
-          <properties />
-          <option name="timeStamp" value="103" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/NotificationDataManager.java</url>
-          <line>631</line>
-          <properties />
-          <option name="timeStamp" value="115" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainService.java</url>
-          <line>6747</line>
-          <properties />
-          <option name="timeStamp" value="116" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/map/TrajectoryMapFragment.java</url>
-          <line>669</line>
-          <properties />
-          <option name="timeStamp" value="120" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainService.java</url>
-          <line>840</line>
-          <properties />
-          <option name="timeStamp" value="124" />
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="CidrExceptionBreakpoint">
+          <properties />
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -1300,132 +892,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/res/drawable-xhdpi/clock_skin_model126.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/res/drawable-xhdpi/logo_bluetooth.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/res/drawable-xhdpi/logo_qq.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/res/xml/watchinfo.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/res/menu/share.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/res/layout/activity_login.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/res/drawable/alertdialog_background.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/res/menu/acsetting.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="41" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="41" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/res/menu/menu_sure.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/res/menu/main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="66" selection-start-line="3" selection-start-column="54" selection-end-line="3" selection-end-column="66" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/res/drawable/shape_update.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="92" column="23" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Android/Sdk/platforms/android-27/android.jar!/android/bluetooth/BluetoothGattServer.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/net/RetrofitFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/FirmWareUpdateActivityForBK.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="288" column="48" selection-start-line="288" selection-start-column="48" selection-end-line="288" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Android/Sdk/platforms/android-27/android.jar!/android/bluetooth/BluetoothGatt.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTBluetoothGattCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
-          <folding>
-            <element signature="e#1974#2174#0" expanded="true" />
-            <element signature="e#2173#2174#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/HelperFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="3726" column="27" selection-start-line="3726" selection-start-column="27" selection-end-line="3726" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/notification/NotificationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-110">
-          <caret line="13" column="141" selection-start-line="13" selection-start-column="141" selection-end-line="13" selection-end-column="141" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/res/drawable-xhdpi/ssdk_oks_classic_strava.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/NewWaterMakActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
-          <caret line="182" column="41" selection-start-line="182" selection-start-column="41" selection-end-line="182" selection-end-column="41" />
-          <folding>
-            <element signature="e#49912#49957#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/AnalysisFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="1758" selection-start-line="1758" selection-end-line="1758" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/mtk/app/remotecamera/CameraActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
@@ -1473,13 +939,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/Android/Sdk/platforms/android-27/android.jar!/android/os/Handler.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="17" column="57" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Android/Sdk/platforms/android-27/android.jar!/android/view/Choreographer.class">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1520,12 +979,6 @@
           <caret line="669" column="30" selection-start-line="669" selection-start-column="30" selection-end-line="669" selection-end-column="30" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-360" />
-      </provider>
-      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/view/DetailedFragment.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1594,13 +1047,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="1182" column="44" selection-start-line="1182" selection-start-column="44" selection-end-line="1182" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Android/Sdk/platforms/android-27/android.jar!/android/content/IntentFilter.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -1609,13 +1055,6 @@
             <element signature="e#2373#2374#0" expanded="true" />
             <element signature="e#2424#2425#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="1938" column="9" selection-start-line="1938" selection-start-column="9" selection-end-line="1938" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -1628,8 +1067,202 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/funDo/src/main/res/values-pt-rPT/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="48" column="57" selection-start-line="48" selection-start-column="57" selection-end-line="48" selection-end-column="57" />
+        <state relative-caret-position="250">
+          <caret line="46" column="40" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="1189" column="21" selection-start-line="1189" selection-start-column="21" selection-end-line="1189" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/no.nordicsemi.android/dfu/1.6.1/40959cfba165a81ac25c4b9a70d57b1a4c625adc/dfu-1.6.1-sources.jar!/no/nordicsemi/android/dfu/DfuProgressListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/no.nordicsemi.android/dfu/1.6.1/40959cfba165a81ac25c4b9a70d57b1a4c625adc/dfu-1.6.1-sources.jar!/no/nordicsemi/android/dfu/BaseCustomDfuImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="41" column="35" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/no.nordicsemi.android/dfu/1.6.1/40959cfba165a81ac25c4b9a70d57b1a4c625adc/dfu-1.6.1-sources.jar!/no/nordicsemi/android/dfu/DfuCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="32" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/no.nordicsemi.android/dfu/1.6.1/40959cfba165a81ac25c4b9a70d57b1a4c625adc/dfu-1.6.1-sources.jar!/no/nordicsemi/android/dfu/DfuServiceProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="80" column="36" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="36" />
+          <folding>
+            <element signature="e#3978#3979#0" expanded="true" />
+            <element signature="e#4038#4039#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/no.nordicsemi.android/dfu/1.6.1/40959cfba165a81ac25c4b9a70d57b1a4c625adc/dfu-1.6.1-sources.jar!/no/nordicsemi/android/dfu/BaseDfuImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2610">
+          <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/BTNotificationApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
+          <folding>
+            <element signature="e#3805#3806#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTBluetoothManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="28" column="25" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/activity/LinkBleActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3285">
+          <caret line="286" column="25" selection-start-line="284" selection-start-column="29" selection-end-line="286" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/adapter/LinkBleAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="82" selection-start-line="82" selection-end-line="82" />
+          <folding>
+            <element signature="e#2600#2601#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Android/Sdk/platforms/android-27/android.jar!/android/view/View.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$USER_HOME$/Android/Sdk/platforms/android-27/android.jar!/java/lang/Integer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="50" column="22" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Android/Sdk/platforms/android-27/android.jar!/dalvik/system/DexFile.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#1479#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/callback/IBluetoothGattCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/MainService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47130">
+          <caret line="3331" column="40" selection-start-line="3331" selection-start-column="11" selection-end-line="3331" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/funDo/funDo.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/kct/fundo/btnotification/wxapi/WXEntryActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kcthelper/src/main/java/com/kct/bluetooth/KCTBluetoothHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3000">
+          <caret line="252" column="31" selection-start-line="252" selection-start-column="12" selection-end-line="252" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/funDo/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="52" column="66" selection-start-line="52" selection-start-column="66" selection-end-line="52" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/weloopbtsmartdevice/main/BluetoothLeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3615">
+          <caret line="279" column="55" selection-start-line="279" selection-start-column="55" selection-end-line="279" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Android/Sdk/platforms/android-27/android.jar!/android/bluetooth/BluetoothDevice.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="83" column="18" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Android/Sdk/platforms/android-27/android.jar!/android/os/Handler.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Android/Sdk/platforms/android-27/android.jar!/android/os/Looper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-27/android/bluetooth/BluetoothDevice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="788" column="18" selection-start-line="788" selection-start-column="18" selection-end-line="788" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-27/android/os/Handler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="65" column="13" selection-start-line="65" selection-start-column="13" selection-end-line="65" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-27/android/os/Looper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/funDo/src/main/java/com/szkct/bluetoothgyl/UtilsLX.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1545">
+          <caret line="45" column="21" lean-forward="true" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
         </state>
       </provider>
     </entry>

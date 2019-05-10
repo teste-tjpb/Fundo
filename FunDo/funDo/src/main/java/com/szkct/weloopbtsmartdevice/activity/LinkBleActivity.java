@@ -306,7 +306,7 @@ public class LinkBleActivity extends AppCompatActivity{
     }
 
     /**
-     * 点击扫描的按钮
+     * Click the button for scanning
      */
     private View.OnClickListener mScanningClickListener = new View.OnClickListener() {
         @Override
@@ -349,7 +349,7 @@ public class LinkBleActivity extends AppCompatActivity{
                 timer.schedule(timerTask,1000);
             } else {
                 isSearch = true;
-                tvSesarch.setText(R.string.menu_scan);  // 搜索
+                tvSesarch.setText(R.string.menu_scan);  // search for
                 scanDevice(false,false);
             }
         }
@@ -444,7 +444,7 @@ public class LinkBleActivity extends AppCompatActivity{
                 @Override
                 public void onLeScan(final BluetoothDevice device, final int rssi, final byte[] scanRecord) {
                     //Log.i(TAG, "address = " + device.getAddress());
-                    if (mScanning) {       //当取消搜索就不再加入设备
+                    if (mScanning) {       //No longer join the device when canceling the search
                         if (null != timer) {
                             timer.cancel();
                             timer.purge();
@@ -456,7 +456,7 @@ public class LinkBleActivity extends AppCompatActivity{
                         }
                         boolean deviceFound = false;
                         if (Looper.myLooper() == Looper.getMainLooper()) {
-                            //判断是否已有相同设备deviceFound
+                            //Determine if the same device deviceFound
                             for (int i = 0; i < deviceList.size(); i++) {
                                 if (deviceList.get(i).getBluetoothDevice().getAddress().equals(device.getAddress())) {
                                     deviceFound = true;
@@ -482,7 +482,7 @@ public class LinkBleActivity extends AppCompatActivity{
                                 @Override
                                 public void run() {
                                     boolean isFound = false;
-                                    //判断是否已有相同设备deviceFound
+                                    //Determine if the same device deviceFound
                                     for (int i = 0; i < deviceList.size(); i++) {
                                         if (deviceList.get(i).getBluetoothDevice().getAddress().equals(device.getAddress())) {
                                             isFound = true;
@@ -498,7 +498,7 @@ public class LinkBleActivity extends AppCompatActivity{
                                             deviceList.add(linkBleData);
                                             deviceAdapter.notifyDataSetChanged();
                                             if (MainService.getInstance().getState() != 2 && MainService.getInstance().getState() != 3) {
-                                                //MainService.getInstance().connectBluetooth(device.getAddress(), true);  // 蓝牙没有连接时，连接蓝牙
+                                                //MainService.getInstance().connectBluetooth(device.getAddress(), true);  // Connect Bluetooth when Bluetooth is not connected
                                                 BTNotificationApplication.getMainService().connectDevice(device);
                                             }
                                         }
@@ -514,7 +514,7 @@ public class LinkBleActivity extends AppCompatActivity{
                         for (final UUID uuid : uuids) {
                             if (uuid.equals(BleContants.BLE_YDS_UUID) || uuid.equals(BleContants.BLE_YDS_UUID_HUAJING)
                                     || uuid.equals(BleContants.MTK_YDS_2502_UUID) || uuid.equals(BleContants.MTK_YDS_2503_UUID) || uuid.equals(BleContants.MTK_YDS_3802_UUID)) {
-                                //判断是否已有相同设备deviceFound
+                                //Determine if the same device deviceFound
                                 for (int i = 0; i < deviceList.size(); i++) {
                                     if (deviceList.get(i).getBluetoothDevice().getAddress().equals(device.getAddress())) {
                                         deviceFound = true;

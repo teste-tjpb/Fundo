@@ -573,15 +573,15 @@ public final class MainService extends Service {
         BLEMUSIC = false;
     }
 
-    public static boolean isSendFile = false;   //dialog升级发送数据包判断条件
+    public static boolean isSendFile = false;   //Dialog upgrade send packet judgment condition
 
-    private AutoConnectThread autoConnectThread;  //蓝牙重连线程
+    private AutoConnectThread autoConnectThread;  //Bluetooth reconnect thread
 
     private HidConncetUtil mHidConncetUtil;
 	 private boolean isHandler = false;
 
-    private int index = 0;      // 表盘推送索引（无偏移）
-    private  int indexHpy = 0;  // 表盘推送索引（有偏移）
+    private int index = 0;      // Dial push index (no offset)
+    private  int indexHpy = 0;  //Dial push index (no offset)
 //////////////////////////////////////////////////////////
 //    private int packageNum = WatchPushActivityNew.fileByte.length/256;    // 0E00E20006 00 0100 0000 00    ------
 //    private int lastpackageNum = WatchPushActivityNew.fileByte.length%256;
@@ -622,10 +622,10 @@ public final class MainService extends Service {
                     EventBus.getDefault().post(new MessageEvent(CONNECT_FAIL));
                     EventBus.getDefault().post(new MessageEvent(AUTO_CONNECT));
 
-                // todo --- GATT 断开连接了
+                // todo --- GATT Disconnected
                 if(null != mHidConncetUtil && null != connectDevice ){  // mHidConncetUtil.device    connectDevice
                     mHidConncetUtil.unPair(connectDevice);
-                    mHidConncetUtil.disConnect(connectDevice);   // todo --- 绑定后，再连接   ---- 通过反射连接
+                    mHidConncetUtil.disConnect(connectDevice);   // todo --- After binding, connect again ---- connect by reflection
                 }
             }else if(i == 2){
                 if(deviceState != STATE_NOCONNECT && mBluetoothAdapter.isEnabled()) {
@@ -1137,7 +1137,7 @@ public final class MainService extends Service {
     }
 
     /**
-     * 重连
+     * Reconnection
      */
     private synchronized void autoConnectDevice() {
         Log.i(TAG, "[autoConnectDevice] begin");
@@ -1555,7 +1555,7 @@ public final class MainService extends Service {
 
 
     /**
-     * Android5.0以下蓝牙搜索方式
+     * Android5.0 below Bluetooth search method
      */
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
             new BluetoothAdapter.LeScanCallback() {
@@ -1643,11 +1643,11 @@ public final class MainService extends Service {
     public void startLock() {
         policyManager = (DevicePolicyManager) getApplicationContext().getSystemService(Context.DEVICE_POLICY_SERVICE);
         componentName = new ComponentName(this, LockReceiver.class);
-        if (policyManager.isAdminActive(componentName)) {    //判断是否有权限(激活了设备管理器)
-            policyManager.lockNow();// 直接锁屏
+        if (policyManager.isAdminActive(componentName)) {    //Determine if there is permission (device manager is activated)
+            policyManager.lockNow();// Direct lock screen
             Log.i("gjylock", "gjylock");
         } else {
-            //激活设备管理器获取权限
+            //Activate Device Manager to get permissions
 //            MainService.getInstance().sendMessage("unac");
             Intent dialogIntent = new Intent(getBaseContext(), MyDevicePolicyManager.class);
             dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -2889,7 +2889,7 @@ private  void settingNotification(){
 
 
 
-    public void sendMessage(String value) {   // 发送字符串的方法
+    public void sendMessage(String value) {   // Method of sending a string
     }
 
 
@@ -2898,11 +2898,11 @@ private  void settingNotification(){
 
 
     /**
-     * 内部类广播
+     * Internal class broadcast
      *
      * @author chendalin
      */
-    private class ServiceBroadcast extends BroadcastReceiver {     // TODO --- 从HomeFragment发送广播，接收到广播后，后台获取天气
+    private class ServiceBroadcast extends BroadcastReceiver {     // TODO --- Send a broadcast from HomeFragment, get the weather in the background after receiving the broadcast
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(MainService.WEATHER_DATA)) {
@@ -3142,7 +3142,7 @@ private  void settingNotification(){
      * 发送广播给MainService端
      */
     private void sendReceiver() {
-        Log.e("WeatherService ", " 服务 发送广播");
+        Log.e("WeatherService ", " Service send broadcast");
         Intent intent = new Intent();
         intent.setAction(ACTION_WEATHER);
         sendBroadcast(intent);
@@ -4089,24 +4089,24 @@ private  void settingNotification(){
                         }
                     }
                 }
-                else if (byte1 == BleContants.INSTALL_COMMAND) {              //TODO -- 设置命令        0x02
-                    if (bytes[2] == BleContants.INSTALL_SETTING_RETURN) {            //TODO -- 读取手环设置响应   0x2F
-// 02002F 004A
-// 000000 0000
-// 000000 0000
-// 000000 0000
-// 000000 0000
-// 000000 0000   --- 25 bytes	闹钟（全部5组
-// 0109 0B7F 001E 0032   --- 8 bytes		久坐提醒
-// 0012 AA3C 8813 0000   --- 8 bytes		用户信息
-// 03                   1 byte		提醒模式
-// 0000 0000 00             5 bytes		免打扰设置
-// 0000 0000 0000       6 bytes		心率检测   （6bytes）
-// 0018 3C0E            4 bytes		系统设置   --- 没有用到
-// 0000 0000 0000 0000  8 bytes		喝水提醒
-// 0000                  2 bytes		消息推送
-// 8813 0000            4 bytes		运动目标
-// 000000               3 bytes		手势亮屏
+                else if (byte1 == BleContants.INSTALL_COMMAND) {              //TODO -- Setting command        0x02
+                    if (bytes[2] == BleContants.INSTALL_SETTING_RETURN) {            //TODO -- Read bracelet setting response   0x2F
+                        // 02002F 004A
+                        // 000000 0000
+                        // 000000 0000
+                        // 000000 0000
+                        // 000000 0000
+                        // 000000 0000   --- 25 bytes	Alarm clock (all 5 groups)
+                        // 0109 0B7F 001E 0032   --- 8 bytes		Sedentary reminder
+                        // 0012 AA3C 8813 0000   --- 8 bytes		User Info
+                        // 03                   1 byte		Reminder mode
+                        // 0000 0000 00             5 bytes		Do not disturb setting
+                        // 0000 0000 0000       6 bytes		Heart rate detection   （6bytes）
+                        // 0018 3C0E            4 bytes		System settings   --- Not used
+                        // 0000 0000 0000 0000  8 bytes		Drinking water reminder
+                        // 0000                  2 bytes		Message push
+                        // 8813 0000            4 bytes		Moving target
+                        // 000000               3 bytes		Gesture bright screen
                         byte[] clockByte = new byte[25];       //Alarm clock
                         byte[] sedentaryByte = new byte[8];    //Sedentary reminder
                         byte[] userInfoByte = new byte[8];     //User Info

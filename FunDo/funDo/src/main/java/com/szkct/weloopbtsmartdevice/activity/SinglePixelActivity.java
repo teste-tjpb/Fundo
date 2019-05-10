@@ -25,7 +25,7 @@ public class SinglePixelActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        if(Contants.DEBUG)
-            Log.d(TAG, "onCreate--->启动1像素保活");
+            Log.d(TAG, "onCreate--->Start 1 pixel keep alive");
         Window mWindow = getWindow();
         mWindow.setGravity(Gravity.LEFT | Gravity.TOP);
         WindowManager.LayoutParams attrParams = mWindow.getAttributes();
