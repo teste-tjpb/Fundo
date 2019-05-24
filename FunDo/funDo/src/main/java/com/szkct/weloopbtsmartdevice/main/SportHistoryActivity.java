@@ -501,7 +501,7 @@ public class SportHistoryActivity extends FragmentActivity implements View.OnCli
 
                 }, 1400);
 
-                if (rb_sport_trajectory.isChecked()) {  //运动轨迹页面分享
+                if (rb_sport_trajectory.isChecked()) {  //Tracking page sharing
                     sendBroadcast(new Intent(TrajectoryMapFragment.SEND_RECEIVER_SCREEN));
                 }
 

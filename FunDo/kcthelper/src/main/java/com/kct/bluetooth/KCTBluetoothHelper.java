@@ -59,7 +59,7 @@ import static com.kct.bluetooth.bean.KCTGattAttributes.RX_SERVICE_UUID;
 public class KCTBluetoothHelper implements IBluetoothGattCallback {
 
 	private final static String TAG = "[LogHelper]";
-	private static final String LIB_VERSION = "1.2.2"; //SDK版本
+	private static final String LIB_VERSION = "1.2.2"; //SDK version
 
 	private Context context;
 	private BluetoothManager mBluetoothManager;        //Bluetooth management

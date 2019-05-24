@@ -935,7 +935,7 @@ public class EXCDController extends Controller {
 
                             if(BTNotificationApplication.isSyncEnd){     //todo  --- 参考BLE 同步数据成功 才发实时心率数据
                                 intent = new Intent();
-                                intent.setAction(MainService.ACTION_SYNARTHEART);    //发送实时心率
+                                intent.setAction(MainService.ACTION_SYNARTHEART);    //Send real-time heart rate
                                 intent.putExtra("heart", heart);
 //                                intent.putExtra("time", heartTime);
                                 mContext.sendBroadcast(intent);

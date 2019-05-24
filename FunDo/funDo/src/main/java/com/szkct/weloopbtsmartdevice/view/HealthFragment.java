@@ -3912,7 +3912,7 @@ private  LineChartData dataXueyang ;
                 }).start();
             }
 
-            if(intent.getAction().equals(MainService.ACTION_SYNARTHEART) && BTNotificationApplication.isSyncEnd ){  // 同步实时心率不需要计步和睡眠数据     ACTION_SYNARTBP
+            if(intent.getAction().equals(MainService.ACTION_SYNARTHEART) && BTNotificationApplication.isSyncEnd ){  // Synchronous real-time heart rate does not require step counting and sleep data     ACTION_SYNARTBP
                 ThreadPoolManager.getInstance().execute(new Runnable() {
                     @Override
                     public void run() {

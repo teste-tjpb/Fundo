@@ -4522,15 +4522,15 @@ public class HomeFragment extends Fragment implements AMapLocationListener, OnPa
                 String heart = intent.getStringExtra("heart");
 //                String heartTime = intent.getStringExtra("time");
                 if (!StringUtils.isEmpty(heart) && Integer.valueOf(heart) > 0) {
-                    //todo  -- 当前页面不是当前日期 ，切换到当前日期页面
-                    String mcurDate = getCurDate();  // 获取当前控件上的日期
+                    //todo  -- The current page is not the current date, switch to the current date page
+                    String mcurDate = getCurDate();  // Get the date on the current control
 
-                    Date curDate = new Date(System.currentTimeMillis());// 获取当前时间
+                    Date curDate = new Date(System.currentTimeMillis());// Get current time
                     String heartDay = getDateFormat.format(curDate);   // todo  --- 2017-06-14
 
-                    if (!mcurDate.equals(heartDay)) { //不是当前日期，跳转到当前日期
+                    if (!mcurDate.equals(heartDay)) { //Not current date, jump to current date
                         Message msg = new Message();
-                        msg.what = SETCURTIMEFORHEART;  // 设置当前的日期        SETCURTIME
+                        msg.what = SETCURTIMEFORHEART;  // Set current date        SETCURTIME
                         msg.obj = heartDay;
                         handler.sendMessage(msg);
 

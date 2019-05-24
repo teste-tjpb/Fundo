@@ -466,7 +466,7 @@ public class L2Send {
     }
 
     /**
-     * 发送退出拍照命令(新协议)
+     * Send exit photo command (new agreement)
      */
     public static void sendNewExitTakephoto() {
         byte[] l2 = new L2Bean().L2Pack(BleContants.DEVICE_COMMAND, BleContants.CRAMER_CLOSE, new byte[]{1});
@@ -474,7 +474,7 @@ public class L2Send {
     }
 
     /**
-     * 发送同步实时步数命令 --- (蓝牙连上后)
+     * Send synchronous real-time step command --- (after Bluetooth is connected)
      */
     public static void sendSyncShishiStep() {
         byte[] l2 = new L2Bean().L2Pack(BleContants.SYN_COMMAND, BleContants.ACTUAL_SYN_DATA_REQUEST, new byte[]{3});
@@ -483,14 +483,14 @@ public class L2Send {
 
 
     /**
-     * 发送久坐提醒
+     * Send sedentary reminder
      */
     public static void sendNotify(byte key, byte[] b) {
         sendNotify(BleContants.INSTALL_COMMAND,key,b);
     }
 
     /**
-     * 发送久坐提醒
+     * Send sedentary reminder
      */
     public static void sendNotify(byte cmd,byte key, byte[] b) {
         byte[] l2 = new L2Bean().L2Pack(cmd, key, b);
@@ -498,7 +498,7 @@ public class L2Send {
     }
 
     /**
-     * 发送提醒消息
+     * Send reminder message
      */
     public static void sendNotifyMsg(byte[] b) {
         byte[] l2 = new L2Bean().L2Pack(BleContants.REMIND_COMMAND, BleContants.REMIND, b);
@@ -506,7 +506,7 @@ public class L2Send {
     }
 
     /**
-     * 读取手环设置请求
+     * Read the bracelet setup request
      */
     public static void sendBraceletSet() {
         byte[] l2 = new L2Bean().L2Pack(BleContants.INSTALL_COMMAND, BleContants.INSTALL_SETTING, null);
@@ -523,7 +523,7 @@ public class L2Send {
     }
 
     /**
-     * 同步运动目标
+     * Synchronous moving target
      */
     public static void syncSportTarget() {
         SharedPreferences goalPreferences = BTNotificationApplication.getInstance().getSharedPreferences("goalstepfiles", Context.MODE_PRIVATE);  // todo --- ???  MODE_PRIVATE

@@ -3464,7 +3464,7 @@ public class PresentationActivity extends FragmentActivity implements View.OnCli
     }
 
 
-    private void judgmentHeartDB() {   // K3实时心率 数据量 大 ，且实时测量时，测量频率大
+    private void judgmentHeartDB() {   //K3 real-time heart rate data volume is large, and the measurement frequency is large when measuring in real time.
         if (db == null) {
             db = DBHelper.getInstance(PresentationActivity.this);
         }

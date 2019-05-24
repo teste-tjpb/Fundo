@@ -66,13 +66,13 @@ public class L2Bean {
 
 
     public byte[] L2Pack(byte cmd,byte key,byte[] keyValue){
-        /**保留字段*/
+        /**reserved text*/
         int reserve = 0;
         int ver = L2_HEADER_VERSION;
         int length = (keyValue == null)?0:keyValue.length;
         /**L2*/
         byte[] L2_send_data = new byte[length + 5];
-        /**L2的没数据包头*/
+        /**L2's no data packet header*/
         L2_send_data[0] = cmd;
         L2_send_data[1] = (byte) ((ver << 2) | reserve);
         L2_send_data[2] = key;

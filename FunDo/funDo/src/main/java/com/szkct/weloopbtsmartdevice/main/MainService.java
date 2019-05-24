@@ -4694,18 +4694,18 @@ private  void settingNotification(){
                 } else if (byte1 == BleContants.HEART_COMMAND) {                           //TODO -- 心率命令   0x09
 
                 } else if (byte1 == BleContants.SYN_COMMAND) {                           //TODO -- 同步命令      0x0A
-                    if (bytes[2] == BleContants.BRACELET_RUN_DATA_RETURN) {               //TODO 手环运动数据返回  ---历史  (0xA3)
+                    if (bytes[2] == BleContants.BRACELET_RUN_DATA_RETURN) {               //TODO Bracelet motion data return  ---history  (0xA3)
                         // 0A00A3006411081D00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004B4000004B400000AC000000B2000000CEA000014180000197500001F1400001F48
                         // 0A00A30000
                         if(!BTNotificationApplication.isSyncEnd) {
-                            if(SharedPreUtil.readPre(sContext, SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")) {    //(智能表)
+                            if(SharedPreUtil.readPre(sContext, SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")) {    //(Smart watch)
                                 needReceDataNumber = 1;
                                 Intent intent = new Intent();
-                                intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                 intent.putExtra("step", "1");
                                 sContext.sendBroadcast(intent);
-                            }else{        //(手环)
-                                getSyncDataNumInService++;  //todo ---- getSyncDataNumInService 值对应设备端有几天的数据
+                            }else{        //(wristband)
+                                getSyncDataNumInService++;  //todo ---- getSyncDataNumInService The value corresponds to the data of the device side for several days.
 
                                 Log.e("liuxiaodata", "The data entry that needs to be received is----" + BTNotificationApplication.needReceiveNum);
                                 if (BTNotificationApplication.needReceiveNum == 21) {  // 1/5,2/5
@@ -4713,7 +4713,7 @@ private  void settingNotification(){
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize1));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "1");
                                         sContext.sendBroadcast(intent);
                                         Log.e("liuxiaodata", "Send 1 broadcast");
@@ -4721,7 +4721,7 @@ private  void settingNotification(){
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize2));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "2");
                                         sContext.sendBroadcast(intent);
                                         Log.e("liuxiaodata", "Send 2 broadcasts");
@@ -4729,7 +4729,7 @@ private  void settingNotification(){
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize3));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "3");
                                         sContext.sendBroadcast(intent);
                                         Log.e("liuxiaodata", "Send 3 broadcasts");
@@ -4737,7 +4737,7 @@ private  void settingNotification(){
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "4");
                                         sContext.sendBroadcast(intent);
                                         Log.e("liuxiaodata", "Send 4 broadcasts");
@@ -4745,7 +4745,7 @@ private  void settingNotification(){
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize4));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "5");
                                         sContext.sendBroadcast(intent);
 
@@ -4757,7 +4757,7 @@ private  void settingNotification(){
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize1));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "1");
                                         sContext.sendBroadcast(intent);
                                         Log.e("liuxiaodata", "Send 1 broadcast");
@@ -4765,7 +4765,7 @@ private  void settingNotification(){
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize2));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "2");
                                         sContext.sendBroadcast(intent);
                                         Log.e("liuxiaodata", "Send 2 broadcasts");
@@ -4773,7 +4773,7 @@ private  void settingNotification(){
 //                                    HelperFragment.loadingDialog.setText(getString(R.string.userdata_synchronize3));
 
                                         Intent intent = new Intent();      // add 0414
-                                        intent.setAction(MainService.ACTION_SYNFINSH);    // 发数据同步成功的广播
+                                        intent.setAction(MainService.ACTION_SYNFINSH);    // Successfully broadcast data synchronization
                                         intent.putExtra("step", "3");
                                         sContext.sendBroadcast(intent);
                                         Log.e("liuxiaodata", "Send 3 broadcasts");
@@ -4803,7 +4803,7 @@ private  void settingNotification(){
                             return;
                         }
 
-                        if (l2ValueLength == 100) {   //旧协议
+                        if (l2ValueLength == 100) {   //Old agreement
 //                            if(Locale.getDefault().getLanguage().equalsIgnoreCase("ar")){ //todo ---  阿拉伯语
 //                                String ttd = String.format(Locale.ENGLISH,"20" + "%02d", bytes[5] & 0xff);  // 2018
 //                                String tt = String.format(Locale.getDefault(),"20" + "%02d", bytes[5] & 0xff);  // 20١٨
@@ -4822,7 +4822,7 @@ private  void settingNotification(){
                             Log.i(TAG, "run day =" + day);
                             String hour = String.format(Locale.ENGLISH,"%02d", bytes[8] & 0xff);
                             Log.i(TAG, "run hour =" + hour);
-                            int[] oneDayStep = new int[24];   //对应1-24点之间的时间段 步数增量值
+                            int[] oneDayStep = new int[24];   //Corresponding to the time period between 1 and 24 points
                             int j = 0;
                             for (int i = 9; i < 105; i++) {   //
                                 int pp = i % 4;
@@ -4838,7 +4838,7 @@ private  void settingNotification(){
                                 }
                             }
 
-//                        int runCount =  oneDayStep[23]; // 步数  --- 一天的总步数值
+//                        int runCount =  oneDayStep[23]; // Step count  --- Total step value of the day
                             for (int p = 0; p < 24; p++) {
                                 Log.i(TAG, "oneDayStep--" + p + "----" + oneDayStep[p]);
                             }
@@ -4848,13 +4848,13 @@ private  void settingNotification(){
                             int hasStepTemp = 0;
                             for (int i = 0; i < oneDayStep.length; i++) {
                                 int goalSum = oneDayStep[i];
-                                int realStep = 0;  // 时间段实际步数值
+                                int realStep = 0;  // Actual step value of time period
                                 StepData stepData = new StepData();
                                 String mcurTime = year + "-" + mouth + "-" + day + " " + String.format(Locale.ENGLISH,"%02d", i) + ":" + "00:00";  // 20١٨-٠٧-٢٨ ٠٠:00:00
                                 Date date = StringUtils.parseStrToDate(mcurTime, StringUtils.SIMPLE_DATE_FORMAT);
                                 if (date != null) {
                                     stepData.setTime(date.getTime() / 1000 + "");
-                                    if (hasStepTemp == 0 || SharedPreUtil.readPre(sContext, SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")) {  //智能表传入的是增量数据
+                                    if (hasStepTemp == 0 || SharedPreUtil.readPre(sContext, SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")) {  //Smart table is passed in incremental data
                                         stepData.setCounts(goalSum + "");
                                         realStep = goalSum;
                                     } else {
@@ -4893,12 +4893,12 @@ private  void settingNotification(){
 
                                     double calorie = 0.00;
                                     if (realStep > 0) {
-                                        calorie = Double.valueOf(String.format(Locale.ENGLISH, "%1$.3f", realStep * (((float) (userWeightI) - 15) * 0.000693 + 0.005895))); //TODO  BLE手环给的计算公式
+                                        calorie = Double.valueOf(String.format(Locale.ENGLISH, "%1$.3f", realStep * (((float) (userWeightI) - 15) * 0.000693 + 0.005895))); //TODO  Calculation formula given by BLE bracelet
                                         //calorie = Double.valueOf(String.format(Locale.ENGLISH,"%1$.2f", ((float)(userWeightI) * (float) ((realStep * 0.7) / 1000.0) * 1.036)));  // 卡路里     0,00    Locale.ENGLISH
                                     }
-                                    String distance = String.format(Locale.ENGLISH, "%.3f", (realStep * (0.415 * (float) userHeightI) / 100000));  //TODO BLE手环给的计算公式
-                                    //String distance = String.format(Locale.ENGLISH,"%.2f", (realStep * 0.7) / 1000.0);     // 运动距离
-//                                String distance = String.format("%.2f", (realStep * 0.7) / 1000.0);     // 运动距离
+                                    String distance = String.format(Locale.ENGLISH, "%.3f", (realStep * (0.415 * (float) userHeightI) / 100000));  //TODO Calculation formula given by BLE bracelet
+                                    //String distance = String.format(Locale.ENGLISH,"%.2f", (realStep * 0.7) / 1000.0);     // Moving distance
+//                                String distance = String.format("%.2f", (realStep * 0.7) / 1000.0);     // Moving distance
                                     stepData.setCalorie(calorie + "");
                                     stepData.setDistance(distance + "");
                                     dataList.add(stepData);
@@ -4908,7 +4908,7 @@ private  void settingNotification(){
                             }
 
                             BTdataWrite(dataList);
-                        }else {      //新协议(388字节)
+                        }else {      //New agreement (388 bytes)
                             String year = String.format(Locale.ENGLISH,"20" + "%02d", bytes[5] & 0xff);
                             Log.i(TAG, "run year =" + year);
                             String mouth = String.format(Locale.ENGLISH,"%02d", bytes[6] & 0xff);
@@ -5077,7 +5077,7 @@ private  void settingNotification(){
                         byte[] sleep = new byte[3];
                         byte[] sleepNext = new byte[3];
                         int l2Length = (((bytes[3] << 8) & 0xff00) | (bytes[4] & 0xff));   // 75    --- 60
-                        String year = String.format(Locale.ENGLISH,"20" + "%02d", (bytes[5] & 0xff));   // 第5位 年
+                        String year = String.format(Locale.ENGLISH,"20" + "%02d", (bytes[5] & 0xff));   // 5th year
                         Log.e(TAG, "sleep year =" + year);
                         String month = String.format(Locale.ENGLISH,"%02d", bytes[6] & 0xff);
                         Log.e(TAG, "sleep mouth =" + month);
@@ -5087,30 +5087,30 @@ private  void settingNotification(){
                         String sleepBeginDay = year + "-" + month + "-" + day;
                         String sleepEndDay = "";
 
-                        int sleepLength = (l2Length - 3) / 3;   // 所有的睡眠数据的组数    ---- 17  应该为 19组
+                        int sleepLength = (l2Length - 3) / 3;   // Number of groups of all sleep data    ---- 17  Should be 19 groups
                         List<SleepData> sleepList = new ArrayList<>();
-                        boolean hasOtherDay = false;  // 是否跨天
+                        boolean hasOtherDay = false;  // Whether cross-day
                         for (int i = 0; i < sleepLength; i++) {  // 3
                             System.arraycopy(bytes, (i * 3) + 8, sleep, 0, 3);
                             if ((i + 1) == sleepLength) {
                                 break;
                             }
                             System.arraycopy(bytes, ((i + 1) * 3) + 8, sleepNext, 0, 3);
-                            int sleepBeginMode = sleep[0];  // 睡眠模式
-                            int sleepBeginHour = sleep[1];  // 睡眠的开始 小时  10进制
-                            int sleepBeginMinute = sleep[2]; // 睡眠的开始 分钟
+                            int sleepBeginMode = sleep[0];  // Sleep mode
+                            int sleepBeginHour = sleep[1];  //Start of sleep hour decimal
+                            int sleepBeginMinute = sleep[2]; // The beginning of sleep
                             Log.e(TAG, "sleepBeginMode =" + sleepBeginMode);
                             Log.e(TAG, "sleepBeginHour = " + sleepBeginHour);
                             Log.e(TAG, "sleepBeginMinute = " + sleepBeginMinute);
-                            int sleepEngMode = sleepNext[0];  // 睡眠模式
-                            int sleepEndHour = sleepNext[1];   // 睡眠的开始 小时   10进制
-                            int sleepEndMinute = sleepNext[2];  // 睡眠的开始 分钟
+                            int sleepEngMode = sleepNext[0];  // Sleep mode
+                            int sleepEndHour = sleepNext[1];   // Start of sleep hour decimal
+                            int sleepEndMinute = sleepNext[2];  // The beginning of sleep
                             Log.e(TAG, "sleepEngMode =" + sleepEngMode);
                             Log.e(TAG, "sleepEndHour = " + sleepEndHour);
                             Log.e(TAG, "sleepEndMinute = " + sleepEndMinute);
-                            long deepSleepTime = 0;   //深睡
-                            long lightSleepTime = 0;   //浅睡
-                            long notSleepTime = 0; //未睡眠
+                            long deepSleepTime = 0;   //Deep sleep
+                            long lightSleepTime = 0;   //Light sleep
+                            long notSleepTime = 0; //Not sleep
                             SimpleDateFormat dfs = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
                             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                             DBHelper db = DBHelper.getInstance(sContext);
@@ -5130,22 +5130,22 @@ private  void settingNotification(){
                                     hasOtherDay = true;
                                     Date date = new Date();
                                     try {
-                                        Date newDay = new DateTime(format.parse(sleepBeginDay)).plusDays(1).toDate();  // 日期
+                                        Date newDay = new DateTime(format.parse(sleepBeginDay)).plusDays(1).toDate();  // date
                                         sleepEndDay = dfs.format(newDay).split(" ")[0];  // 结束的日期 加1
                                     } catch (ParseException e) {
                                         e.printStackTrace();
                                     }
-                                } else { //开始时间一直小于结束时间（没有跨天的睡眠数据）
-                                    if (i == 0) { // 取当天睡眠数据的第一条
-                                        if (sleepEndHour <= 12) {   // 全为第2天 0点以后的数据
+                                } else {  //Start time is always less than the end time (no cross-day sleep data)
+                                    if (i == 0) { // Take the first piece of sleep data for the day
+                                        if (sleepEndHour <= 12) {   // All for the second day after 0 o'clock data
                                             try {
-                                                Date newDay = new DateTime(format.parse(sleepBeginDay)).plusDays(1).toDate();  // 日期
-                                                sleepEndDay = dfs.format(newDay).split(" ")[0];  // 结束的日期 加1
+                                                Date newDay = new DateTime(format.parse(sleepBeginDay)).plusDays(1).toDate();  // date
+                                                sleepEndDay = dfs.format(newDay).split(" ")[0];  // End date plus 1
                                                 sleepBeginDay = sleepEndDay;
                                             } catch (ParseException e) {
                                                 e.printStackTrace();
                                             }
-                                        } else {  // 当天的24点之前有睡眠数据
+                                        } else {  // Sleep data before 24 o'clock on the day
                                             sleepEndDay = sleepBeginDay;
                                         }
                                     }
@@ -5159,11 +5159,11 @@ private  void settingNotification(){
                                 Date end = dfs.parse(sleepEndDay + " " + sleepEndTime);        // "yyyy-MM-dd HH:mm
                                 long between = (end.getTime() - begin.getTime()) / 1000;//除以1000是为了转换成秒 (睡眠开始时间和结束时间之间的 总秒数)
                                 if (sleepBeginMode == 0) {
-                                    notSleepTime = between / 60;    // 0 : 未睡
+                                    notSleepTime = between / 60;    // 0 : Not sleeping
                                     continue;
-                                } else if (sleepBeginMode == 1) {   // 1: 浅睡 ：分钟数
+                                } else if (sleepBeginMode == 1) {   // 1: Light sleep ：Minutes
                                     lightSleepTime = between / 60;
-                                } else {                            // 2: 深睡 ：分钟数
+                                } else {                            // 2: Deep sleep ：Minutes
                                     deepSleepTime = between / 60;
                                 }
                                 sleepData.setMac(SharedPreUtil.readPre(sContext, SharedPreUtil.USER, SharedPreUtil.MAC));
@@ -5958,8 +5958,8 @@ private  void settingNotification(){
                         }
 
                     } else if (bytes[2] == BleContants.BLOOD_OXYGEN) {                 //TODO --  Real-time blood oxygen data return    0xAD
-                        int oxygen = bytes[5] & 0xFF;             //血氧值
-                        Log.e(TAG, "实时血氧 ： " + oxygen);  //    
+                        int oxygen = bytes[5] & 0xFF;             //Blood oxygen value
+                        Log.e(TAG, "Real-time blood oxygenation ： " + oxygen);  //
 
                         if(BTNotificationApplication.isSyncEnd) {  //todo --- Synchronous data is completed before sending a synchronous real-time step broadcast
                             SenDXieyang(oxygen);      //todo   ---  BLE real-time blood oxygenation
@@ -6228,7 +6228,7 @@ private  void settingNotification(){
 
 
     /**
-     * 发送心率数据
+     * Send heart rate data
      */
 private void SendHate(int heart){
     if (heart == 0) {

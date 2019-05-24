@@ -167,13 +167,13 @@ public class DeviceScanActivity extends AppCompatActivity {
      * 初始化控件 chendalin add
      */
     private void initContorl(){
-    	Log.e("寻找设备", "run in initContorl------");
+    	Log.e("Looking for equipment", "run in initContorl------");
     	liLookBlue = (LinearLayout)findViewById(R.id.li_look_bluetooth);
     	tvSesarch = (TextView)findViewById(R.id.tv_bluetooth_sesarch);
     	llSesarchAnimation = (LinearLayout)findViewById(R.id.ll_bluetooth_sesarch_animation);
-    	Log.e("寻找设备", "init tvSesarch1111------");
+    	Log.e("Looking for equipment", "init tvSesarch1111------");
 		searchView = (SycleSearchView)findViewById(R.id.ssv_bluetooth_sesarch);
-		Log.e("寻找设备", "init tvSesarch222222222------");
+		Log.e("Looking for equipment", "init tvSesarch222222222------");
 		listEquipment = (ListView)findViewById(R.id.lv_bluetooth_sesarch);
     	toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -227,7 +227,7 @@ public class DeviceScanActivity extends AppCompatActivity {
 	}
     
     /**
-	 * 点击扫描的按钮
+	 * Click the button for scanning
 	 */
 	private OnClickListener mScanningClickListener = new OnClickListener() {
 		@Override

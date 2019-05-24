@@ -35,7 +35,7 @@ public class UtilsLX {
     public final static String USER="USER";
 
     /**
-     * 把字节数组转换成16进制字符串
+     * Convert a byte array to a hex string
      * @param bArray
      * @return
      */

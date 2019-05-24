@@ -170,7 +170,7 @@ public class Wifiactivity extends Activity implements OnClickListener {
 
     }
 
-    private class kctwifiBroadcast extends BroadcastReceiver {   // 通过广播 ，更新 WiFi 列表
+    private class kctwifiBroadcast extends BroadcastReceiver {   // Update WiFi list by broadcast
         @Override
         public void onReceive(Context context, Intent intent) {
             // Log.e("WeatherService ", " 服务 接受广播");

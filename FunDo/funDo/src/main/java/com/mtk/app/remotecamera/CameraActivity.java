@@ -28,7 +28,7 @@ import com.szkct.weloopbtsmartdevice.util.SharedPreUtil;
 //import com.szkct.utils.CustomCameraView;
 
 /**
- * 远程拍照 页面
+ * Remote photo page
  *
  * @author zhaixiang$.
  * @explain
@@ -42,14 +42,14 @@ public class CameraActivity extends Activity {
     CustomCameraView customCameraView ;
     private boolean isBackground = true;
 
-    private boolean isDeviceSendExitCommand =  false; // 设备端主动退出拍照
-    public static boolean isPhoneExitTakephoto = false;  // 手机端主动退出拍照
+    private boolean isDeviceSendExitCommand =  false; // The device actively quits taking pictures
+    public static boolean isPhoneExitTakephoto = false;  // The mobile phone actively quits taking pictures
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // 设置全屏
+        // Set full screen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_cameras);
@@ -57,8 +57,8 @@ public class CameraActivity extends Activity {
         customCameraView = (CustomCameraView) findViewById(R.id.cc_camera);
         serviceRecevier1 = new ServiceRecevier();
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(MainService.ACTION_REMOTE_CAMERA);  //  拍照
-        intentFilter.addAction(MainService.ACTION_REMOTE_CAMERA_EXIT); // 退出拍照
+        intentFilter.addAction(MainService.ACTION_REMOTE_CAMERA);  //  Take a photo
+        intentFilter.addAction(MainService.ACTION_REMOTE_CAMERA_EXIT); // Exit photo
         registerReceiver(serviceRecevier1, intentFilter);
         btnToggle = (ImageButton) findViewById(R.id.toggle);
         btnToggle.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +95,7 @@ public class CameraActivity extends Activity {
                 //CustomCameraView customCameraView = new CustomCameraView(getApplicationContext());
 
 //                if (camera != null) {
-                // 控制摄像头自动对焦后才拍摄
+                // Control the camera to autofocus before shooting
                 try {
                     customCameraView.takePicture();
 
@@ -154,11 +154,11 @@ public class CameraActivity extends Activity {
         if(!isDeviceSendExitCommand){
             String protocolCode =  SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.FIRMEWAREINFO, SharedPreUtil.PROTOCOLCODE);
             if(DateUtil.versionCompare("V1.1.36", protocolCode)
-                    && SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")){   //现根据协议版本号，大于1.1.37
+                    && SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("1")){   //According to the protocol version number, it is greater than 1.1.37.
                 L2Send.sendNewExitTakephoto();
                 isPhoneExitTakephoto = true;
             }else {
-                // 退出拍照时，发送退出拍照的命令
+                // Send a command to exit the photo when exiting the photo
                 L2Send.sendExitTakephoto();
                 isPhoneExitTakephoto = true;
             }

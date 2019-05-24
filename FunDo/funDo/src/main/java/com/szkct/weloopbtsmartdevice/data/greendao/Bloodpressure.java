@@ -14,12 +14,12 @@ import java.text.SimpleDateFormat;
 
 public class Bloodpressure implements Serializable,Comparable<Bloodpressure>{
     String   Mac;
-    String HeightBlood;//高压
-    String MinBlood;//低压
-    String Hour;//测试时间
+    String HeightBlood;//high pressure
+    String MinBlood;//Low pressure
+    String Hour;//testing time
      Long id;
-    String Data;//日期
-    String Conunt;//次数
+    String Data;//date
+    String Conunt;//frequency
 
     public String getConunt() {
         return Conunt;

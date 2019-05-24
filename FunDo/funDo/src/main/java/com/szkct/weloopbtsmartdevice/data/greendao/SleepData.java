@@ -26,7 +26,7 @@ public class SleepData {
     private String lightsleep;
 
     /** Not-null value. */
-    private String autosleep;   //  目前用为总睡眠时间 ----- 是否对之前的有影响，待验证
+    private String autosleep;   //  Currently used as total sleep time ----- whether it has an impact on the previous, to be verified
 
     /** Not-null value. */
     private String sleeptype;

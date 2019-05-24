@@ -10,7 +10,7 @@ package com.szkct.bluetoothgyl;
  */
 public class BleCmdBean {
 
-    public int retry;   // 重发机制
-    public int sequence_id;  //序列号
-    public byte[] content;   //内容
+    public int retry;   // Retransmission mechanism
+    public int sequence_id;  //serial number
+    public byte[] content;   //content
 }

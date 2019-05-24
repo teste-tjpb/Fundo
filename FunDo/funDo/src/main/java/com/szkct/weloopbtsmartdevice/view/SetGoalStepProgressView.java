@@ -170,7 +170,7 @@ public class SetGoalStepProgressView extends View {
 				}
 			}
 
-			// 通过广播的形式给activity发送消息
+			// Send a message to the activity in the form of a broadcast
 			Intent intent = new Intent("broadcast_action"); // action是broadcast_action;
 			intent.putExtra("stepcount", text);
 			intent.putExtra("stepangle", angle);

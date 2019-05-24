@@ -18,7 +18,7 @@ public class PhoneReceiver extends BroadcastReceiver {
         TelephonyManager tm = (TelephonyManager) context
                 .getSystemService(Service.TELEPHONY_SERVICE);
         if(MainService.getInstance().getState()!=3){
-        	Log.i("onCallStateChanged", "ble未连接");
+        	Log.i("onCallStateChanged", "Ble is not connected");
         	return ;
         }
         switch (tm.getCallState()) {
@@ -32,7 +32,7 @@ public class PhoneReceiver extends BroadcastReceiver {
             }
            
             break;
-        case TelephonyManager.CALL_STATE_RINGING:// 电话打进来状态
+        case TelephonyManager.CALL_STATE_RINGING:// Called in
             Log.i("onCallStateChanged", "CALL_STATE_RINGING"+intent.getStringExtra("incoming_number"));
             //mIncomingNumber就是来电号码
             MainService.getInstance(). phonelingk=false;

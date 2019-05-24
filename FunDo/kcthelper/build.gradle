@@ -13,8 +13,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         ndk {
-            moduleName "KCTCommand" // so库名
-            abiFilters "armeabi", "armeabi-v7a", "x86", "arm64-v8a"//输出指定平台下的so库
+            moduleName "KCTCommand" // so library name
+            abiFilters "armeabi", "armeabi-v7a", "x86", "arm64-v8a"//Output the so library under the specified platform
         }
 
     }

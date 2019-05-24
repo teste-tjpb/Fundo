@@ -1279,19 +1279,19 @@ public class HelperFragment extends Fragment {
         SharedPreUtil.setParam(getActivity(), SharedPreUtil.USER, key, b);
     }
 
-    public class Bluttoothbroadcast extends BroadcastReceiver {   // 通过广播监听蓝牙的连接状态
+    public class Bluttoothbroadcast extends BroadcastReceiver {   // Monitor Bluetooth connection status via broadcast
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (MainService.ACTION_BLECONNECTED.equals(action)) {   // 蓝牙连接成功
+            if (MainService.ACTION_BLECONNECTED.equals(action)) {   // Bluetooth connection is successful
                 // Toast.makeText(context, "蓝牙状态改变", Toast.LENGTH_SHORT).show();
                 /*if (link_blename_txt != null) {
-                    link_blename_txt.setText(SharedPreUtil.readPre(getActivity(), SharedPreUtil.USER, SharedPreUtil.MACNAME));     //通过保存的蓝牙mac地址，获取到蓝牙的名字
+                    link_blename_txt.setText(SharedPreUtil.readPre(getActivity(), SharedPreUtil.USER, SharedPreUtil.MACNAME));     //By saving the Bluetooth mac address，Get the name of Bluetooth
 
 
                 }*/
                 if (SharedPreUtil.readPre(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("2")) {
-                    //todo --- 添加判断mac地址
+                    //todo --- Add judgment MAC address
                     //                        myaddress = SharedPreUtil.readPre(context, SharedPreUtil.USER, SharedPreUtil.MAC).toString();
                     String deviceNAME = SharedPreUtil.readPre(context, SharedPreUtil.NAME, SharedPreUtil.MAC).toString();
                     if (!StringUtils.isEmpty(deviceNAME) && deviceNAME.contains("DfuTarg")) {  //  if(!StringUtils.isEmpty(deviceNAME) && deviceNAME.equals("DfuTarg")){   && FirmWareUpdateActivity.isHasDfuDevice
@@ -1317,7 +1317,7 @@ public class HelperFragment extends Fragment {
                     }
                 }
             }
-            if (MainService.ACTION_BLEDISCONNECTED.equals(action)) { // 蓝牙断开
+            if (MainService.ACTION_BLEDISCONNECTED.equals(action)) { // Bluetooth disconnect
                 // Toast.makeText(context, "蓝牙状态改变", Toast.LENGTH_SHORT).show();
                /* if (link_blename_txt != null) {
                     link_blename_txt.setText(getString(R.string.watch_not_connected));
@@ -1328,7 +1328,7 @@ public class HelperFragment extends Fragment {
                     geting = false;
                 }*/
             }
-            if (MainService.ACTION_UNABLECONNECT.equals(action)) {   // 手机蓝牙未打开
+            if (MainService.ACTION_UNABLECONNECT.equals(action)) {   // Bluetooth is not turned on
                 // Toast.makeText(context, "蓝牙状态改变", Toast.LENGTH_SHORT).show();
                 /*if (link_blename_txt != null) {
                     link_blename_txt.setText(getString(R.string.watch_not_connected));
@@ -1339,25 +1339,25 @@ public class HelperFragment extends Fragment {
                     geting = false;
                 }*/
             }
-            if (MainService.ACTION_GETWATCH.equals(action)) {    // TODO ---- 找到手表的广播
+            if (MainService.ACTION_GETWATCH.equals(action)) {    // TODO ---- Find the watch's broadcast
                 geting = false;
                 img_watch_sesarch.clearAnimation();
                 img_watch_sesarch.setVisibility(View.GONE);   // 隐藏找手表的状态
             }
 			
-			if (MainService.ACTION_GESTURE_ON.equals(action)) {    // TODO ---- 找到手表的广播
+			if (MainService.ACTION_GESTURE_ON.equals(action)) {    // TODO ---- Find the watch's broadcast
                 // Toast.makeText(context, "蓝牙状态改变", Toast.LENGTH_SHORT).show();
                 tb_raise_bright.setChecked(true);
                 SharedPreUtil.setParam(getActivity(), SharedPreUtil.USER, SharedPreUtil.RAISE_BRIGHT, true);
             }
 
-            if (MainService.ACTION_GESTURE_OFF.equals(action)) {    // TODO ---- 找到手表的广播
+            if (MainService.ACTION_GESTURE_OFF.equals(action)) {    // TODO ---- Find the watch's broadcast
                 // Toast.makeText(context, "蓝牙状态改变", Toast.LENGTH_SHORT).show();
                 tb_raise_bright.setChecked(false);
                 SharedPreUtil.setParam(getActivity(), SharedPreUtil.USER, SharedPreUtil.RAISE_BRIGHT, false);
             }
 
-            if (MainService.ACTION_SYNFINSH.equals(action)) {    // TODO ---- 同步数据完成
+            if (MainService.ACTION_SYNFINSH.equals(action)) {    // TODO ---- Synchronized data completion
                 // Toast.makeText(context, "蓝牙状态改变", Toast.LENGTH_SHORT).show();
                /* if(null != dialog){
                     //todo ---- 弹加载框
@@ -1403,8 +1403,8 @@ public class HelperFragment extends Fragment {
                 }
             }
 
-            if (MainService.ACTION_SYNC_BLECONNECT.equals(action)) {    // TODO ---- 自动同步
-                if (SharedPreUtil.readPre(getActivity(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("2")) {    //手环实时同步运动数据
+            if (MainService.ACTION_SYNC_BLECONNECT.equals(action)) {    // TODO ---- Automatic synchronization
+                if (SharedPreUtil.readPre(getActivity(), SharedPreUtil.USER, SharedPreUtil.WATCH).equals("2")) {    //Bracelet real-time synchronized motion data
 
                     if((boolean) SharedPreUtil.getParam(BTNotificationApplication.getInstance(), SharedPreUtil.USER, SharedPreUtil.ISFIRMEWARING, false)) {
                         return;
